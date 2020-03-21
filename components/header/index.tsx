@@ -32,7 +32,7 @@ const Header: HeaderComponent = memo(
                 />
                 <meta
                     property="og:image"
-                    content={normal}
+                    content={`https://staging.blog.mystiar.com/assets/content/${content}/${normal}`}
                 />
                 <meta property="og:image:width" content="1920" />
                 <meta property="og:image:height" content="1080" />
@@ -47,7 +47,7 @@ const Header: HeaderComponent = memo(
                 <meta name="twitter:site" content="@SaltyAom" />
                 <meta
                     name="twitter:image"
-                    content={normal}
+                    content={`https://staging.blog.mystiar.com/assets/content/${content}/${normal}`}
                 />
                 <meta name="twitter:creator" content="@SaltyAom" />
             </Head>

@@ -8,7 +8,8 @@ const components = {
         </a>
     ),
     pre: ({ children }) => <pre className="pre">{children}</pre>,
-    code: ({ children }) => <code className="code">{children}</code>
+    code: ({ children }) => <code className="code">{children}</code>,
+    li: ({ children }) => <li className="list">{children}</li>
 }
 
 export default components

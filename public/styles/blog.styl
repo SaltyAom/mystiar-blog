@@ -11,14 +11,33 @@
 
 .h1,
 .h2
+    position relative
     display block
-    font-size 32px
+    font-size 36px
     font-weight 400
     margin 8px 0 0 0
     font-weight 700
 
+    &::before
+        position absolute
+        content ""
+        display block
+        top 24px
+        left -48px
+        width 6px
+        height 6px
+        opacity .75
+        background-color var(--primary)
+        border-radius 3px
+        box-shadow 0 0 0 12px var(--primary-overlay)
+
 .h2
     font-size 28px
+
+    &::before
+        top 20px
+        background-color var(--success)
+        box-shadow 0 0 0 12px var(--success-overlay)
 
 .p
     display block
@@ -58,3 +77,8 @@
     background-color var(--code)
     overflow-x auto
     overflow-y hidden
+
+.list
+    font-size 19px
+    color var(--title)
+    line-height 1.85em
