@@ -9,12 +9,11 @@ const Image: ImageComponent = ({ src, alt }) => {
 
     return (
         <Fragment>
-            <figure
+            <img
                 className="standalone-image"
                 onClick={() => showFullImage(true)}
-            >
-                <img className="image" {...{ src, alt }} />
-            </figure>
+                {...{ src, alt }}
+            />
             {isShowingFullImage ? (
                 <div
                     className="standalone-overlay"
