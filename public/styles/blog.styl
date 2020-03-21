@@ -1,0 +1,60 @@
+#blog
+    width 640px
+    margin 0 auto
+    padding 20px 0
+    color var(--title)
+
+    @media screen and (max-width 768px)
+        &
+            width 100%
+            padding 20px 5%
+
+.h1,
+.h2
+    display block
+    font-size 32px
+    font-weight 400
+    margin 8px 0 0 0
+    font-weight 700
+
+.h2
+    font-size 28px
+
+.p
+    display block
+    font-size 19px
+    font-weight 400
+    margin 40px 0
+    line-height 1.75em
+
+.a
+    font-size 19px
+    color var(--link)
+    padding 2px 6px
+    border-radius 4px
+    text-decoration none
+
+    &:hover,
+    &:focus
+        background-color var(--link-overlay)
+
+.p > code
+    display inline
+    color var(--success)
+    padding 2px 4px
+    font-weight 700
+    border-radius 4px
+    background-color var(--success-overlay)
+
+.pre > .code
+    display block
+    color var(--content)
+    font-size 16px
+    font-family: Consolas, Menlo, Monaco, "Courier New", Courier, monospace
+    font-weight 700
+    margin 20px 0
+    padding 20px
+    border-radius 8px
+    background-color var(--code)
+    overflow-x auto
+    overflow-y hidden

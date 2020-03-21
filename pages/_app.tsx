@@ -1,5 +1,7 @@
 import App from 'next/app'
 
+import "styles/init.styl"
+
 class Next extends App {
 	componentDidMount() {
 		document.addEventListener("touchstart", () => null, false)

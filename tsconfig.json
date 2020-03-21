@@ -25,7 +25,9 @@
 			"libs": ["libs"],
 			"pageTypes": ["pageTypes"],
 			"stores": ["stores"],
-			"layouts": ["layouts"]
+			"layouts": ["layouts"],
+			"blog": ["blog"],
+			"assets": ["public/assets"]
 		}
 	},
 	"exclude": ["node_modules"],

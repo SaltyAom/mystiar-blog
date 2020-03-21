@@ -1,7 +1,25 @@
-import { NextPage } from "next"
+import { Fragment } from 'react'
 
-import ILanding from "pageTypes/index"
+import Head from 'next/head'
 
-const Landing: NextPage<ILanding> = () => <h1>Hello World</h1>
+import 'styles/landing.styl'
+
+const Landing = () => (
+    <Fragment>
+        <Head>
+            <title>Mystiar Blog</title>
+        </Head>
+        <main id="under-construction">
+            <figure className="figure">
+                <img
+                    className="image"
+                    src="/assets/under-construction.gif"
+                    alt="Shaw"
+                    />
+            </figure>
+            <h1 className="title">Underconstruction</h1>
+        </main>
+    </Fragment>
+)
 
 export default Landing
