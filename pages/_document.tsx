@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 class MusicPlayerDocument extends Document {
     render() {
         return (
-            <Html>
+            <Html lang="th">
                 <Head>
                     <meta name="title" content="Mystiar Blog" />
                     <meta name="description" content="เพราะว่าความรู้ คือกุญแจสู่อนาคต" />

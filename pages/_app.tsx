@@ -13,7 +13,7 @@ class Next extends App {
 		)
 			window.addEventListener("load", () => {
 				navigator.serviceWorker.register(
-					"service-worker.js",
+					"/service-worker.js",
 					{ scope: "/" }
 				)
 			})
