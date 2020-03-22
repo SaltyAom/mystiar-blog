@@ -1,6 +1,21 @@
+import Code from 'components/blog/code'
+import HookTitle from 'components/blog/hookTitle'
+
+import { serialize, hook } from 'libs/serialize'
+
 const components = {
-    h1: ({ children }) => <h1 className="h1">{children}</h1>,
-    h2: ({ children }) => <h2 className="h2">{children}</h2>,
+    h1: ({ children }) => (
+        <h1 id={serialize(children)} className="h1">
+            {children}
+            <HookTitle title={hook(children)} />
+        </h1>
+    ),
+    h2: ({ children }) => (
+        <h2 id={serialize(children)} className="h2">
+            {children}
+            <HookTitle title={hook(children)} on="h2" />
+        </h2>
+    ),
     p: ({ children }) => <p className="p">{children}</p>,
     a: ({ children, href }) => (
         <a href={href} rel="no-refferer no-reopener" className="a">
@@ -8,7 +23,7 @@ const components = {
         </a>
     ),
     pre: ({ children }) => <pre className="pre">{children}</pre>,
-    code: ({ children }) => <code className="code">{children}</code>,
+    code: ({ children }) => <Code>{children}</Code>,
     li: ({ children }) => <li className="list">{children}</li>
 }
 

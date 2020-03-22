@@ -1,0 +1,19 @@
+.hook-title
+    position absolute
+    top 8px
+    width 36px
+    height 36px
+    padding 4px
+    margin 0 0 0 8px
+    border-radius 18px
+    fill var(--content)
+    transition fill .2s ease-out, background-color .2s ease-out
+    cursor pointer
+
+    &:hover,
+    &:focus
+        fill var(--primary)
+        background-color var(--primary-overlay)
+
+    &.-h2
+        top 2px

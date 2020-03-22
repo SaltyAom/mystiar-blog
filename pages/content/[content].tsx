@@ -1,17 +1,31 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { MDXProvider } from "@mdx-js/react"
+import { MDXProvider } from '@mdx-js/react'
 
 import blog from 'blog'
 import components from 'blog/component'
 
-import Header from 'components/header'
+import Header from 'components/blog/header'
 
 import 'styles/blog.styl'
 
 const Content = ({ content }) => {
     let { meta, Content } = blog[content]
+
+    useEffect(() => {
+        if (!window.location.hash) return
+
+        let hookedElement = document.getElementById(
+            decodeURI(window.location.hash).replace('#', '')
+        )
+
+        if (hookedElement)
+            window.scrollTo({
+                top: hookedElement.getBoundingClientRect().top - 30,
+                behavior: "smooth"
+            })
+    }, [])
 
     return (
         <Fragment>

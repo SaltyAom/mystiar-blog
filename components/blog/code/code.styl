@@ -1,0 +1,33 @@
+.standalone-code
+    display block
+    color var(--code-content)
+    font-size 16px
+    font-family: Consolas, Menlo, Monaco, "Courier New", Courier, monospace
+    font-weight 700
+    margin 0
+    padding 20px
+    border-radius 8px
+    background-color var(--code)
+    overflow-x auto
+    overflow-y hidden
+
+.standalone-copy
+    position absolute
+    top 4px
+    right 4px
+    margin 0
+    width 36px
+    height 36px
+    padding 8px
+    cursor pointer
+    border-radius 4px
+    fill var(--content)
+    transition fill .2s ease-out, background-color .2s ease-out, box-shadow .2s ease-out
+
+    &:hover,
+    &:focus
+        fill var(--primary)
+        background-color var(--primary-overlay)
+
+    &:active
+        box-shadow 0 0 0 2px var(--primary)
