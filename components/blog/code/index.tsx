@@ -83,8 +83,6 @@ const Code = memo(({ children }) => {
         }
     }, [])
 
-    console.log(children)
-
     return (
         <Fragment>
             <Highlight
