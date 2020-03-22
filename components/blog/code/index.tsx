@@ -6,10 +6,10 @@ import { defaultProps } from 'prism-react-renderer'
 import githubTheme from 'prism-react-renderer/themes/github'
 import draculaTheme from 'prism-react-renderer/themes/dracula'
 
+import { isServer } from 'libs/helpers'
 import copy from 'libs/copy'
 
 import './code.styl'
-import { isServer } from 'libs/helpers'
 
 const Highlight = dynamic(() => import('prism-react-renderer')),
     Copy = dynamic(
@@ -30,12 +30,12 @@ const Code = memo(({ children }) => {
         )
 
     useEffect(() => {
-        if(!isServer)
-        window
-            .matchMedia('(prefers-color-scheme: dark)')
-            .addEventListener('change', event => {
-                updateIsDark(event.matches)
-            })
+        if (!isServer && window.matchMedia('').addEventListener)
+            window
+                .matchMedia('(prefers-color-scheme: dark)')
+                .addEventListener('change', event => {
+                    updateIsDark(event.matches)
+                })
     }, [])
 
     useEffect(() => {
@@ -55,18 +55,18 @@ const Code = memo(({ children }) => {
             switch (element) {
                 case 'svg':
                     // @ts-ignore
-                    code = event.target.nextElementSibling
+                    code = event.target.parentElement.nextElementSibling
                     break
 
                 case 'g':
                     // @ts-ignore
-                    code = event.target.parentElement.nextElementSibling
+                    code = event.target.parentElement.parentElement.nextElementSibling
                     break
 
                 case 'path':
                     code =
                         // @ts-ignore
-                        event.target.parentElement.parentElement
+                        event.target.parentElement.parentElement.parentElement
                             .nextElementSibling
                     break
 
@@ -83,12 +83,10 @@ const Code = memo(({ children }) => {
         }
     }, [])
 
+    console.log(children)
+
     return (
         <Fragment>
-            <Copy
-                className="standalone-copy"
-                onClick={() => requestCopy(event)}
-            />
             <Highlight
                 {...defaultProps}
                 // @ts-ignore
@@ -107,13 +105,22 @@ const Code = memo(({ children }) => {
                         className={`${className} standalone-code -highlighted`}
                         style={style}
                     >
-                        {tokens.map((line, i) => (
-                            <div {...getLineProps({ line, key: i })}>
-                                {line.map((token, key) => (
-                                    <span {...getTokenProps({ token, key })} />
-                                ))}
-                            </div>
-                        ))}
+                        <Fragment>
+                            <Copy
+                                className="standalone-copy"
+                                onClick={() => requestCopy(event)}
+                            />
+
+                            {tokens.map((line, i) => (
+                                <div {...getLineProps({ line, key: i })}>
+                                    {line.map((token, key) => (
+                                        <span
+                                            {...getTokenProps({ token, key })}
+                                        />
+                                    ))}
+                                </div>
+                            ))}
+                        </Fragment>
                     </code>
                 )}
             </Highlight>

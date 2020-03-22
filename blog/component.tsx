@@ -22,7 +22,11 @@ const components = {
             {children}
         </a>
     ),
-    pre: ({ children }) => <pre className="pre">{children}</pre>,
+    pre: ({ children }) => {
+        if (children.props.mdxType === 'code') return children
+
+        return <pre className="pre">{children}</pre>
+    },
     code: ({ children }) => <Code>{children}</Code>,
     li: ({ children }) => <li className="list">{children}</li>
 }

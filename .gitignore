@@ -4,3 +4,4 @@ out/*
 .DS_Store
 yarn-error.log
 public/service-worker.js
+.now
