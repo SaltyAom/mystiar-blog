@@ -11,8 +11,9 @@
     overflow-x auto
     overflow-y hidden
 
-    &.-highlighted ~ .standalone-code
-        display none
+    &.-highlighted 
+        & ~ .standalone-code
+            display none
 
     & > .token-line:last-child
         display none

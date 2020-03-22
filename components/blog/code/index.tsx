@@ -3,11 +3,13 @@ import { Fragment, memo, useCallback, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
 import { defaultProps } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/github'
+import githubTheme from 'prism-react-renderer/themes/github'
+import draculaTheme from 'prism-react-renderer/themes/dracula'
 
 import copy from 'libs/copy'
 
 import './code.styl'
+import { isServer } from 'libs/helpers'
 
 const Highlight = dynamic(() => import('prism-react-renderer')),
     Copy = dynamic(
@@ -19,9 +21,22 @@ const Highlight = dynamic(() => import('prism-react-renderer')),
 
 const Code = memo(({ children }) => {
     let [isShowingSnackbar, showSnackbar] = useState(false),
-        [snackbarMessage, updateSnackbarMessage] = useState('')
+        [snackbarMessage, updateSnackbarMessage] = useState(''),
+        [isDark, updateIsDark] = useState(
+            !isServer
+                ? window.matchMedia &&
+                      window.matchMedia('(prefers-color-scheme: dark)').matches
+                : false
+        )
 
     useEffect(() => {
+        if(!isServer)
+            window
+                .matchMedia('(prefers-color-scheme: dark)')
+                .addEventListener('change', event => {
+                    updateIsDark(event.matches)
+                })
+
         if (isShowingSnackbar)
             setTimeout(() => {
                 showSnackbar(false)
@@ -76,7 +91,7 @@ const Code = memo(({ children }) => {
                 {...defaultProps}
                 // @ts-ignore
                 code={children}
-                theme={theme}
+                theme={isDark ? draculaTheme : githubTheme}
                 language="jsx"
             >
                 {({

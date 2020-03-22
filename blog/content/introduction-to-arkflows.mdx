@@ -1,0 +1,210 @@
+import Image from 'components/blog/image'
+import Blockquote from 'components/blog/blockquote'
+import Divider from 'components/blog/divider'
+
+State Manager ใน View Library ส่วนใหญ่สร้างขึ้นมาค่อนข้างยากต่อการ maintain และการ setup ก็ค่อนข้างที่จะยุ่งยากเอาซะมากๆ แม้ว่าจะดีขนาดไหน แต่การทำให้มันเรียบง่ายก็มักจะเป็นปัญหาอยู่ตลอดๆ จึงเป็นจุดกำเนิดของ Arkflows `Light-weight state container for JavaScript app.`
+
+# Arkflows
+เป็น library สำหรับการจัดการกับ store ที่ถูกสร้างมาจากความเจ็บปวดจากการ maintain Redux ในเว็บขนาดใหญ่ที่พันซ้อนกันวุ่นวาย ทั้งๆ ที่ `State Manager ควรที่จะทำให้ทุกอย่างง่ายขึ้น แต่มันกลับกลายเป็นยากขึ้นแทนซะอย่างนั้น`
+
+อีกทั้ง Concept ของ Store Manager ต่างๆ ก็มี Concept ที่ต่างออกไปเยอะมาก บางอันก็ออกมาซะยุ่งยากทั้งๆ ที่เราอาจจะไม่ได้ใช้ด้วยซ้ำ นอกจากจะเสียเวลาแล้วเรายังเสีย Performance หลายๆ ส่วนทั้งๆ ที่ไม่จำเป็น ทำให้เราเสียโอกาศในการ Optimize หลายๆ อย่างไปด้วย 
+
+ตัว Arkflows เกิดมาจากปัญหาพวกนี้ และเสนอตัวเองใน concept ที่ว่า
+<Blockquote author="Store ที่ไม่เจ็บปวด">
+Store which doesn't hurt.
+</Blockquote>
+
+## แล้วทำไมต้องมี State Manager?
+JavaScript Frontend Library/Framework ส่วนใหญ่มักจะเป็นปัญหากับการแยกเขียนเป็นส่วนๆ ลองนึกถึงการใช้การใช้ตัวแปร JavaScript ระหว่างไฟล์ดูสิว่าจะทำยังไง มันก็ค่อนข้างที่จะยุ่งยากหรือสำหรับคนที่ยังไม่ชำนาญ แต่ในเว็บขนาดใหญ่ การทำแบบนี้กลับเป็นเรื่องที่เรียกว่าปกติมากๆ
+
+ด้วยความที่เราอาจจะต้องเสียเวลาบางส่วนไปในการจัดการพวกนี้ก็คงจะไม่ใช่เรื่องถ้าเราต้องทำซ้ำกันบ่อยๆ เลยเกิด State Manager ขึ้นมา
+
+แต่ปัญหาคือ ใยบางครั้งเราก็ต้องการใช้ State Manager แค่นิดเดียว ใช้ Concept ง่ายๆ แค่การแชร์ค่าตัวแปร แต่เรากลับต้องมาตั้ง Boilerplate เยอะแยะ ทั้งๆ ทำให้เสียเวลาจนหัวเสีย อีกทั้งส่วนที่เราไม่ใช้กลับต้อง Build เข้า Production ทำให้ขนาดไฟล์มันใหญ่ขึ้นไปเยอะทั้งๆ ที่เราไม่ได้ใช้ด้วยซ้ำ
+
+<Blockquote author="หลายคนก็ต้องเคยคิดแบบนี้กันบ้างแหละ...">
+บางครั้งเราก็แค่อยากได้ State Manager ง่ายๆ ที่แค่ Share State ได้ก็พอ
+</Blockquote>
+
+## กำเนิด Arkflows
+Arkflows เกิดมาจากปัญหาทั้งหมดที่เกิดขึ้นจากด้านบน เราก็แค่อยากได้ `State Manager ง่ายๆ และมี Performance สูง` แค่นั้นเอง
+
+อ้างสรรพคุณขนาดนี้ มันง่ายจริงๆ หรอ? ง่ายพอๆ กับการเขียน `LocalStorage` นั่นแหละ
+```javascript
+import Store from 'arkflows'
+
+let store = new Store()
+
+store.create("message", {
+    hello: "world"
+})
+
+store.get("message") // { hello: "world" }
+
+store.update("message", { hello: "Arkflows" }) // { hello: "Arkflows" }
+```
+อย่างเดียวที่เพิ่มมาก็คือก็สร้าง class `Store()` ขึ้นมา ก็แค่นั้น
+
+# แล้วมันจะสู้ Library อื่นได้หรอ?
+Arkflows ไม่ได้ให้ง่ายเหมือนกับแค่ extend LocalStorage แต่ว่าก็ยังคง Performance ไว้โดยสมบูรณ์ยิ่งกว่า Library อื่นๆ
+โดยจุดเด่นของ Arkflows ก็คือ
+
+## 3KB พอ
+Arkflows มีขนาดอยู่ที่ 1KB (gzipped) และ 3KB (gzipeped polyfill) โดย `Polyfill จะถูกเรียกแค่บน Safari` เท่านั้น เพราะว่าแม้แต่ `IE9 ก็ยัง Support เลย` (ให้ตายเถอะ Apple!)
+
+ดังนั้นการใช้ Arkflows ใน Production Build ก็คือการเพิ่มไฟล์เข้าไป 3KB แต่ว่าเรียกใช้จริงแค่ 1KB บน Browser ส่วนใหญ่ แทนที่ Store ซึ่งขนาดของ Redux ยังไงก็เกิน 30KB แน่นอนถ้าไม่ทำ Tree-shaking
+<Image src="/assets/content/introduction-to-arkflows/bundlephobia.png" alt="Arkflows on Bundlephobia" />
+
+## Native Performance
+ปัญหาของ State Manager ส่วนใหญ่ ก็คือการที่มันผ่านขั้นตอนที่เราไม่ต้องการที่จะใช้เยอะมากๆ ซึ่งก็ลด Performance ไปเยอะมากๆ ด้วยเหมือนกัน
+Arkflows ลบปัญหาส่วนนั้นออก แต่ว่ามันไม่ได้มีแค่นั้น...
+  
+Arkflows ถูกสร้างขึ้นบนฐานของ Class ที่ชื่อว่า `EventTarget`
+  
+EventTarget เนี่ย มันคือ class ที่อยู่บนทุก Browser ที่ใช้ EventListener ได้ ซึ่งพวก `EventListener` เนี่ยมันฟังดูคุ้นๆ ไหม?
+```JavaScript
+let button = document.addEventListener("click", (event) => {
+    console.log(event.target) // นี่แหละ EventTarget
+})
+```
+
+ด้วยความที่เรา Reuse ของที่มีอยู่แล้วบน Browser ทำให้เราลด code ที่ทำหน้าที่เหมือนกับ EventTarget ออกไป แต่ความเจ๋งของมันไม่ได้อยู่ตรงนั้น
+  
+ความเจ๋งคือ EventTarget เนี่ย มันทำงานเป็น Native Code ซึ่งหมายความว่า มันไม่ต้อง compile เหมือน code JavaScript ปกติ แต่มันจะ compile ที่ภาษาดั้งเดิมที่ตัว Compiler ใช้ ซึ่งบน Chromium อย่าง Microsoft Edge, Google Chrome และ Opera ใช้คือ V8 Engine ซึ่งเขียนด้วย C++
+หมายความว่า `Code ส่วนที่ใช้ EventTarget` เนี่ย มันจะ`เร็วเกือบเท่าใช้ภาษา C++` ที่ Browser ส่วนใหญ่ใช้ Compile เลย
+<Image src="/assets/content/introduction-to-arkflows/grani.jpeg" alt="Whoa Reaction" />
+
+## 10 ปากว่า ไม่เท่า 1 ตาเห็น
+ดังนั้นเราทดสอบ Basic Operation ในเงื่อนไขต่อไปนี้:
+* ทดสอบการอ่าน-เขียนบน React 16.12 (Development Environment)
+* ทดสอบบน MacBook Pro 2019 (i5 และ RAM 16 GB)
+* ทดสอบโครงสร้างด้วย Object { initial: true }
+* ทดสอบ 100,000 Operation และหาเวลาเฉลี่ยต่อ 1 วินาที
+
+โดยมี Code ทดสอบดังนี้
+<Image src="/assets/content/introduction-to-arkflows/performance-mesurement.jpg" alt="Performance Measurement Code" />
+
+ทีนี้เราลองเปิด Edge ที่เปิดเพลงบน YouTube และเปิด Facebook ไว้อีกแท็บ
+<Image src="/assets/content/introduction-to-arkflows/performance.jpg" alt="Performance Measurement Code" />
+
+ซึ่งได้ผลลัพธ์ดังนี้
+* เกือบ 3 ล้าน Read/second
+* 5 แสน Write/second
+* 5 แสน Read + Write/second
+
+ด้วยการลด Code ส่วนที่ไม่จำเป็นออก และการเก็บตัวแปรหลักๆ ก็ทำให้ไม่ต้องใช้อะไรมาก ซึ่งลดการทำงานส่วนใหญ่ไปได้เยอะ
+ใน 1 วินาที `ซึ่งในความเป็นจริงแล้ว ก็คงไม่มีใครทำ Code เละขนาดให้ถึง 1000 operations/second ด้วยซ้ำ` ลองนึกสิว่าเคย Dispatch Redux ไปกี่ครั้งใน 1 วินาที
+
+## Reactive
+แน่นอนว่า เราไม่ได้เลือกใช้ EventTarget เพราะแค่ Performance อย่างเดียว แต่เราต้องการใช้ EventListener ด้วยต่างหาก!
+ซึ่งหมายความว่า เราสามารถ`ดักได้ว่าเราเขียนค่าไปหรือยัง` ซึ่งเร็วถึงขนาดพวก Listener แบบ Native เลยด้วย!
+
+```JavaScript
+import Store from 'arkflows'
+
+let store = new Store()
+
+store.create("message", {
+    hello: "world"
+})
+
+store.subscribe("message", (data) => {
+    console.log(data) // { hello: "Arkflows" }
+})
+
+store.update("message", { hello: "Arkflows" }) // { hello: "Arkflows" }
+```
+ซึ่งก็ถ้าไม่อยากดักฟังแล้วก็แค่เรียก `.unsubscribe()` chain ต่อได้เลย อย่างเช่นยกเลิกตอน componentWillUnmount() ใน React (Component จะถูกทำลาย เลยลบ Listener เพื่อกัน Memory Leak)
+
+```javascript
+let messageListener = store.subscribe("message", (data) => {
+    console.log(data) // { hello: "Arkflows" }
+})
+
+// After a while...
+messageListener.unsubscribe()
+```
+
+## ง่ายเหมือนกับแค่เพิ่ม function ให้ LocalStorage
+Pain Point ของ Arkflows มันมาจากการที่รู้สึกว่า Library อื่น มันยากสำหรับคนที่พึ่งเริ่มนะสิ จะให้มาเข้าใจ Redux ใน 5 นาทีมันก็เกินไป๊!
+
+<Blockquote author="SaltyAom">
+ถ้าเป็นไปได้ก็อยากให้ทุกอย่างมันง่ายเหมือนกับ LocalStorage ก็ดีสิ
+</Blockquote>
+
+ก็เลยอยากให้มันคล้ายๆ กับ LocalStorage ถ้าเป็นไปได้ แต่ก็ต้องเพิ่ม Function ที่สำคัญเข้ามาด้วย
+
+อีกปัญหานึงก็คือ ทำไม Library ส่วนใหญ่ถึง... แบบว่า 
+<Blockquote author="SaltyAom">
+Error อ่านโคตรยากเลยโว้ยยย!
+</Blockquote>
+<Image src="/assets/content/introduction-to-arkflows/angery.gif" alt="Angry" />
+
+Arkflows ก็เลยมีตัวช่วยเล็กๆ น้อยๆ ให้ Error มันสั้นที่สุด (ด้วยความที่คนเขียน concern เรื่อง UX เอาซะมากๆ) เลยได้ Error แบบง่ายๆ กับวิธีแก้ปัญหามาให้เลย
+```JavaScript
+import Store from 'arkflows'
+
+let store = new Store()
+
+store.get("sugar") // sugar isn't existed. Please create it with create("sugar")
+
+store.create("sugar", { amount: 2 }) // { amount: 2 }
+
+store.create("sugar", { amount: 2 }) // sugar is already existed.
+```
+
+## Middleware
+มีคนเคยบอกไว่ว่า Store ที่ดี เราควรที่จะควบคุมได้ ซึ่ง Library store ทุกอันมันจะต้องมี `middleware` ซึ่งแม้แต่ Arkflows ก็ไม่เว้น
+เราสามารถที่จะแต่งเติมหรือว่ายกเลิก Operation บางอย่างก็ควบคุมจาก Middleware นั่นแหละ
+
+โดย Middleware มีหน้าที่ในการควบคุม Flow ก่อนที่จะถูกใช้งานจริงๆ ซึ่งทิศทางการไหลเป็นแบบนี้
+```
+Operation => Middleware => Store
+```
+
+และใน Arkflows ก็เขียนแบบนี้:
+```javascript
+store.applyMiddleware((store, process) => {
+    console.log(store, `Process: ${process}`) // { amount: 0 } Process: create
+    return store
+})
+
+store.create("sugar", { amount: 0 })
+```
+
+ซึ่งถ้าเขียนดีๆ ก็สามารถให้ทำงานแบบเดียวกับ redux-persist ได้ ลองคิดดูว่ามันทำได้ง่ายแค่ไหนถ้าเราสามารถดัก read-write ได้
+
+## Devtools
+แน่นอนว่า ก็ที่ดูแค่ code เฉยๆ บางทีเราก็ไม่รู้มันเกิดอะไรขึ้นบ้างแล้ว ถ้าได้ Logs ด้วยก็จะดีมากใช่ไหมล่ะ?
+แน่นอนว่า ถึงขนาดจะเล็กแค่ 1KB แต่ก็ยัง Support อยู่ดีด้วย code 1 บรรทัด
+
+```javascript
+store.enableDevtools()
+```
+
+จากนั้นก็เรียก window.__arkflows__ ใน Browser Devtools ก็จะได้ Logs และคำสั่งจำเป็นในการ Debug แต่เดี๋ยวก่อน! ดู Code แบบนี้มันไม่ได้ Feels คงจะดีถ้ามีเครื่องมือช่วยดูใช่ไหมล่ะ!?
+
+แน่นอน Arkflows ก็ไม่ยอมแพ้ตรงนี้เหมือนกัน ก็เลยมี Devtools ขึ้นมา (ซึ่งตอนนี้ยังพัฒนาอยู่ และยังไม่ได้เอาลง Store)
+<Image src="/assets/content/introduction-to-arkflows/devtools.jpg" alt="Angry" />
+
+# แล้วสรุปแล้วมีอะไรบ้าง?
+Key หลักของ Arkflows จริงๆ ก็มีไม่เยอะนะ ก็แค่
+* เบามากๆ ขนาด 1KB
+* ประสิทธิภาพสูงมาก
+* Middleware
+* ง่ายพอๆ กับ LocalStorage แค่ 5 นาทีก็เขียนได้แล้ว
+* Reactive ด้วย EventListener
+* เขียนด้วย TypeScript ก็ใช้กับ TypeScript ด้วย
+* IE9 ยังใช้ได้เลย
+
+แล้วข้อเสียล่ะ?
+* ใหม่, ขนาด 0.4 Beta อยู่เลย
+* middleware มีปัญหากับ Safari (ในเวอร์ชั่น 0.4)
+* ด้วยความที่มันใหม่มาก เลยยังไม่เหมาะกับเว็บ Enterprise เท่าไหร่
+* โครงสร้างของ Arkflows บางอย่างอาจถูกเปลี่ยนเช่นจาก 0.3 มา 0.4 ก็เปลี่ยนมาใช้ `.create()` แทน `add()`
+* ก่อนหน้านี้ชื่อ `purple-tea` (ซึ่งไม่รู้ว่าเป็นข้อเสียหรือเปล่า แต่ Note ไว้ก็ดี)
+
+แล้วนอกนั้นละ?
+ตอนนี้ใช้แทน Arkflows ใน React แทน Redux ไปแล้ว ซึ่ง Performance บอกเลยว่า ดีมากๆ
+ซึ่งถ้าอยากรู้ว่าเป็นยังไงก็รอบทความต่อไปได้เลย!
+
+Ps. ชื่อ Arkflows มาจากการที่คนเขียนติดเกมที่ชื่อว่า Arknights เลยเอาคำว่า Ark มานำหน้าแล้วเติมคำว่า Flow ซึ่งแทนถึงการไหลเวียนของข้อมูล เลยได้ชื่อเท่ๆ ออกมา เจ๋งดีใช่ไหมละ ／人◕ ‿‿ ◕人＼

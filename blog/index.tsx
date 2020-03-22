@@ -1,4 +1,5 @@
 import Preact3KBofReact from './content/preact-3kb-of-react.mdx'
+import IntroductionToArkflows from './content/introduction-to-arkflows.mdx'
 
 import { SaltyAom } from './author'
 
@@ -16,6 +17,18 @@ const blog: Blog = {
             author: SaltyAom
         },
         Content: Preact3KBofReact
+    },
+    'introduction-to-arkflows': {
+        meta: {
+            title: "Arkflows - State Manager ที่ง่ายพอๆ กับ Localstorage",
+            description: "State Manager ใน View Library ส่วนใหญ่สร้างขึ้นมาค่อนข้างยากต่อการ maintain และการ setup ก็ค่อนข้างที่จะยุ่งยากเอาซะมากๆ แม้ว่าจะดีขนาดไหน แต่การทำให้มันเรียบง่ายก็มักจะเป็นปัญหาอยู่ตลอดๆ จึงเป็นจุดกำเนิดของ Arkflows",
+            cover: {
+                normal: "introduction-to-arkflows.jpg",
+                alt: "Introduction to Arkflows"
+            },
+            author: SaltyAom
+        },
+        Content: IntroductionToArkflows
     }
 }
 
