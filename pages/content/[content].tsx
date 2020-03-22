@@ -16,15 +16,17 @@ const Content = ({ content }) => {
     useEffect(() => {
         if (!window.location.hash) return
 
-        let hookedElement = document.getElementById(
-            decodeURI(window.location.hash).replace('#', '')
-        )
+        window.addEventListener('load', () => {
+            let hookedElement = document.getElementById(
+                decodeURI(window.location.hash).replace('#', '')
+            )
 
-        if (hookedElement)
-            window.scrollTo({
-                top: hookedElement.getBoundingClientRect().top - 30,
-                behavior: "smooth"
-            })
+            if (hookedElement)
+                window.scrollTo({
+                    top: hookedElement.offsetTop - 30,
+                    behavior: 'smooth'
+                })
+        })
     }, [])
 
     return (
