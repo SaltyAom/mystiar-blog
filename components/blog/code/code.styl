@@ -1,15 +1,21 @@
 .standalone-code
     display block
     color var(--code-content)
-    font-size 16px
-    font-family: Consolas, Menlo, Monaco, "Courier New", Courier, monospace
-    font-weight 700
+    font-size 18px
+    font-family SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
+    font-weight 400
     margin 0
     padding 20px
     border-radius 8px
     background-color var(--code)
     overflow-x auto
     overflow-y hidden
+
+    &.-highlighted ~ .standalone-code
+        display none
+
+    & > .token-line:last-child
+        display none
 
 .standalone-copy
     position absolute
