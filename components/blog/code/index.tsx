@@ -31,12 +31,14 @@ const Code = memo(({ children }) => {
 
     useEffect(() => {
         if(!isServer)
-            window
-                .matchMedia('(prefers-color-scheme: dark)')
-                .addEventListener('change', event => {
-                    updateIsDark(event.matches)
-                })
+        window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', event => {
+                updateIsDark(event.matches)
+            })
+    }, [])
 
+    useEffect(() => {
         if (isShowingSnackbar)
             setTimeout(() => {
                 showSnackbar(false)
