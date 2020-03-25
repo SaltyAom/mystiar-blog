@@ -1,0 +1,30 @@
+.editor-content-link
+    text-decoration none
+
+.editor-content
+    display flex
+    flex-direction column
+    justify-content flex-start
+    align-items flex-start
+    width calc(100% - 12px)
+
+    & > .figure
+        display block
+        width 100%
+        margin 0
+        border-radius 8px
+        background-color var(--preload)
+
+        & > .image
+            width 100%
+            border-radius inherit
+
+    & > .title
+        color var(--title)
+        font-size 24px
+        line-height 1.375em
+        margin 16px 0 0 0
+
+    @media screen and (max-width 567.9px)
+        &
+            width 100%

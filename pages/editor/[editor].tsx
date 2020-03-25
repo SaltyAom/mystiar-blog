@@ -1,0 +1,130 @@
+import { Fragment } from 'react'
+
+import { GetStaticPaths, GetStaticProps } from 'next'
+
+import Head from 'next/head'
+import Author from 'blog/author/types'
+
+import EditorImage from 'components/editor/editorImage'
+import EditorContent from 'components/editor/editorContent'
+
+import { Meta } from 'blog/types'
+
+import 'styles/editor.styl'
+
+const Editor = ({ author, related }) => {
+    let {
+            name,
+            bio,
+            profile,
+            contact: { mail, github }
+        } = JSON.parse(author) as Author['SaltyAom'],
+        relatedContent = JSON.parse(related) as Meta[]
+
+    return (
+        <Fragment>
+            <Head>
+                <title>{name}, Editor at Mystiar Blog</title>
+                <meta
+                    name="title"
+                    content={`${name}, Editor at Mystiar Blog`}
+                />
+                <meta
+                    name="description"
+                    content={`Read more about ${name}'s content at Mystiar Blog, profile and social contact`}
+                />
+
+                <meta
+                    property="og:title"
+                    content={`${name}, Editor at Mystiar Blog`}
+                />
+                <meta
+                    property="og:description"
+                    content={`Read more about ${name}'s content at Mystiar Blog, profile and social contact`}
+                />
+                <meta
+                    property="og:image"
+                    content={`https://staging.blog.mystiar.com/assets/editors/${profile.normal}`}
+                />
+                <meta property="og:image:width" content="144" />
+                <meta property="og:image:height" content="144" />
+                <meta
+                    property="og:image:alt"
+                    content={`Read more about ${name}'s content at Mystiar Blog, profile and social contact`}
+                />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta
+                    name="twitter:title"
+                    content={`${name}, Editor at Mystiar Blog`}
+                />
+                <meta
+                    name="twitter:description"
+                    content={`Read more about ${name}'s content at Mystiar Blog, profile and social contact`}
+                />
+                <meta name="twitter:site" content="@SaltyAom" />
+                <meta
+                    name="twitter:image"
+                    content={`https://staging.blog.mystiar.com/assets/editors/${profile.normal}`}
+                />
+                <meta name="twitter:creator" content="@SaltyAom" />
+            </Head>
+            <main id="editor">
+                <header className="profile">
+                    <EditorImage {...{ name, profile }} />
+                    <h1 className="name">{name}</h1>
+                    <h2 className="bio">{bio}</h2>
+                </header>
+                <section className="content">
+                    {relatedContent.map(content => (
+                        <EditorContent {...content} />
+                    ))}
+                </section>
+            </main>
+        </Fragment>
+    )
+}
+
+export const getStaticProps: GetStaticProps = async context => {
+    let editor = context.params.editor as string,
+        blog = require('blog').default,
+        authors = require('blog/author').default,
+        authorKeys = Object.keys(authors)
+
+    let related: string[] = []
+
+    Object.keys(blog).forEach(key => {
+        let authorName = blog[key].meta.author.name
+
+        if (authorKeys.includes(authorName)) related.push(blog[key].meta)
+    })
+
+    return {
+        props: {
+            author: JSON.stringify(authors[editor]),
+            related: JSON.stringify(related)
+        }
+    }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    let blog = require('blog').default,
+        authors = Object.keys(require('blog/author').default)
+
+    let paths: string[] = []
+
+    Object.keys(blog).forEach(key => {
+        let authorName = blog[key].meta.author.name
+
+        if (authors.includes(authorName)) paths.push(authorName)
+    })
+
+    paths = paths.map(path => `/editor/${path}`)
+
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export default Editor

@@ -1,0 +1,19 @@
+$imageSize = 144px
+
+#editor-image
+    display block
+    margin 20px 0
+    width $imageSize + 40px
+    
+    & > .photo
+        display block
+        width $imageSize
+        height $imageSize
+        margin 0 auto
+        border-radius ($imageSize / 2)
+        background-color var(--preload)
+
+        & > .image
+            width inherit
+            height inherit
+            border-radius inherit
