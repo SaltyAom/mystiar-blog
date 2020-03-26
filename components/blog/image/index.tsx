@@ -1,5 +1,7 @@
 import { Fragment, useState } from 'react'
 
+import { composeRetinaPath } from 'libs/blog'
+
 import ImageComponent from './types'
 
 import './image.styl'
@@ -12,7 +14,9 @@ const Image: ImageComponent = ({ src, alt }) => {
             <img
                 className="standalone-image"
                 onClick={() => showFullImage(true)}
+                srcSet={`${src} 640w, ${composeRetinaPath(src)} 1280w`}
                 {...{ src, alt }}
+                loading="lazy"
             />
             {isShowingFullImage ? (
                 <div
@@ -23,7 +27,8 @@ const Image: ImageComponent = ({ src, alt }) => {
                         className="image"
                         onClick={() => showFullImage(false)}
                         loading="lazy"
-                        {...{ src, alt }}
+                        src={composeRetinaPath(src)}
+                        {...{ alt }}
                     />
                 </div>
             ) : null}

@@ -10,4 +10,9 @@ export const composeImagePath = (title: string, fileName: string) => `/assets/co
             second = time.getUTCSeconds()
 
         return(`${year}-${month}-${day}T${hour}-${minute}-${second}+07:00`)
+    },
+    composeRetinaPath = (src: string) => {
+        let source = src.split(".")
+        
+        return `${source[0]}@2x.${source[1]}`
     }

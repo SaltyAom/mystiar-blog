@@ -22,7 +22,7 @@ const EditorContent: EditorContentComponent = ({
                 <figure className="figure">
                     <img
                         className="image"
-                        srcSet={retina ? `${normal}, ${retina} 2x` : normal}
+                        srcSet={retina ? `${normal} 640w, ${retina} 1280w` : normal}
                         src={normal}
                         {...{ alt }}
                         loading="lazy"

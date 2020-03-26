@@ -17,6 +17,10 @@ const blog: Blog = {
                     'preact-3kb-of-react',
                     'preact-3kb-of-react.jpg'
                 ),
+                retina: composeImagePath(
+                    'preact-3kb-of-react',
+                    'preact-3kb-of-react@2x.jpg'
+                ),
                 alt: 'Preact, สั้นๆ ว่า React ขนาด 3KB'
             },
             author: SaltyAom,
@@ -38,6 +42,10 @@ const blog: Blog = {
                 normal: composeImagePath(
                     'introduction-to-arkflows',
                     'introduction-to-arkflows.jpg'
+                ),
+                retina: composeImagePath(
+                    'introduction-to-arkflows',
+                    'introduction-to-arkflows@2x.jpg'
                 ),
                 alt: 'Introduction to Arkflows'
             },

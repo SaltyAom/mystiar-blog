@@ -6,7 +6,7 @@ const author: Author = {
         bio: "I like to take it easy!",
         profile: {
             normal: "/assets/editor/SaltyAom/lilia.jpg",
-            retina: "/assets/editor/SaltyAom/lilia.jpg",
+            retina: "/assets/editor/SaltyAom/lilia@2x.jpg",
             from: {
                 owner: "Seseren",
                 link: "https://www.pixiv.net/en/users/16274829"

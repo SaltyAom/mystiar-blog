@@ -28,7 +28,7 @@ const Header: HeaderComponent = memo(
 			"dateModified": "${composeTime(update)}",
 			"description": "${description}",
 			"headline": "${title}",
-			"image": ["${normal}"],
+			"image": ["${retina ? retina : normal}"],
 			"inLanguage": "Thai",
 			"mainEntityOfPage": "https://staging.blog.mystiar.com/content/${composeContentPath(
                 normal
@@ -48,9 +48,9 @@ const Header: HeaderComponent = memo(
 				"name": "${name}",
 				"image": {
 					"@type": "imageObject",
-					"width": "144",
-					"height": "144",
-					"url": "${profile.normal}"
+					"width": "288",
+					"height": "288",
+					"url": "${profile.retina}"
 				}
 			}
 		}
@@ -81,7 +81,7 @@ const Header: HeaderComponent = memo(
                     <meta property="og:description" content={description} />
                     <meta
                         property="og:image"
-                        content={`https://staging.blog.mystiar.com/${normal}`}
+                        content={`https://staging.blog.mystiar.com/${retina ? retina : normal}`}
                     />
                     <meta property="og:image:width" content="1920" />
                     <meta property="og:image:height" content="1080" />
@@ -93,11 +93,11 @@ const Header: HeaderComponent = memo(
                         content={`${title} - Mystiar Blog`}
                     />
                     <meta name="twitter:description" content={description} />
-                    <meta name="twitter:site" content="@SaltyAom" />
                     <meta
                         name="twitter:image"
-                        content={`https://staging.blog.mystiar.com/${normal}`}
+                        content={`https://staging.blog.mystiar.com/${retina ? retina : normal}`}
                     />
+                    {/* <meta name="twitter:site" content="@SaltyAom" /> */}
                     {/* <meta name="twitter:creator" content="@SaltyAom" /> */}
                     <meta name="robots" content="index, follow" />
 
@@ -129,7 +129,7 @@ const Header: HeaderComponent = memo(
                     <figure className="figure">
                         <img
                             className="image"
-                            srcSet={retina ? `${normal}, ${retina} 2x` : normal}
+                            srcSet={retina ? `${normal} 640w, ${retina} 1280w` : normal}
                             src={normal}
                             {...{ alt }}
                         />
