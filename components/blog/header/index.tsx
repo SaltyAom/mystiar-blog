@@ -24,8 +24,8 @@ const Header: HeaderComponent = memo(
 		{
 			"@context":"https://schema.org/",
 			"@type":"Article",
-			"datePublished": "${written}",
-			"dateModified": "${update}",
+			"datePublished": "${composeTime(written)}",
+			"dateModified": "${composeTime(update)}",
 			"description": "${description}",
 			"headline": "${title}",
 			"image": ["${normal}"],
