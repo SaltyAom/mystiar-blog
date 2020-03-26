@@ -6,7 +6,7 @@ import Head from 'next/head'
 import Author from 'blog/author/types'
 
 import EditorImage from 'components/editor/editorImage'
-import EditorContent from 'components/editor/editorContent'
+import Content from 'components/editor/content'
 
 import { Meta } from 'blog/types'
 
@@ -77,7 +77,7 @@ const Editor = ({ author, related }) => {
                 <h3 className="written">เขียนโดย {name}</h3>
                 <section className="content">
                     {relatedContent.map(content => (
-                        <EditorContent key={content.title} {...content} />
+                        <Content key={content.title} {...content} />
                     ))}
                 </section>
             </main>

@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async context => {
 export const getStaticPaths: GetStaticPaths = async () => {
     let blog = require('blog').default
 
-    let paths = Object.getOwnPropertyNames(blog).map(path => `/content/${path}`)
+    let paths = Object.keys(blog).map(path => `/content/${path}`)
 
     return {
         paths,

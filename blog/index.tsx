@@ -1,10 +1,13 @@
 import Preact3KBofReact from './content/preact-3kb-of-react.mdx'
 import IntroductionToArkflows from './content/introduction-to-arkflows.mdx'
+import IntroductionToFirestore from './content/introduction-to-firestore.mdx'
+import IntroductionToFirestoreCode from './content/introduction-to-firestore-code.mdx'
+
+import { composeImagePath } from 'libs/blog'
 
 import { SaltyAom } from './author'
 
 import { Blog } from './types'
-import { composeImagePath } from 'libs/blog'
 
 const blog: Blog = {
     'preact-3kb-of-react': {
@@ -62,6 +65,74 @@ const blog: Blog = {
             ]
         },
         Content: IntroductionToArkflows
+    },
+    'introduction-to-firestore': {
+        meta: {
+            title:
+                'เริ่มต้นเขียน Firestore จาก 0 ด้วย JavaScript กันดีกว่า~',
+            description:
+                'พอพูดถึง Firebase หลายคนก็คงจะนึกถึงอะไรที่ ยากๆ แต่ความจริงแล้ว Firebase เนี่ย ทำให้ชีวิตใครหลายคนง่ายขึ้นมากๆ, เราสามารถที่จะทำ Database แบบ Realtime ได้ง่ายมาก และ ยังทำ Authentication ได้โดยที่เราไม่จำเป็นต้องเขียน Backend และ ทำ Database ขึ้นเองด้วยซ้ำ!',
+            cover: {
+                normal: composeImagePath(
+                    'introduction-to-firestore',
+                    'introduction-to-firestore.jpg'
+                ),
+                retina: composeImagePath(
+                    'introduction-to-firestore',
+                    'introduction-to-firestore@2x.jpg'
+                ),
+                alt: 'Introduction to Firestore From Zero with JavaScript'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('19 February 2019 18:45').getTime(),
+                update: new Date('19 February 2019 18:45').getTime()
+            },
+            tags: [
+                'Firebase JavaScript',
+                'Firestore JavaScirpt',
+                'เริ่มเขียน Firebase',
+                'วิธีใช้ Firebase',
+                'สอน Firebase',
+                'Firestore จาก 0',
+                'วิธีใช้ Firestore'
+            ]
+        },
+        Content: IntroductionToFirestore
+    },
+    'introduction-to-firestore-code': {
+        meta: {
+            title:
+                'เริ่มต้นเขียนคำสั่ง Firestore จาก 0 ด้วย JavaScript กันดีกว่า~',
+            description:
+                'พอพูดถึง Firebase หลายคนก็คงจะนึกถึงอะไรที่ ยากๆ แต่ความจริงแล้ว Firebase เนี่ย ทำให้ชีวิตใครหลายคนง่ายขึ้นมากๆ, เราสามารถที่จะทำ Database แบบ Realtime ได้ง่ายมาก และ ยังทำ Authentication ได้โดยที่เราไม่จำเป็นต้องเขียน Backend และ ทำ Database ขึ้นเองด้วยซ้ำ!',
+            cover: {
+                normal: composeImagePath(
+                    'introduction-to-firestore-code',
+                    'introduction-to-firestore-code.jpg'
+                ),
+                retina: composeImagePath(
+                    'introduction-to-firestore-code',
+                    'introduction-to-firestore-code@2x.jpg'
+                ),
+                alt: 'Introduction to Firestore From Zero with JavaScript'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('19 February 2019 18:45').getTime(),
+                update: new Date('19 February 2019 18:45').getTime()
+            },
+            tags: [
+                'Firebase JavaScript',
+                'Firestore JavaScirpt',
+                'เริ่มเขียน Firebase',
+                'วิธีใช้ Firebase',
+                'สอน Firebase',
+                'Firestore จาก 0',
+                'วิธีใช้ Firestore'
+            ]
+        },
+        Content: IntroductionToFirestoreCode
     }
 }
 

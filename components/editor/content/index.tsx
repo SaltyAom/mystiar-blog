@@ -8,6 +8,7 @@ import './editor-content.styl'
 
 const EditorContent: EditorContentComponent = ({
     title,
+    author: { name },
     cover: { normal, retina = false, alt }
 }) => (
     <Link
@@ -29,6 +30,7 @@ const EditorContent: EditorContentComponent = ({
                     />
                 </figure>
                 <h3 className="title">{title}</h3>
+                <h4 className="author">— {name}</h4>
             </article>
         </a>
     </Link>
