@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import Code from 'components/blog/code'
 import HookTitle from 'components/blog/hookTitle'
 
@@ -5,16 +7,22 @@ import { serialize, hook } from 'libs/serialize'
 
 const components = {
     h1: ({ children }) => (
-        <h1 id={serialize(children)} className="h1">
-            {children}
-            <HookTitle title={hook(children)} />
-        </h1>
+        <Fragment>
+            <mark className="marker" />
+            <h1 id={serialize(children)} className="h1">
+                {children}
+                <HookTitle title={hook(children)} />
+            </h1>
+        </Fragment>
     ),
     h2: ({ children }) => (
-        <h2 id={serialize(children)} className="h2">
-            {children}
-            <HookTitle title={hook(children)} on="h2" />
-        </h2>
+        <Fragment>
+            <mark className="marker -h2" />
+            <h2 id={serialize(children)} className="h2">
+                {children}
+                <HookTitle title={hook(children)} on="h2" />
+            </h2>
+        </Fragment>
     ),
     p: ({ children }) => <p className="p">{children}</p>,
     a: ({ children, href }) => (

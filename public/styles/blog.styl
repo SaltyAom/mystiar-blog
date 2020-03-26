@@ -1,4 +1,5 @@
 #blog
+    position relative
     width 640px
     margin 0 auto
     padding 20px 0
@@ -21,26 +22,25 @@
     overflow-x auto
     overflow-y hidden
 
-    &::before
-        position absolute
-        content ""
-        display block
-        top 24px
-        left -48px
-        width 6px
-        height 6px
-        opacity .75
-        background-color var(--primary)
-        border-radius 3px
-        box-shadow 0 0 0 12px var(--primary-overlay)
+.marker
+    position absolute
+    left -48px
+    display block
+    margin 32px 0 0 0
+    width 6px
+    height 6px
+    opacity .75
+    background-color var(--primary)
+    border-radius 3px
+    box-shadow 0 0 0 12px var(--primary-overlay)
+
+    &.-h2
+        margin-top 28px
+        background-color var(--success)
+        box-shadow 0 0 0 12px var(--success-overlay)
 
 .h2
     font-size 28px
-
-    &::before
-        top 20px
-        background-color var(--success)
-        box-shadow 0 0 0 12px var(--success-overlay)
 
 .p
     display block
