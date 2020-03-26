@@ -1,8 +1,6 @@
 import { FunctionComponent } from "react"
 
-export interface Author {
-    name: string
-}
+import { AuthorField } from "./author/types"
 
 export interface Meta {
     title: string
@@ -12,7 +10,12 @@ export interface Meta {
         retina?: string
         alt: string
     }
-    author: Author
+    author: AuthorField
+    date: {
+        written: number
+        update: number
+    }
+    tags: string[]
 }
 
 export type Blog = {

@@ -19,7 +19,12 @@ const blog: Blog = {
                 ),
                 alt: 'Preact, สั้นๆ ว่า React ขนาด 3KB'
             },
-            author: SaltyAom
+            author: SaltyAom,
+            date: {
+                written: new Date('26 March 2020 13:36').getTime(),
+                update: new Date('26 March 2020 13:36').getTime()
+            },
+            tags: ['Preact', 'React alternative', 'Preact คือ', 'Preact อธิบาย']
         },
         Content: Preact3KBofReact
     },
@@ -36,7 +41,17 @@ const blog: Blog = {
                 ),
                 alt: 'Introduction to Arkflows'
             },
-            author: SaltyAom
+            author: SaltyAom,
+            date: {
+                written: new Date('26 March 2020 13:36').getTime(),
+                update: new Date('26 March 2020 13:36').getTime()
+            },
+            tags: [
+                'React storage',
+                'React store library',
+                'Redux alternative',
+                'React share state'
+            ]
         },
         Content: IntroductionToArkflows
     }

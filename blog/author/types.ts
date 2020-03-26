@@ -1,5 +1,13 @@
 type AuthorList = "SaltyAom"
 
+export interface AuthorField {
+    name: string
+    bio: string
+    profile: AuthorImage
+    // cover: AuthorImage
+    contact: AuthorContact
+}
+
 export interface AuthorImage {
     normal: string
     retina: string

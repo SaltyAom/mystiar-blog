@@ -1,0 +1,38 @@
+#editor-contact
+    display flex
+    flex-direction column
+    justify-content flex-start
+    align-items flex-start
+    width auto
+    margin 20px 0
+
+    & > .contact
+        display flex
+        flex-direction row
+        justify-content center
+        align-items center
+        font-size 16px
+        color var(--content)
+        font-weight 400
+        margin 2px 0
+        padding 2px 6px
+        border-radius 4px
+        transition color .2s ease-out, background-color .2s ease-out
+        outline none
+        text-decoration none
+
+        &:hover,
+        &:focus
+            color var(--link)
+            background-color var(--link-overlay)
+
+            & > .icon
+                fill var(--link)
+
+        & > .icon
+            width 21px
+            height 21px
+            fill var(--content)
+
+        & > .info
+            margin 0 0 0 8px

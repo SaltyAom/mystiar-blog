@@ -11,14 +11,12 @@ import EditorContent from 'components/editor/editorContent'
 import { Meta } from 'blog/types'
 
 import 'styles/editor.styl'
+import EditorContact from 'components/editor/editorContact'
 
 const Editor = ({ author, related }) => {
-    let {
-            name,
-            bio,
-            profile,
-            contact: { mail, github }
-        } = JSON.parse(author) as Author['SaltyAom'],
+    let { name, bio, profile, contact } = JSON.parse(
+            author
+        ) as Author['SaltyAom'],
         relatedContent = JSON.parse(related) as Meta[]
 
     return (
@@ -74,10 +72,12 @@ const Editor = ({ author, related }) => {
                     <EditorImage {...{ name, profile }} />
                     <h1 className="name">{name}</h1>
                     <h2 className="bio">{bio}</h2>
+                    <EditorContact {...contact} />
                 </header>
+                <h3 className="written">เขียนโดย {name}</h3>
                 <section className="content">
                     {relatedContent.map(content => (
-                        <EditorContent {...content} />
+                        <EditorContent key={content.title} {...content} />
                     ))}
                 </section>
             </main>

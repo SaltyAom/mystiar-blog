@@ -17,7 +17,7 @@ const EditorContent: EditorContentComponent = ({
         }}
         as={composeContentPath(normal)}
     >
-        <a className="editor-content-link">
+        <a className="editor-content-link" aria-label={`อ่าน ${title}`}>
             <article className="editor-content">
                 <figure className="figure">
                     <img

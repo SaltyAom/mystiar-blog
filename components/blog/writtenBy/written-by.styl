@@ -1,0 +1,61 @@
+#written-by
+    display block
+    width 100%
+    margin 0 0 20px 0
+    padding 6px 12px
+    text-decoration none
+    outline none
+
+    &:hover,
+    &:focus
+        & > .wrapper > .profile
+            & > .written,
+            & > .name,
+            & > .bio
+                color var(--link)
+
+    & > .wrapper
+        display flex
+        flex-direction row
+        justify-content flex-start
+        align-items flex-start
+        width 100%
+
+        & > #editor-image
+            width 96px
+            height 96px
+            margin auto 0
+            
+            & > .photo
+                width 96px
+                height 96px
+                border-radius 48px
+
+            @media screen and (max-width 567.9px)
+                &,
+                & > .photo
+                    width 72px
+                    height 72px
+                    border-radius 36px
+
+        & > .profile
+            display flex
+            flex-direction column
+            justify-content center
+            align-items flex-start
+            flex 1
+            margin auto 0 auto 24px
+
+            & > .written,
+            & > .name,
+            & > .bio
+                margin 4px 0
+                color var(--content)
+                font-weight 400
+                font-size 14px
+                transition color .2s ease-out
+
+            & > .name
+                font-size 28px
+                color var(--title)
+                font-weight 700
