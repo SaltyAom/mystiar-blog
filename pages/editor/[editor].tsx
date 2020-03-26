@@ -42,10 +42,10 @@ const Editor = ({ author, related }) => {
                 />
                 <meta
                     property="og:image"
-                    content={`https://staging.blog.mystiar.com/assets/editors/${profile.normal}`}
+                    content={`https://staging.blog.mystiar.com${profile.retina}`}
                 />
-                <meta property="og:image:width" content="144" />
-                <meta property="og:image:height" content="144" />
+                <meta property="og:image:width" content="288" />
+                <meta property="og:image:height" content="288" />
                 <meta
                     property="og:image:alt"
                     content={`Read more about ${name}'s content at Mystiar Blog, profile and social contact`}
@@ -63,7 +63,7 @@ const Editor = ({ author, related }) => {
                 <meta name="twitter:site" content="@SaltyAom" />
                 <meta
                     name="twitter:image"
-                    content={`https://staging.blog.mystiar.com/assets/editors/${profile.normal}`}
+                    content={`https://staging.blog.mystiar.com${profile.retina}`}
                 />
                 <meta name="twitter:creator" content="@SaltyAom" />
             </Head>
