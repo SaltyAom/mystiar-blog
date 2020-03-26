@@ -58,7 +58,7 @@ Firestore เก็บข้อมูล NoSQL ในรูปแบบของ
 เราสามารถบอกทางสำหรับ Firestore ได้ด้วยการบอกชื่อ collection กับ document เช่น
 
 ```javascript
-collection('store').document('Hatsune Miku')
+collection('store').doc('Hatsune Miku')
 ```
 
 ตัวอย่างข้างบนก็คือบอกว่าจะเข้าไปที่ collection ที่ชื่อว่า store แล้วไปที่ document ที่ชื่อว่า Hatsune Miku, เวลาจะทำอะไรก็ต้องบอก ทางให้ ชัดเจนก่อนที่จะ เพิ่ม หรือ แก้ไข อะไร
@@ -326,9 +326,9 @@ firestore
 ```javascript
 firestore
     .collection('store')
-    .document('Nendoroid')
+    .doc('Nendoroid')
     .collection('Hatsune Miku')
-    .document('33')
+    .doc('33')
     .set({
         available: true
     })
