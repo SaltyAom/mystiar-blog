@@ -1,0 +1,329 @@
+import Image from 'components/blog/image'
+import Blockquote from 'components/blog/blockquote'
+import Divider from 'components/blog/divider'
+
+import Kyubey from 'components/blog/ascii/kyubey'
+
+Progressive Web App ไอเดียที่ผลักดันความสามารถของเว็บให้เป็นได้มากกว่าแค่เว็บ ทุกวันนี้มีเว็บจำนวนไม่น้อยที่ทำหน้าที่เป็นเว็บและแอพไปในตัวเช่น FaceBook Lite, Twitter Lite, Starbuck ความสามารถต่างๆ ก็เพิ่มขึ้นทุกวัน จนสามารถที่จะขอสิทธิ์ต่างๆ เพื่อทำหน้าที่บางอย่างแทน Native App ได้ รวมถึง... การถ่ายรูปและวิดีโอด้วย
+
+หลายคนอาจจะยังไม่รู้ว่า จริงๆ แล้ว เว็บไซต์เนี่ย ถ่ายรูปหรืออัดวิดีโอได้ตั้งนานแล้ว ลองนึกดูสิว่าครั้งแรกที่เรา Video Call บนเว็บเนี่ยคือเมื่อไหร่? นึกไม่ออกแฮะ...
+
+แต่เอาเป็นว่าจริงๆ แล้วเนี่ย มันสามารถที่จะทำได้นานแล้ว และ Support บนทุก Major Platform แม้แต่ Safari iOS ด้วย~ (ขอไม่นับ IE เพราะมี Edge Chromium มาแทนแล้ว)
+
+<Image src="/assets/content/get-user-media/caniuse.png" alt="Can I Use getUserMedia() ?" />
+
+แต่ปัญหามันอยู่ที่ว่า Standalone PWA บน iOS เนี่ยมันดันไม่ support การถ่ายรูปเฉยเลย... ซึ่งเป็นมาตั้งแต่ iOS 11.3.1 แล้วพึ่งจะมาแก้ใร iOS 13.4 ที่พึ่งจะออกมา~ เลยถือโอกาส update ครั้งนี้แหละ จะได้ใช้กล้องบน iOS PWA ได้ซักที!
+
+โดย API ตัวนี้มีชื่อว่า `getUserMedia` <Kyubey />
+
+ประโยชน์ของมันคือ... ก็นั่นแหละ เอาไว้ใช้ถ่ายรูปกับวิดีโอได้ ก็แล้วแต่ว่าจะเอาไปใช้ทำอะไร ซึ่ง Developer บางคนก็เอาตรงนี้มาเล่นกับ Machine Learning บน Browser ฝั่ง Frontend ซะเลย ทำให้อย่างเช่น ตรวจจับหน้าคนได้
+
+## ความรับผิดชอบอันยิ่งใหญ่ มาพร้อมกับพลังอันใหญ่ยิ่ง
+แน่นอนว่าไม่มีใครชอบแน่ๆ ถ้าเกิดอยู่ๆ ภาพตัวเองหลุดไปอยู่บนเว็บที่ไหนก็ไม่รู้ เลยมี Requirement บางอย่างที่ต้องทำให้ได้ก่อนถึงจะใช้ getUserMedia ได้
+
+1. ต้องโหลดผ่าน https, file หรือ localhost เท่านั้น
+2. ผู้ใช้ต้องให้สิทธิ์ในการใช้กล้องก่อน
+
+2 ข้อนี้เป็นข้อจำกัดด้านความปลอดภัย เพื่อให้แน่ใจว่าภาพเราจะไม่หลุดไปง่ายๆ
+
+# getUserMedia กับวิธีใช้
+ก่อนหน้านี้เคยมี API ที่ชื่อว่า getUserMedia เหมือนกัน แต่ว่า depreacated ไปแล้ว ซึ่งปัจจุบันย้ายมาอยู่ใน subset ของ mediaDevices​ ซึ่ง mediaDevices​ รวมหลายๆ API ให้เป็นเซ็ทเดียวกันที่ทำงานใกล้เคียงกัน อย่างเช่น
+```javascript
+navigator.mediaDevices.getDisplayMedia() // แชร์ภาพบนเครื่อง
+```
+<Image src="/assets/content/get-user-media/get-display-media.png" alt="Get Display Media" />
+
+ซึ่งเราจะเอาไว้พูดถึงในบทความครั้งหน้า แต่ว่ากลับเข้าเรื่องถ่ายรูปกันก่อนดีกว่า
+
+ดังนั้นการใช้ getUserMedia ก็เลยใช้ได้ 2 แบบ:
+```javascript
+navigator.getUserMedia() // แบบเก่าและ depreacated ไปแล้ว
+
+navigator.mediaDevices​.getUserMedia() // แบบใหม่
+```
+
+ซึ่งส่วนตัวแนะนำแบบล่างมากกว่า ก็ไม่มีเหตุผลที่เราต้องใช้ของที่มัน depreacated ไปแล้วเว้นแต่อยากที่จะ support browser เก่าๆ ที่ไม่ใช่ Internet Explorer
+
+## constraints กับ getUserMedia
+```javascript
+navigator.mediaDevices​.getUserMedia() // VM279:1 Uncaught (in promise) TypeError: Failed to execute 'getUserMedia' on 'MediaDevices': At least one of audio and video must be requested
+```
+
+เอ๊ะ? ทำไมบน Edge มันถึงดันเรียกแล้วได้ Error ล่ะ? หลอกกันหรือเปล่า?
+
+งั้นเรามาลองเช็ค type ของ getUserMedia กันก่อนละกัน
+```javascript
+MediaDevices.getUserMedia(constraints?: MediaStreamConstraints): Promise<MediaStream>
+```
+
+จากที่สังเกตเราก็สามารถบอกได้ว่า
+* มี Optional Parameter ที่ชื่อว้่ constraints
+    * constraints มีประเภทเป็น MediaStreamConstraints
+* Return ค่า เป็น Promise ของ MediaStream
+
+หมายความว่าเราอาจจะต้องส่ง constraints เข้าไปด้วยก่อนถึงจะใช้ได้
+
+แล้ว constraints คืออะไร?
+
+MediaStreamConstraints เป็น object ที่เอาไว้บอกว่า เราต้องการอะไรบ้างในการใช้กล้อง? ในรูปแบบที่ Basic ที่สุดก็คือ
+```javascript
+const constraints = { video: true, audio: true }
+```
+
+งั้นเรามาลองเอาค่า constraints มาใส่ดูสิ
+```javascript
+const constraints = { video: true, audio: true }
+
+navigator
+    .mediaDevices
+    .getUserMedia(constraints)
+    .then(stream => {
+        console.log(stream)
+    })
+    .catch(error => {
+        console.error(error)
+    })
+```
+
+<Image src="/assets/content/get-user-media/permission.png" alt="Asking for permission" />
+
+ดูเหมือนว่าเรา browser จะถามเราว่าจะอนุญาตให้เว็บนี้เข้าถึง ไมค์ กับ กล้อง ในเครื่องไหม?
+
+ถ้าเราตอบ allow ก็คืออนุญาตให้ใช้ ซึ่งจะถามแค่ครั้งแรกครั้งเดียวว่าให้ใช้ได้ไหม โดยที่ครั้งต่อไปถ้าจะใช้ก็ไม่ต้องถามแล้ว
+
+<Image src="/assets/content/get-user-media/permission-granted.png" alt="Permission Granted" />
+
+## คิดให้ดีก่อนขอ permission
+
+ถ้าอนุญาติ ก็จะได้ค่ามาเป็น stream แบบนี้
+
+แค่ถ้าไม่อนุญาติก็จะเข้าค่าย catch และบอกเหตุผลว่าทำไมถึง error
+
+<Image src="/assets/content/get-user-media/permission-denied.png" alt="Permission Denied" />
+
+Error: Permission denied ก็คือเราไม่ได้อนุญาตให้ใช้กล้องได้ 
+
+ดังนั้นเวลาจะใช้ ก็แนะนำให้ถามเฉพาะตอนที่ต้องการจะใช้จริงๆ เพราะว่าถ้า user ปฏิเสธไปแล้ว การถามครั้งต่อไปก็จะไม่ขึ้นถามเหมือนครั้งแรกแล้ว แต่ต้องให้ user ไปแก้ในตั้งค่าเว็บเอง ซึ่งมันจะลด UX ลงไปเยอะมากๆ เลย
+
+# เอาค่าออกมาแสดงกันดีกว่า
+แน่นอนว่าเราอยากใช้กล้อง เราก็ต้องได้เห็นภาพสิ ไม่ใช่มาเป็น Steam แบบนี้! แบบนี้จะอ่านรู้เรื่องได้ไงเล่า!
+
+getUserMedia ส่งค่ากลับมาเป็น Promise ของ MediaStream แบบนี้ เราจะใช้ยังไง?
+
+การที่เราจะเอา Video มาแสดงบนเว็บปกติเราใช้อะไรนะ? อ้อ, ใช่! เราใช้ แท็กวิดีโอไง!
+```javascript
+<video></video>
+```
+
+Tag video เนี่ยจะมี property ที่ชื่อว่า `srcObject` อยู่ซึ่งรับค่าเป็น MediaStream พอดีเลย! ความ Semantic นี่มันคืออะไรกัน! คิดกันมาก่อนแล้วนี่นา~
+
+งั้นเราลองมาส่งค่า stream เข้าไปที่ srcObject กันดีกว่า~
+```javascript
+<video id="preview-video"></video>
+
+<script>
+    const constraints = { video: true, audio: true }
+
+    navigator
+        .mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+            let preview = document.getElementById("preview-video")
+            preview.srcObject = stream
+        })
+        .catch(error => {
+            console.error(error)
+        })
+</script>
+```
+
+<Image src="/assets/content/get-user-media/not-working.png" alt="Not working?" />
+อ้าว? ไม่เห็นเกิดอะไรขึ้นเลย! ก็ไม่ได้มี Error อะไรเลยนะ ทำไมภาพถึงไม่ขึ้นล่ะ? หลอกกันหรือเปล่าเนี่ย?
+
+แต่เดี๋ยวก่อน ด้วยความที่มันเป็น video อย่าลืมว่า:
+<Blockquote>
+โดยปกติแล้ว tag video จะไม่เล่นโดยอัตโนมัติ จนกว่าเราจะใส่ `autoplay` เข้าไปด้วยก่อนถึงจะใช้ได้
+</Blockquote>
+
+และด้วยความที่เรากำลังใช้ tag video อยู่ งั้นก็หมายความว่า...
+```javascript
+<video id="preview-video" autoplay></video>
+```
+
+<Image src="/assets/content/get-user-media/preview-video.png" alt="Preview Video" />
+
+เอ้ยย~ ได้ออกมาเป็นวิดีโอเลย! มีเสียงด้วย!
+
+ถ้าสังเกตเวลาเราใช้กล้องก็จะวงกลมแดงๆ บนแถบที่ใช้กล้องอยู่ด้วย!
+
+ตอนนี้ code ของเราก็จะอยู่ประมาณแบบนี้
+```javascript
+<video id="preview-video" autoplay></video>
+
+<script>
+    const constraints = { video: true, audio: true }
+
+    navigator
+        .mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+            let preview = document.getElementById("preview-video")
+            preview.srcObject = stream
+        })
+        .catch(error => {
+            console.error(error)
+        })
+</script>
+```
+
+โดยค่า stream ที่เราส่งเข้าไปเนี่ย จริงๆ แล้วเราส่งเข้าไปแค่ครั้งเดียว แต่ธรรมชาติของมันคือ มันจะ update อยู่ตลอดเวลา ดังนั้นเราส่งไปแค่ครั้งเดียวก็พอแล้ว
+
+ถ้าเราไม่อยากได้เสียงก็แค่ปรับ audio ออก ใน constraints
+
+```javascript
+const constraints = { video: true }
+
+navigator
+    .mediaDevices
+    .getUserMedia(constraints)
+    .then(stream => {
+        let preview = document.getElementById("preview-video")
+        preview.srcObject = stream
+    })
+    .catch(error => {
+        console.error(error)
+    })
+```
+
+แบบนี้ก็จะไม่มีเสียงละ
+
+นอกจากนี้เรายังสามารถปรับขนาดของภาพและสัดส่วนได้ด้วย!
+```javascript
+const constraints = { 
+    video: {
+        width: 1280,
+        height: 720
+    }, 
+    audio: true 
+}
+```
+
+และตั้งสัดส่วนได้ด้วย!
+```javascript
+const constraints = { 
+    video: {
+        aspectRatio: 1
+    }, 
+    audio: true 
+}
+```
+
+<Image src="/assets/content/get-user-media/preview-ratio.png" alt="Aspect Ratio" />
+
+นอกจากนี้ width และ height ยังรับเป็น property ได้อีก 4 อย่าง
+```javascript
+const constraints = { 
+    video: {
+        width: {
+            min: 720,    // ต้องมีขนาดอย่างน้อย 720px
+            max: 1920,   // มีขนาดได้มากที่สุด 1920px
+            exact: 1440, // บังคับให้มีขนาดที่ 1440px
+            ideal: 1440  // ถ้าเป็นไปได้ให้มีค่ามี่ 1440px
+        }
+    }
+}
+```
+
+## แล้วจะเก็บภาพยังไงอ่ะ?
+แน่นอนว่าเปิดกล้องแบบนี้ บางทีเราอยากเก็บภาพเราเอาไว้เหมือนกัน ตรงส่วนนี้เราก็สามารถบันทึกภาพได้เหมือนกับการบันทึกภาพด้วย video ปกติ ด้วย canvas ได้เลย! เพราะว่ามันทำงานอยู่บน video นี่เนอะ~
+
+```javascript
+<video id="preview-video" autoplay></video>
+
+<script>
+    const constraints = { video: true, audio: true }
+
+    navigator
+        .mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+            let preview = document.getElementById("preview-video")
+            preview.srcObject = stream
+
+            preview.addEventListener("click", () => captureImage())
+        })
+        .catch(error => {
+            console.error(error)
+        })
+
+
+    let captureImage = () => {
+        const img = document.createElement("img"),
+            preview = document.getElementById("preview-video")
+            width = preview.offsetWidth,
+            height = preview.offsetHeight
+
+        const canvas = document.createElement("canvas")
+
+        canvas.width = width
+        canvas.height = height
+
+        const context = canvas.getContext("2d")
+        context.drawImage(preview, 0, 0, width, height)
+
+        img.src = canvas.toDataURL("image/png")
+
+        document.body.appendChild(img)
+    }
+</script>
+```
+
+เราก็แค่สร้าง canvas ขึ้นมาและวาดภาพให้เหมือนกับวิดีโอตรงช่วงที่เราต้องการภาพ จากนั้นก็สร้าง element img โดยให้มีค่าเดียวกับ canvas ที่เราวาดไว้และ append ไปที่เว็บได้เลย~
+
+โดยช่วงที่เราอยากถ่ายรูปไว้ตอนไหน ก็ค่อยวาดรูปใส่ง canvas ตอนนั้นได้เลย ก็จะได้ภาพช่วงที่อยากได้ออกมาแล้ว~ หรืออยากตั้งเวลาเอาไว้ก็ได้เหมือนกัน~
+
+<Image src="/assets/content/get-user-media/take-a-shot.png" alt="Take a shot!" />
+
+## หยุดเก็บรูปได้แล้วน่า~
+แน่นอนว่า พอเราได้ร๔ปที่ต้องการแล้ว เราก็อยากที่จะหยุดบันทึกกล้องได้แล้วเนอะ~ ไม่งั้นคงจะทั้งเปลืองแบตแล้วก็คงไม่มีใครอยากเห็นหน้าตัวเองบนเว็บตลอดเวลาที่ใช้หรอก จริงไหม?
+
+โดยการที่เราจะหยุดภาพเนี่ย ต้องย้อนกลับไปเอา reference stream ที่ส่งเข้า callback ตอนแรก
+
+ซึ่ง stream จะมี property หลายๆ อย่างรวมถึง `.getTracks()` เพื่อที่ "track" ที่กำลังเล่นอยู่ให้หยุดได้ด้วย
+
+```javascript
+    const constraints = { video: true, audio: true }
+
+    navigator
+        .mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+            let tracks = stream.getTracks()
+        })
+```
+
+โดย tracks ตรงนี้จะได้ค่ากลับมาเป็น array เพื่อว่ามี track หลายๆ อันกำลังทำงานอยู่ วิธีการหยุดก็คือให้ไปหยุด track แต่ละอันด้วย forEach และ `.stop()`
+```javascript
+let tracks = stream.getTracks()
+
+tracks.forEach((track) => {
+    track.stop()
+})
+```
+
+แค่นี้เราก็สามารถที่จะปิดกล้องได้แล้ว~
+
+# สรุป
+ถ้าลองคิดๆ ดูแล้ว Native App บางอย่างที่เล่นกับรูปภาพหรือกล้องถ่ายรูป แต่ว่าไม่ใช่แค่ Native App อย่างเดียวเท่านั้น~ Web App ก็ทำได้เหมือนกัน~
+
+จะเห็นได้ว่า เดี๋ยวนี้มาตรฐานเว็บก็กำลังพัฒนามากขึ้นเรื่อยๆ ไม่ว่าจะเป็นทั้ง Push Notification ก็มีแล้ว การทำงานให้เหมือนกับ Native App ก็มีมาแล้วเหมือนกัน เพราะฉะนั้นอย่าพึ่งหมดหวังไปว่าเว็บจะเป็นแค่เว็บ แต่เว็บจะพัฒนามากขึ้นไปเรื่อยๆ ขึ้นจนได้
+
+<Divider />
+
+แต่ว่านะ นี่ก็เขียนบทความเกี่ยวกับการถ่ายรูปไว้ แต่ก็ยังไม่ได้ถ่ายรูปตัวเองเลย... งั้นก็ถ่ายเอาไว้ซักรูปด้วย MacBook Pro บน Browser กันหน่อยก็แล้วกัน~
+
+<Image src="/assets/content/get-user-media/selfie.png" alt="Selfie" />
+แอบเอาภาพไปเร่งแสงหน่อยด้วย แฮะๆ <Kyubey />
+
+<br />
+<span style={{ color: "var(--content)", fontSize: ".75em" }}>คำเตือน: ระวังกับดัก</span>

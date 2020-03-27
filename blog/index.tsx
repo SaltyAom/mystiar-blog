@@ -2,6 +2,7 @@ import Preact3KBofReact from './content/preact-3kb-of-react.mdx'
 import IntroductionToArkflows from './content/introduction-to-arkflows.mdx'
 import IntroductionToFirestore from './content/introduction-to-firestore.mdx'
 import IntroductionToFirestoreCode from './content/introduction-to-firestore-code.mdx'
+import GetUserMedia from './content/get-user-media.mdx'
 
 import { composeImagePath } from 'libs/blog'
 
@@ -68,8 +69,7 @@ const blog: Blog = {
     },
     'introduction-to-firestore': {
         meta: {
-            title:
-                'เริ่มต้นเขียน Firestore จาก 0 ด้วย JavaScript กันดีกว่า~',
+            title: 'เริ่มต้นเขียน Firestore จาก 0 ด้วย JavaScript กันดีกว่า~',
             description:
                 'พอพูดถึง Firebase หลายคนก็คงจะนึกถึงอะไรที่ ยากๆ แต่ความจริงแล้ว Firebase เนี่ย ทำให้ชีวิตใครหลายคนง่ายขึ้นมากๆ, เราสามารถที่จะทำ Database แบบ Realtime ได้ง่ายมาก และ ยังทำ Authentication ได้โดยที่เราไม่จำเป็นต้องเขียน Backend และ ทำ Database ขึ้นเองด้วยซ้ำ!',
             cover: {
@@ -133,6 +133,38 @@ const blog: Blog = {
             ]
         },
         Content: IntroductionToFirestoreCode
+    },
+    'get-user-media': {
+        meta: {
+            title: 'มาลองถ่ายรูปกันบนเว็บไซต์กันดีกว่า~',
+            description:
+                'Progressive Web App ไอเดียที่ผลักดันความสามารถของเว็บให้เป็นได้มากกว่าแค่เว็บ ทุกวันนี้มีเว็บจำนวนไม่น้อยที่ทำหน้าที่เป็นเว็บและแอพไปในตัวเช่น FaceBook Lite, Twitter Lite, Starbuck ความสามารถต่างๆ ก็เพิ่มขึ้นทุกวัน จนสามารถที่จะขอสิทธิ์ต่างๆ เพื่อทำหน้าที่บางอย่างแทน Native App ได้ รวมถึง... การถ่ายรูปและวิดีโอด้วย',
+            cover: {
+                normal: composeImagePath(
+                    'get-user-media',
+                    'get-user-media.jpg'
+                ),
+                retina: composeImagePath(
+                    'get-user-media',
+                    'get-user-media@2x.jpg'
+                ),
+                alt: 'มาลองถ่ายรูปกันบนเว็บไซต์กันดีกว่า~'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('27 March 2019 13:49').getTime(),
+                update: new Date('27 March 2019 13:49').getTime()
+            },
+            tags: [
+                'ถ่ายรูปด้วยเว็บไซต์',
+                'ถ่ายรูป javascript',
+                'อัดวิดีโอ javascript',
+                'get user media',
+                'camera javascript',
+                'camera.js'
+            ]
+        },
+        Content: GetUserMedia
     }
 }
 
