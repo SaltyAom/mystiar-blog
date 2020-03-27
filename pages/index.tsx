@@ -20,6 +20,15 @@ const Landing = () => {
         <Fragment>
             <Head>
                 <title>Mystiar Blog</title>
+
+                <meta
+                    property="og:image"
+                    content={`https://blog.mystiar.com/assets/app/mystiar-blog.jpg`}
+                />
+                <meta
+                    name="twitter:image"
+                    content={`https://blog.mystiar.com/assets/app/mystiar-blog.jpg`}
+                />
             </Head>
             <main id="landing">
                 <MystiarBlog />
