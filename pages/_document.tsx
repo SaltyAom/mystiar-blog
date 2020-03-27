@@ -32,6 +32,9 @@ class MusicPlayerDocument extends Document {
                         name="twitter:creator"
                         content="@SaltyAom"
                     />
+
+                    <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
+                    <meta name="robots" content="index, follow"/>
                 </Head>
                 <body>
                     <Main />

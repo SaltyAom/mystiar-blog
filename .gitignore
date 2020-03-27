@@ -5,3 +5,4 @@ out/*
 yarn-error.log
 public/service-worker.js
 .now
+public/sitemap.xml

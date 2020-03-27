@@ -1,5 +1,7 @@
-export const composeImagePath = (title: string, fileName: string) => `/assets/content/${title}/${fileName}`,
-    composeContentPath = (normal: string) => `/content/${normal.split("/")[3]}`,
+export const composeImagePath = (title: string, fileName: string) =>
+        `/assets/content/${title}/${fileName}`,
+    composeContentQuery = (normal: string) => normal.split('/')[3],
+    composeContentPath = (normal: string) => `/content/${composeContentQuery(normal)}`,
     composeTime = (date: number) => {
         let time = new Date(date),
             day = time.getUTCDate(),
@@ -9,10 +11,10 @@ export const composeImagePath = (title: string, fileName: string) => `/assets/co
             minute = time.getUTCMinutes(),
             second = time.getUTCSeconds()
 
-        return(`${year}-${month}-${day}T${hour}-${minute}-${second}+07:00`)
+        return `${year}-${month}-${day}T${hour}-${minute}-${second}+07:00`
     },
     composeRetinaPath = (src: string) => {
-        let source = src.split(".")
-        
+        let source = src.split('.')
+
         return `${source[0]}@2x.${source[1]}`
     }

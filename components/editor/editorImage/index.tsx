@@ -19,7 +19,7 @@ const EditorImage: EditorImageComponent = memo(
             typeof from !== 'undefined' ? from : { owner: false, link: null }
 
         let children = (
-            <section id="editor-image">
+            <section className="editor-image">
                 <figure className={`photo ${className}`}>
                     <img
                         className="image"
@@ -39,15 +39,15 @@ const EditorImage: EditorImageComponent = memo(
             case href !== '':
                 return (
                     <Link {...{ href, as }}>
-                        <a id="editor-image">{children}</a>
+                        <a className="link">{children}</a>
                     </Link>
                 )
 
             default:
                 return (
                     <a
-                        id="editor-image"
-                        href={owner ? link : '.'}
+                        className="link"
+                        href={link ? link : '.'}
                         rel="noopener norefferer"
                         target="_blank"
                     >

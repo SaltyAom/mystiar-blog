@@ -13,7 +13,8 @@ import Header from 'components/blog/header'
 import 'styles/blog.styl'
 
 const WrittenBy = dynamic(() => import('components/blog/writtenBy')),
-    Tags = dynamic(() => import('components/blog/tags'))
+    Tags = dynamic(() => import('components/blog/tags')),
+    MystiarBlog = dynamic(() => import('components/mystiarBlog'))
 
 const Content = ({ content }) => {
     let { meta, Content } = blog[content],
@@ -48,6 +49,7 @@ const Content = ({ content }) => {
                 <Tags {...{tags}} />
                 <WrittenBy {...{ name, bio, profile }} />
             </article>
+            <MystiarBlog />
         </Fragment>
     )
 }

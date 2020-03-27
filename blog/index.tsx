@@ -152,8 +152,8 @@ const blog: Blog = {
             },
             author: SaltyAom,
             date: {
-                written: new Date('27 March 2019 13:49').getTime(),
-                update: new Date('27 March 2019 13:49').getTime()
+                written: new Date('27 March 2020 13:49').getTime(),
+                update: new Date('27 March 2020 13:49').getTime()
             },
             tags: [
                 'ถ่ายรูปด้วยเว็บไซต์',
@@ -167,5 +167,20 @@ const blog: Blog = {
         Content: GetUserMedia
     }
 }
+
+export const latestBlogMeta =
+        blog[Object.keys(blog)[Object.keys(blog).length - 1]].meta,
+    getNewBlogsMeta = (cursor: number = 0, limit: number = 6) => {
+        let newBlogs = []
+
+        Object.keys(blog).reverse().some((key, index) => {
+            if(index >= cursor + limit) return true
+
+            if(index >= cursor)
+                newBlogs.push(blog[key].meta)
+        })
+        
+        return newBlogs
+    }
 
 export default blog

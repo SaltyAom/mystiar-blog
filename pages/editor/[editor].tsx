@@ -1,17 +1,21 @@
 import { Fragment } from 'react'
 
+import dynamic from 'next/dynamic'
+
 import { GetStaticPaths, GetStaticProps } from 'next'
 
 import Head from 'next/head'
 import Author from 'blog/author/types'
 
 import EditorImage from 'components/editor/editorImage'
-import Content from 'components/editor/content'
+import EditorContact from 'components/editor/editorContact'
 
 import { Meta } from 'blog/types'
 
 import 'styles/editor.styl'
-import EditorContact from 'components/editor/editorContact'
+
+const Content = dynamic(() => import('components/editor/content')),
+    MystiarBlog = dynamic(() => import('components/mystiarBlog'))
 
 const Editor = ({ author, related }) => {
     let { name, bio, profile, contact } = JSON.parse(
@@ -42,7 +46,7 @@ const Editor = ({ author, related }) => {
                 />
                 <meta
                     property="og:image"
-                    content={`https://staging.blog.mystiar.com${profile.retina}`}
+                    content={`https://blog.mystiar.com${profile.retina}`}
                 />
                 <meta property="og:image:width" content="288" />
                 <meta property="og:image:height" content="288" />
@@ -63,7 +67,7 @@ const Editor = ({ author, related }) => {
                 <meta name="twitter:site" content="@SaltyAom" />
                 <meta
                     name="twitter:image"
-                    content={`https://staging.blog.mystiar.com${profile.retina}`}
+                    content={`https://blog.mystiar.com${profile.retina}`}
                 />
                 <meta name="twitter:creator" content="@SaltyAom" />
             </Head>
@@ -81,6 +85,7 @@ const Editor = ({ author, related }) => {
                     ))}
                 </section>
             </main>
+            <MystiarBlog />
         </Fragment>
     )
 }
@@ -102,7 +107,7 @@ export const getStaticProps: GetStaticProps = async context => {
     return {
         props: {
             author: JSON.stringify(authors[editor]),
-            related: JSON.stringify(related)
+            related: JSON.stringify(related.reverse())
         }
     }
 }

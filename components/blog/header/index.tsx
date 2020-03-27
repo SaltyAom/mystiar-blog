@@ -30,7 +30,7 @@ const Header: HeaderComponent = memo(
 			"headline": "${title}",
 			"image": ["${retina ? retina : normal}"],
 			"inLanguage": "Thai",
-			"mainEntityOfPage": "https://staging.blog.mystiar.com/content/${composeContentPath(
+			"mainEntityOfPage": "https://blog.mystiar.com/content/${composeContentPath(
                 normal
             )}",
 			"url": "https://blog.mystiar.com/content/${composeContentPath(normal)}",
@@ -41,7 +41,7 @@ const Header: HeaderComponent = memo(
 					"@type": "imageObject",
 					"width": "512",
 					"height": "512",
-					"url": "https://staging.blog.mystiar.com/assets/icon/mystiar.png"
+					"url": "https://blog.mystiar.com/assets/icon/mystiar.png"
 				}
 			},
 			"author": {
@@ -81,7 +81,7 @@ const Header: HeaderComponent = memo(
                     <meta property="og:description" content={description} />
                     <meta
                         property="og:image"
-                        content={`https://staging.blog.mystiar.com/${retina ? retina : normal}`}
+                        content={`https://blog.mystiar.com/${retina ? retina : normal}`}
                     />
                     <meta property="og:image:width" content="1920" />
                     <meta property="og:image:height" content="1080" />
@@ -95,7 +95,7 @@ const Header: HeaderComponent = memo(
                     <meta name="twitter:description" content={description} />
                     <meta
                         name="twitter:image"
-                        content={`https://staging.blog.mystiar.com/${retina ? retina : normal}`}
+                        content={`https://blog.mystiar.com/${retina ? retina : normal}`}
                     />
                     {/* <meta name="twitter:site" content="@SaltyAom" /> */}
                     {/* <meta name="twitter:creator" content="@SaltyAom" /> */}

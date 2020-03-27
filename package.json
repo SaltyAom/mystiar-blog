@@ -7,7 +7,8 @@
 		"dev": "next",
 		"build": "NODE_ENV=production next build",
 		"build:size": "ANALYZE=true next build",
-		"postbuild": "mv .next/static/service-worker.js public",
+		"postbuild": "yarn generate:sitemap && mv .next/static/service-worker.js public",
+		"generate:sitemap": "node generate-sitemap.js",
 		"export": "next export",
 		"start": "next start",
 		"test": "jest",
@@ -23,6 +24,7 @@
 		"preact": "^10.3.4",
 		"preact-render-to-string": "5.1.4",
 		"prism-react-renderer": "^1.0.2",
+		"react-ga": "^2.7.0",
 		"stylus": "^0.54.7"
 	},
 	"devDependencies": {

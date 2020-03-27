@@ -1,0 +1,124 @@
+#featured-content
+    text-decoration none
+    margin 0
+    outline none
+
+    &:hover,
+    &:focus
+        & > .article
+            & > .cover
+                & > .image
+                    transform scale(1.1)
+
+                & > .overlay
+                    background-color rgba(0,0,0,.15)
+
+            & > .content
+                transform translateX(-24px)
+
+    & > .article
+        display flex
+        flex-direction row
+        justify-content flex-start
+        align-items center
+        margin 0 auto
+        width 740px
+        background-color transparent
+        border-radius 8px
+        border 1px solid var(--border)
+
+        & > .cover
+            position relative
+            display flex
+            flex 8
+            height 300px
+            margin 0
+            border-top-left-radius 8px
+            border-bottom-left-radius 8px
+            overflow hidden
+
+            & > .image
+                display block
+                width 100%
+                height 100%
+                margin 0
+                border-top-left-radius inherit
+                border-bottom-left-radius inherit
+                object-fit cover
+                object-position center
+                transition transform .2s ease-out
+
+            & > .overlay
+                position absolute
+                top 0
+                left 0
+                z-index 1
+                display block
+                width 100%
+                height 100%
+                background-color transparent
+                border-top-left-radius inherit
+                border-bottom-left-radius inherit
+                transition background-color .2s ease-out
+
+        & > .content
+            z-index 2
+            flex 3
+            display flex
+            flex-direction column
+            justify-content center
+            align-items flex-start
+            height 300px
+            padding 16px 12px 16px 24px
+            background-color var(--background)
+            border 1px solid transparent
+            transition border-color .2s ease-out, transform .2s ease-out
+
+            & > .title
+                display block
+                color var(--title)
+                font-size 24px
+                font-weight 700
+                line-height 1.625em
+                margin 0 0 24px 0
+
+            & > .time,
+            & > .author
+                display block
+                font-size 16px
+                color var(--content)
+                font-weight 400
+                margin 4px 0
+
+        @media screen and (min-width 568px) and (max-width 767.9px)
+            &
+                width 540px
+
+                & > .cover,
+                & > .content
+                    height 240px
+
+                & > .cover
+                    width 220px
+
+                    & > .title
+                        font-size 18px
+
+        @media screen and (max-width 567.9px)
+            &
+                flex-direction column
+                width 100%
+
+                & > .cover,
+                & > .content
+                    flex unset
+                    width 100%
+                    height auto
+
+                & > .cover
+                    border-bottom-left-radius 0
+                    border-top-right-radius 8px
+
+                & > .content
+                    & > .title
+                        margin-bottom 8px
