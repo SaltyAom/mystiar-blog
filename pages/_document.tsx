@@ -14,6 +14,12 @@ class MusicPlayerDocument extends Document {
                         property="og:description"
                         content="เพราะว่าความรู้ คือกุญแจสู่อนาคต"
                     />
+                    <meta
+                        property="og:image"
+                        content={`https://blog.mystiar.com/assets/app/mystiar-blog.jpg`}
+                    />
+                    <meta property="og:image:width" content="1920" />
+                    <meta property="og:image:height" content="1080" />
                     <meta property="og:site_name" content="Mystiar Blog" />
                     <meta property="og:locale" content="th_TH" />
                     <meta property="og:type" content="website" />
@@ -28,6 +34,10 @@ class MusicPlayerDocument extends Document {
                         content="เพราะว่าความรู้ คือกุญแจสู่อนาคต"
                     />
                     <meta name="twitter:site" content="@SaltyAom" />
+                    <meta
+                        name="twitter:image"
+                        content={`https://blog.mystiar.com/assets/app/mystiar-blog.jpg`}
+                    />
                     <meta
                         name="twitter:creator"
                         content="@SaltyAom"

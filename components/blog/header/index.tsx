@@ -99,7 +99,6 @@ const Header: HeaderComponent = memo(
                     />
                     {/* <meta name="twitter:site" content="@SaltyAom" /> */}
                     {/* <meta name="twitter:creator" content="@SaltyAom" /> */}
-                    <meta name="robots" content="index, follow" />
 
                     <script
                         type="application/ld+json"

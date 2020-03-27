@@ -1,7 +1,8 @@
 {
-	"name": "next-starter",
+	"name": "mystiar-blog",
 	"version": "0.1.0",
 	"main": "index.js",
+	"author": "SaltyAom",
 	"license": "MIT",
 	"scripts": {
 		"dev": "next",
