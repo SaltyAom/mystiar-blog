@@ -81,7 +81,7 @@ const Header: HeaderComponent = memo(
                     <meta property="og:description" content={description} />
                     <meta
                         property="og:image"
-                        content={`https://blog.mystiar.com/${retina ? retina : normal}`}
+                        content={`https://blog.mystiar.com${retina ? retina : normal}`}
                     />
                     <meta property="og:image:alt" content={description} />
 
