@@ -83,8 +83,6 @@ const Header: HeaderComponent = memo(
                         property="og:image"
                         content={`https://blog.mystiar.com/${retina ? retina : normal}`}
                     />
-                    <meta property="og:image:width" content="1920" />
-                    <meta property="og:image:height" content="1080" />
                     <meta property="og:image:alt" content={description} />
 
                     <meta name="twitter:card" content="summary_large_image" />
@@ -95,7 +93,7 @@ const Header: HeaderComponent = memo(
                     <meta name="twitter:description" content={description} />
                     <meta
                         name="twitter:image"
-                        content={`https://blog.mystiar.com/${retina ? retina : normal}`}
+                        content={`https://blog.mystiar.com${retina ? retina : normal}`}
                     />
                     {/* <meta name="twitter:site" content="@SaltyAom" /> */}
                     {/* <meta name="twitter:creator" content="@SaltyAom" /> */}
