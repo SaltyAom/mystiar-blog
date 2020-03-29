@@ -6,7 +6,7 @@ import './mystiar-blog.styl'
 
 const MystiarBlog = memo(() => (
     <Link href="/">
-        <a role="header" className="mystiar-blog">
+        <a className="mystiar-blog">
             <img
                 className="icon"
                 src="/assets/icon/mystiar.png"

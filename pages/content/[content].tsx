@@ -1,13 +1,13 @@
 import { Fragment, useEffect } from 'react'
 
+import { GetStaticProps, GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 
-import { GetStaticProps, GetStaticPaths } from 'next'
 import { MDXProvider } from '@mdx-js/react'
+import AdSense from 'react-adsense'
 
-import blog from 'blog'
+import { getBlog } from 'blog'
 import components from 'blog/component'
-
 import Header from 'components/blog/header'
 
 import 'styles/blog.styl'
@@ -17,7 +17,7 @@ const WrittenBy = dynamic(() => import('components/blog/writtenBy')),
     MystiarBlog = dynamic(() => import('components/mystiarBlog'))
 
 const Content = ({ content }) => {
-    let { meta, Content } = blog[content],
+    let { meta, Content } = getBlog(content),
         {
             author: { name, bio, profile },
             tags
@@ -46,9 +46,15 @@ const Content = ({ content }) => {
                 <MDXProvider components={components}>
                     <Content />
                 </MDXProvider>
-                <Tags {...{tags}} />
+                <Tags {...{ tags }} />
                 <WrittenBy {...{ name, bio, profile }} />
             </article>
+            <AdSense.Google
+                layout="in-article"
+                format="fluid"
+                client="ca-pub-8437449592660799"
+                slot="6199709868"
+            />
             <MystiarBlog />
         </Fragment>
     )

@@ -199,11 +199,8 @@ const blog: Blog = {
     }
 }
 
-export const getLatestBlogMeta = () => {
-        let meta = Object.assign({}, blog[Object.keys(blog)[Object.keys(blog).length - 1]].meta)
-
-        return meta
-    },
+export const getLatestBlogMeta = () =>
+        blog[Object.keys(blog)[Object.keys(blog).length - 1]].meta,
     getNewBlogsMeta = (cursor: number = 0, limit: number = 6) => {
         let newBlogs = []
 
@@ -212,10 +209,12 @@ export const getLatestBlogMeta = () => {
             .some((key, index) => {
                 if (index >= cursor + limit) return true
 
-                if (index >= cursor) newBlogs.push(blog[key].meta)
+                if (index >= cursor)
+                    newBlogs.push(Object.assign({}, blog[key].meta))
             })
 
         return newBlogs
-    }
+    },
+    getBlog = name => Object.assign({}, blog[name])
 
 export default blog

@@ -18,33 +18,35 @@
 		"test:all": "jest && tsc && tslint 'src/**/*.{ts,tsx}'"
 	},
 	"dependencies": {
-		"@mdx-js/loader": "^1.5.7",
-		"@mdx-js/react": "^1.5.7",
-		"@next/mdx": "^9.3.1",
-		"next": "^9.3.1",
+		"@mdx-js/loader": "^1.5.8",
+		"@mdx-js/react": "^1.5.8",
+		"@next/mdx": "^9.3.2",
+		"next": "^9.3.2",
 		"preact": "^10.3.4",
 		"preact-render-to-string": "5.1.4",
 		"prism-react-renderer": "^1.0.2",
+		"react-adsense": "^0.1.0",
 		"react-ga": "^2.7.0",
 		"stylus": "^0.54.7"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.9.0",
 		"@babel/preset-typescript": "^7.9.0",
-		"@next/bundle-analyzer": "^9.3.1",
+		"@next/bundle-analyzer": "^9.3.2",
 		"@types/enzyme": "^3.10.5",
 		"@types/jest": "^25.1.4",
-		"@types/node": "^13.9.2",
-		"@types/react": "^16.9.25",
+		"@types/node": "^13.9.5",
+		"@types/react": "^16.9.27",
 		"@zeit/next-css": "^1.0.1",
 		"@zeit/next-stylus": "^1.0.1",
-		"@zeit/webpack-asset-relocator-loader": "0.6.2",
-		"babel-jest": "^25.1.0",
+		"@zeit/webpack-asset-relocator-loader": "0.6.4",
+		"babel-jest": "^25.2.3",
 		"babel-minify": "^0.5.1",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
-		"jest": "^25.1.0",
+		"jest": "^25.2.3",
+		"mini-css-class-name": "^0.9.1",
 		"next-compose-plugins": "^2.2.0",
 		"next-offline": "^5.0.0",
 		"next-server": "^9.0.5",
@@ -57,7 +59,7 @@
 		"tslint": "^6.1.0",
 		"tslint-config-prettier": "^1.18.0",
 		"tslint-eslint-rules": "^5.4.0",
-		"tslint-plugin-prettier": "^2.2.0",
+		"tslint-plugin-prettier": "^2.3.0",
 		"tslint-react": "^4.2.0",
 		"typescript": "^3.8.3",
 		"typescript-tslint-plugin": "^0.5.5"
@@ -65,5 +67,10 @@
 	"resolutions": {
 		"lodash": "latest"
 	},
-	"browserslist": "> 0.25%, not dead"
+	"browserslist": [
+		">0.3%",
+		"not ie 11",
+		"not dead",
+		"not op_mini all"
+	]
 }

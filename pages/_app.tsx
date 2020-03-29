@@ -1,23 +1,23 @@
-import App from 'next/app'
+import { useEffect } from 'react'
 
 import 'styles/init.styl'
 
-class Next extends App {
-    componentDidMount() {
-		const { initGA, logPageView } = require('libs/analytics'),
-			{ useRouter } = require('next/router')
+const App = ({ Component, pageProps }) => {
+    useEffect(() => {
+        const { initGA, logPageView } = require('libs/analytics'),
+            { useRouter } = require('next/router')
 
         if (!window.GA_INITIALIZED) {
             initGA()
             window.GA_INITIALIZED = true
         }
 
-		logPageView()
+        logPageView()
 
-		let router = useRouter()
-		router.events.on("routeChangeComplete", () => {			
-			logPageView()
-		})
+        let router = useRouter()
+        router.events.on('routeChangeComplete', () => {
+            logPageView()
+        })
 
         document.addEventListener('touchstart', () => null, false)
 
@@ -31,13 +31,9 @@ class Next extends App {
                     scope: '/'
                 })
             })
-    }
+    }, [])
 
-    render() {
-        let { Component, pageProps } = this.props
-
-        return <Component {...pageProps} />
-    }
+    return <Component {...pageProps} />
 }
 
-export default Next
+export default App

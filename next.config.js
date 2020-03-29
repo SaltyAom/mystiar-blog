@@ -1,7 +1,7 @@
 const { join } = require('path')
 
 const withStylus = require('@zeit/next-stylus'),
-    withMDX = require("@next/mdx")(),
+    withMDX = require('@next/mdx')(),
     withOffline = require('next-offline'),
     withAnalyze = require('@next/bundle-analyzer')({
         enabled: process.env.ANALYZE === 'true'
@@ -14,18 +14,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
 module.exports = withPlugins(
     [
         [withAnalyze],
-        [
-            withStylus,
-            {
-                loaders: [
-                    {
-                        test: /\.styl$/,
-                        loader:
-                            'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'
-                    }
-                ]
-            }
-        ],
+        [withStylus],
         [withMDX],
         [
             withOffline,
@@ -75,7 +64,7 @@ module.exports = withPlugins(
             config.optimization.minimizer.push(
                 new TerserPlugin({
                     terserOptions: {
-                        mangle: true // Note `mangle.properties` is `false` by default.
+                        mangle: true // Note `mangle.properties` is `false` by default.,
                     }
                 })
             )

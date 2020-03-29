@@ -22,7 +22,7 @@ const Featured: FeaturedComponent = ({
             }}
             as={composeContentPath(normal)}
         >
-            <a id="featured-content">
+            <a id="featured-content" aria-label={`อ่าน ${title}`}>
                 <article className="article">
                     <figure className="cover">
                         <div className="overlay" />
