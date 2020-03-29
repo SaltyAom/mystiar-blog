@@ -1,8 +1,7 @@
-/* https://medium.com/@austintoddj/using-google-analytics-with-next-js-423ea2d16a98 */
 import ReactGA from 'react-ga'
 
 export const initGA = () => {
-    ReactGA.initialize('ua-129024270-2')
+    ReactGA.initialize('UA-162100760-1')
 }
 
 export const logPageView = () => {
