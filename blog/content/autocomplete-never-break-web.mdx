@@ -1,0 +1,116 @@
+import Image from 'components/blog/image'
+import Blockquote from 'components/blog/blockquote'
+import Divider from 'components/blog/divider'
+
+import Kyubey from 'components/blog/ascii/kyubey'
+
+<span style={{ color: "var(--content)", fontSize: ".75em" }}>เนื้อหานี้ถูกเขียนเพื่อให้สามารถอ่านได้ทุกคนแม้ว่าจะไม่เคยเขียน Code มาก่อนก็ตาม</span>
+
+คอมพิวเตอร์, ชื่อเดิม เครื่องคณิตกรณ์ เป็นเครื่องจักรที่ถูกสร้างขึ้นมาเพื่อใช้คำนวณคณิตศาสตร์ จึงไม่แปลกที่การคำนวณต่างๆ สามารถที่จะคำนวณคณิตศาสตร์ได้ โดยคำสั่งและภาษาคอมพิวเตอร์ต่างๆ ก็ถูกสร้างมาจากคณิตศาสตร์ทั้งนั้น
+
+ปกติแล้วในคณิตศาสตร์เราสามารถสมมติตัวแปรขึ้นมาได้ แล้วเราอยากตั้งชื่อตัวแปรว่าอะไรก็ได้ มีค่าเป็นอะไรก็ได้เหมือนกัน อย่างเช่น
+```javascript
+ให้ x เป็น 5
+```
+ก็คือการที่เราบอกว่าสมมติให้ x มีค่าเป็น 5
+
+ในโลกของการเขียนโปรแกรมคอมพิวเตอร์ การตั้งตัวแปรถือว่าเป็นเรื่องที่ปกติมากๆ แต่ว่าแทนที่จะเป็นเลข เราสามารถตั้งเป็นอะไรก็ได้ ไม่ว่าจะเป็นเลข, ตัวอักษร, คำ หรือ ค่าทางตรรกะศาสตร์ ก็ได้ อย่างเช่น
+```javascript
+ให้ lang เป็น "en"
+```
+ก็คือการที่เราบอกว่า ตั้งตัวแปรชื่อ lang ขึ้นมา และให้มีค่าเป็น "en"
+
+## HTML
+เวลาที่เราจะสร้างเว็บไซต์ซักเว็บนึง มีหลายภาษามากที่เราจะต้องใช้ในการเขียนขึ้น โดยภาษาหลักๆ ที่เราใช้สร้างหน้าเว็บเนี่ยเรียกว่า HTML
+
+ใน HTML ก็จะมีคำสั่งโครงสร้างต่างๆ ที่เราเรียกว่า Element เพื่อเอาไว้สร้างโครงของหน้าเว็บขึ้น และจะมีคำสั่งย่อยที่เอาไว้ปรับแต่งโครงสร้างของ Element ที่เราเรียกว่า Attribute
+```javascript
+// อันนี้คือ Element โดยมีชื่อเป็น html
+<html></html>
+
+// อันนี้คือ Element HTML ที่มี attribute ชื่อว่า lang โดยให้มีค่าเป็น "en"
+<html lang="en"></html>
+```
+
+attribute นี้ก็เหมือนกับการตั้งชื่อตัวแปรขึ้นมาตัวนึง โดยเราตั้งชื่อตัวแปรที่ชื่อว่า lang ให้มีค่าเป็น "en"
+```javascript
+สมมติให้ค่า lang มีค่าเป็น en
+```
+
+อย่างเดียวที่ต่างก็คือในภาษา HTML, Attribute มีชื่อที่เราสามารถตั้งได้จำกัดซึ่งร่างขึ้นโดยมาตราฐานเว็บทั่วโลกที่ทุกคนต้องทำตาม
+
+
+## แล้ว autocomplete ล่ะ?
+autocomplete เป็นหนึ่งใน attribute ในภาษา HTML (ไม่ใช่ C) โดยมีหน้าที่ในการเติมคำให้โดยอัตโนมัติ ถ้าจะถามว่า autocomplete อย่างเดียวสามารถพังเว็บได้ไหม? ง่ายๆ ก็คือเป็นไปไม่ได้เลย
+
+โดยอ้างอิงจาก [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) หรือ บันทึกมาตราฐานเว็บที่คนทั่วโลกใช้กัน autocomplete เป็นตัวแปร attribute ที่เอาไว้บอกกับเว็บว่า ตรงนี้เราสามารถที่จะเติมคำอัตโนมัติได้ไหม
+
+ถ้าคิดไม่ออกว่าตรงนี้เอาไว้ทำอะไร ให้ลองนึกถึง Google ดู, เวลาเราพิมพ์อะไรก็จะมีคำต่างๆ ขึ้นมาให้ ซึ่งเป็นลักษณะของการ autocomplete
+<Image src="/assets/content/autocomplete-never-break-web/autocomplete.png" alt="Autocomplete" />
+ตัวอย่างของการ Autocomplete บน Google
+
+## แล้ว autocomplete สามารถตั้งอะไรได้บ้าง?
+Autocomplete สามารถใช้บน Element ที่เอาไว้สำหรับ`รับคำที่เป็นตัวอักษร`ขึ้นมา ซึ่งมีอยู่ 3 ตัวหลักๆ
+* input
+* select
+* textarea
+
+เวลาใช้ก็จะเป็นแบบนี้
+```javascript
+// ไม่มี autocomplete
+<input />
+
+// มี autocomplete
+<input autocomplete="on" />
+```
+
+พอเราเติม autocomplete ไปก็จะสามารถเติมคำอัตโนมัติให้เองได้
+
+โดยหลักๆ เรามักจะตั้งค่าของ autocomplete เป็น 2 อย่างระหว่าง `off` กับ `on` (จริงๆ แล้วมีมากกว่านี้)
+
+```javascript
+// ปิด autocomplete
+<input autocomplete="off" />
+
+// เปิด autocomplete
+<input autocomplete="on" />
+```
+
+ง่ายๆ ก็คือถ้าเราตั้งเป็น on ก็จะสามารถใช้ autocomplete ได้
+
+## แล้วถ้าไม่ใช่ 2 ตัวนี้ล่ะ?
+แน่นอนว่าบางครั้งเราก็อาจจะไม่ได้ตั้งตรงด้วยเหตุผลบางอย่าง อย่างเช่น ลืม หรือ `ตั้งใจตั้งเป็น easter egg`
+
+ซึ่งใน HTML ถ้าเราตั้ง autocomplete ไม่ถูกก็จะมีค่าเป็น off โดยอัตโนมติ
+
+<Image src="/assets/content/autocomplete-never-break-web/inspected.png" alt="Inspected Element" />
+
+อย่างเช่นภาพนี้ เป็นการตั้งใจตั้งว่า "theytoldmetoturnautocompleteoffsorryfolks" หรือถ้าเราเว้นวรรคให้ดีๆ ก็จะได้เป็นคำว่า 
+<Blockquote author="autocomplete">
+    They told me to turn autocomplete off sorry folks
+</Blockquote>
+
+ซึ่งแปลเป็นภาษาไทยได้ประมาณว่า "พวกเขาบอกให้เราปิด autocomplete ซะ โทดทีนะพวก"
+
+ซึ่งถ้าค่าไม่เป็น on HTML ก็เข้าใจว่าให้กลายเป็น off โดยอัตโนมติ แต่ถ้าเราดู code ตรงนั้น ก็ยังให้ค้างไว้เหมือนเดิม แต่ HTML จะเข้าใจว่าเป็น off อยู่แล้ว
+
+## ถ้าตั้ง autocomplete ไม่ถูกเว็บจะล่มไหม
+ไม่ autocomplete อย่างเดียวไม่มีทางทำให้เว็บล่มได้
+
+ภาษา HTML มีหน้าที่แค่เอาไว้ร่างโครงหน้าเว็บเท่านั้น ไม่สามารถที่จะไปทำอะไรกับ server ได้ ซึ่งต่อให้เราเขียนคำสั่ง HTML มั่วๆ ยังไงก็ไม่มีทางที่จะพัง server ได้ อย่างมากก็แค่หน้าเว็บจะออกมาดูเละแค่นั้น
+
+โดย Server จะมองเห็นไฟล์ที่เขียนเป็นภาษ HTML ว่าแค่เป็นไฟล์ๆ นึง ให้ copy ส่งไปให้ Browser เท่านั้น ซึ่งไฟล์ HTML หนึ่งครั้งต่ิอให้เขียนเละเทะก็จะส่งไปได้เท่ากับไฟล์ที่เขียนถูกโครงสร้างอยู่ดี เพราะ Server มองเห็น HTML แค่เป็นไฟล์ๆ นึง แค่ copy ส่งไปหน้าเว็บก็พอ
+
+ซึ่งตัว HTML ก็ไม่ได้มีหน้าที่หรือคำสั่งที่เอาไว้ติดต่อกับ server หลายๆ รอบ เพราะฉะนั้นการเขียน autocomplete เป็น "theytoldmetoturnautocompleteoffsorryfolks" กับ autocomplete เป็น "on" ก็มีค่าเท่ากัน เพราะ server มีหน้าที่ค่าส่ง HTML มาให้ Browser เราแสดงได้แค่นั้น
+
+โดย autocomplete ของ HTML ก็ทำได้แค่เอาค่าที่เราเคยพิมพ์มาก่อนมาแนะนำว่าจะเกิดอะไรขึ้นบ้าง ต่างจาก Google ที่ไปขอ Server ตัวเองว่า อันนี้พิมพ์เยอะนะ แล้วค่อยเอามาแสดง
+
+โดย autocomplete ของ HTML จะทำงานใน Browser เท่านั้นไม่มีการส่งคำขอไปที่ server เพราะฮะนั้นต่อให้เราใช้ autocomplete กี่ครั้ง ก็ไม่มีทางที่ server จะทำงานได้อย่างเด็ดขาด เพราะว่า autocomplete จะทำงานแค่ใน Browser ตัวเองเท่านั้น
+
+โดยสรุปแล้ว autocomplete พังเว็บได้ไหม? ก็ขอตอบว่า จะมี autocomplete เป็น "theytoldmetoturnautocompleteoffsorryfolks" ซักล้านครั้งก็ล่ม server ไม่ได้
+
+<Kyubey />
+
+อ้างอิงจาก
+* [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
+* [W3 autocomplete](https://www.w3.org/WAI/WCAG21/Techniques/html/H98)

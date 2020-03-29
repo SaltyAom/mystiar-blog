@@ -3,6 +3,7 @@ import IntroductionToArkflows from './content/introduction-to-arkflows.mdx'
 import IntroductionToFirestore from './content/introduction-to-firestore.mdx'
 import IntroductionToFirestoreCode from './content/introduction-to-firestore-code.mdx'
 import GetUserMedia from './content/get-user-media.mdx'
+import AutoCompleteNeverBreakWeb from './content/autocomplete-never-break-web.mdx'
 
 import { composeImagePath } from 'libs/blog'
 
@@ -165,6 +166,31 @@ const blog: Blog = {
             ]
         },
         Content: GetUserMedia
+    },
+    'autocomplete-never-break-web': {
+        meta: {
+            title: 'Autocomplete อย่างเดียวไม่เคยทำให้เว็บพังได้',
+            description:
+                'autocomplete เป็นหนึ่งใน attribute ในภาษา HTML (ไม่ใช่ C) โดยมีหน้าที่ในการ "autocomplete" ช่องใส่ตัวอักษรให้โดยอัตโนมัติ ถ้าจะถามว่า autocomplete อย่างเดียวสามารถพังเว็บได้ไหม? ง่ายๆ ก็คือเป็นไปไม่ได้เลย',
+            cover: {
+                normal: composeImagePath(
+                    'autocomplete-never-break-web',
+                    'autocomplete-never-break-web.png'
+                ),
+                retina: composeImagePath(
+                    'autocomplete-never-break-web',
+                    'autocomplete-never-break-web@2x.png'
+                ),
+                alt: 'Autocomplete Never Break Web'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('29 March 2020 12:55').getTime(),
+                update: new Date('29 March 2020 12:55').getTime()
+            },
+            tags: ['autocomplete', 'html', 'html autocomplete', 'autocomplete พังเว็บ']
+        },
+        Content: AutoCompleteNeverBreakWeb
     }
 }
 
@@ -173,13 +199,14 @@ export const latestBlogMeta =
     getNewBlogsMeta = (cursor: number = 0, limit: number = 6) => {
         let newBlogs = []
 
-        Object.keys(blog).reverse().some((key, index) => {
-            if(index >= cursor + limit) return true
+        Object.keys(blog)
+            .reverse()
+            .some((key, index) => {
+                if (index >= cursor + limit) return true
 
-            if(index >= cursor)
-                newBlogs.push(blog[key].meta)
-        })
-        
+                if (index >= cursor) newBlogs.push(blog[key].meta)
+            })
+
         return newBlogs
     }
 
