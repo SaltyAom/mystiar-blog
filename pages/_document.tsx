@@ -37,6 +37,9 @@ class MusicPlayerDocument extends Document {
 
                     <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
                     <meta name="robots" content="index, follow"/>
+
+                    <link href="https://fonts.googleapis.com/css?family=Sarabun:400,700&display=swap" rel="stylesheet" />
+                    <link href="https://fonts.googleapis.com/css?family=Kanit:500&display=swap" rel="stylesheet" />
                 </Head>
                 <body>
                     <Main />

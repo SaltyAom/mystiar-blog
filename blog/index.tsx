@@ -188,14 +188,22 @@ const blog: Blog = {
                 written: new Date('29 March 2020 12:55').getTime(),
                 update: new Date('29 March 2020 12:55').getTime()
             },
-            tags: ['autocomplete', 'html', 'html autocomplete', 'autocomplete พังเว็บ']
+            tags: [
+                'autocomplete',
+                'html',
+                'html autocomplete',
+                'autocomplete พังเว็บ'
+            ]
         },
         Content: AutoCompleteNeverBreakWeb
     }
 }
 
-export const latestBlogMeta =
-        blog[Object.keys(blog)[Object.keys(blog).length - 1]].meta,
+export const getLatestBlogMeta = () => {
+        let meta = Object.assign({}, blog[Object.keys(blog)[Object.keys(blog).length - 1]].meta)
+
+        return meta
+    },
     getNewBlogsMeta = (cursor: number = 0, limit: number = 6) => {
         let newBlogs = []
 

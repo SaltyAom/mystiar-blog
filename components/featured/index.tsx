@@ -35,7 +35,6 @@ const Featured: FeaturedComponent = ({
                     </figure>
                     <section className="content">
                         <h2 className="title">{title}</h2>
-                        {/* <h3 className="content">{description}</h3> */}
                         <h4 className="author">— {name}</h4>
                         <time className="time" dateTime={composeTime(update)}>
                             {new Date(update).toLocaleDateString()}

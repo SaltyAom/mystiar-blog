@@ -7,7 +7,7 @@ import MystiarBlog from 'components/mystiarBlog'
 
 import Featured from 'components/featured'
 
-import { latestBlogMeta, getNewBlogsMeta } from 'blog'
+import { getLatestBlogMeta, getNewBlogsMeta } from 'blog'
 import { getEditors } from 'blog/author'
 
 import 'styles/landing.styl'
@@ -33,7 +33,7 @@ const Landing = () => {
             <main id="landing">
                 <MystiarBlog />
 
-                <Featured meta={latestBlogMeta} />
+                <Featured meta={getLatestBlogMeta()} />
 
                 <h3 className="title">ล่าสุด</h3>
                 <section id="new-blogs">

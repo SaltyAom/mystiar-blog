@@ -22,11 +22,11 @@
         &:last-child
             display none
 
-.standalone-copy
+.icon.standalone-copy
     position absolute
-    top 4px
+    z-index 2
     right 4px
-    margin 0
+    margin 4px 0 0 0
     width 36px
     height 36px
     padding 8px
@@ -42,3 +42,7 @@
 
     &:active
         box-shadow 0 0 0 2px var(--primary)
+
+    @media screen and (max-width 567.9px)
+        &
+            right 5%

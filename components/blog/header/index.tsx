@@ -30,10 +30,8 @@ const Header: HeaderComponent = memo(
 			"headline": "${title}",
 			"image": ["${retina ? retina : normal}"],
 			"inLanguage": "Thai",
-			"mainEntityOfPage": "https://blog.mystiar.com/content/${composeContentPath(
-                normal
-            )}",
-			"url": "https://blog.mystiar.com/content/${composeContentPath(normal)}",
+			"mainEntityOfPage": "https://blog.mystiar.com${composeContentPath(normal)}",
+			"url": "https://blog.mystiar.com${composeContentPath(normal)}",
 			"publisher": {
 				"@type": "Organization",
 				"name": "Mystiar Blog",
@@ -41,7 +39,7 @@ const Header: HeaderComponent = memo(
 					"@type": "imageObject",
 					"width": "512",
 					"height": "512",
-					"url": "https://blog.mystiar.com/assets/icon/mystiar.png"
+					"url": "https://blog.mystiar.com/assets/icon/mystiarX512.png"
 				}
 			},
 			"author": {
@@ -81,7 +79,9 @@ const Header: HeaderComponent = memo(
                     <meta property="og:description" content={description} />
                     <meta
                         property="og:image"
-                        content={`https://blog.mystiar.com${retina ? retina : normal}`}
+                        content={`https://blog.mystiar.com${
+                            retina ? retina : normal
+                        }`}
                     />
                     <meta property="og:image:alt" content={description} />
 
@@ -93,7 +93,9 @@ const Header: HeaderComponent = memo(
                     <meta name="twitter:description" content={description} />
                     <meta
                         name="twitter:image"
-                        content={`https://blog.mystiar.com${retina ? retina : normal}`}
+                        content={`https://blog.mystiar.com${
+                            retina ? retina : normal
+                        }`}
                     />
                     {/* <meta name="twitter:site" content="@SaltyAom" /> */}
                     {/* <meta name="twitter:creator" content="@SaltyAom" /> */}
@@ -126,7 +128,11 @@ const Header: HeaderComponent = memo(
                     <figure className="figure">
                         <img
                             className="image"
-                            srcSet={retina ? `${normal} 640w, ${retina} 1280w` : normal}
+                            srcSet={
+                                retina
+                                    ? `${normal} 640w, ${retina} 1280w`
+                                    : normal
+                            }
                             src={normal}
                             {...{ alt }}
                         />

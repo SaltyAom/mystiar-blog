@@ -1,9 +1,11 @@
 import { Fragment } from 'react'
 
-import Code from 'components/blog/code'
-import HookTitle from 'components/blog/hookTitle'
+import dynamic from 'next/dynamic'
 
 import { serialize, hook } from 'libs/serialize'
+
+const Code = dynamic(() => import('components/blog/code')),
+    HookTitle = dynamic(() => import('components/blog/hookTitle'))
 
 const components = {
     h1: ({ children }) => (

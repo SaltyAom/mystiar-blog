@@ -1,5 +1,11 @@
-const Copy = ({ className = '', onClick = () => null }) => (
-    <svg {...{ className, onClick }} viewBox="0 0 561 561">
+import { memo } from 'react'
+
+import IconComponent from '../types'
+
+import '../icon.styl'
+
+const Copy: IconComponent = memo(({ className = '', onClick = () => null }) => (
+    <svg className={`icon ${className}`} {...{ onClick }} viewBox="0 0 561 561">
         <g>
             <path
                 d="M395.25,0h-306c-28.05,0-51,22.95-51,51v357h51V51h306V0z M471.75,102h-280.5c-28.05,0-51,22.95-51,51v357
@@ -8,6 +14,6 @@ const Copy = ({ className = '', onClick = () => null }) => (
             />
         </g>
     </svg>
-)
+))
 
 export default Copy

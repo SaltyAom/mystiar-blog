@@ -47,27 +47,24 @@ const Code = memo(({ children }) => {
 
     let requestCopy = useCallback((event: Event) => {
         try {
-            // @ts-ignore
-            let element = event.target.tagName
+            let target = event.target as HTMLElement,
+                element = target.tagName
 
             let code: HTMLPreElement
 
             switch (element) {
                 case 'svg':
-                    // @ts-ignore
-                    code = event.target.parentElement.nextElementSibling
+                    code = target.nextElementSibling as HTMLPreElement
                     break
 
                 case 'g':
-                    // @ts-ignore
-                    code = event.target.parentElement.parentElement.nextElementSibling
+                    code = target.parentElement
+                        .nextElementSibling as HTMLPreElement
                     break
 
                 case 'path':
-                    code =
-                        // @ts-ignore
-                        event.target.parentElement.parentElement.parentElement
-                            .nextElementSibling
+                    code = target.parentElement.parentElement
+                        .nextElementSibling as HTMLPreElement
                     break
 
                 default:
@@ -85,10 +82,13 @@ const Code = memo(({ children }) => {
 
     return (
         <Fragment>
+            <Copy
+                className="standalone-copy"
+                onClick={() => requestCopy(event)}
+            />
             <Highlight
                 {...defaultProps}
-                // @ts-ignore
-                code={children}
+                code={children as string}
                 theme={isDark ? draculaTheme : githubTheme}
                 language="jsx"
             >
@@ -103,23 +103,16 @@ const Code = memo(({ children }) => {
                         className={`${className} standalone-code -highlighted`}
                         style={style}
                     >
-                        <Fragment>
-                            <Copy
-                                className="standalone-copy"
-                                onClick={() => requestCopy(event)}
-                            />
-
-                            {tokens.map((line, i) => (
-                                <div {...getLineProps({ line, key: i })}>
-                                    {line.map((token, key) => (
-                                        <span
-                                            key={key}
-                                            {...getTokenProps({ token, key })}
-                                        />
-                                    ))}
-                                </div>
-                            ))}
-                        </Fragment>
+                        {tokens.map((line, i) => (
+                            <div {...getLineProps({ line, key: i })}>
+                                {line.map((token, key) => (
+                                    <span
+                                        key={key}
+                                        {...getTokenProps({ token, key })}
+                                    />
+                                ))}
+                            </div>
+                        ))}
                     </code>
                 )}
             </Highlight>
