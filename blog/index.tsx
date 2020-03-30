@@ -4,6 +4,8 @@ import IntroductionToFirestore from './content/introduction-to-firestore.mdx'
 import IntroductionToFirestoreCode from './content/introduction-to-firestore-code.mdx'
 import GetUserMedia from './content/get-user-media.mdx'
 import AutoCompleteNeverBreakWeb from './content/autocomplete-never-break-web.mdx'
+import VirtualDOMCreationConcept from './content/virtual-dom-creation-concept.mdx'
+import VirtualDOMRenderConcept from './content/virtual-dom-render-concept.mdx'
 
 import { composeImagePath } from 'libs/blog'
 
@@ -196,6 +198,66 @@ const blog: Blog = {
             ]
         },
         Content: AutoCompleteNeverBreakWeb
+    },
+    'virtual-dom-render-concept': {
+        meta: {
+            title: 'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า',
+            description:
+                'ในการพัฒนาเว็บไซต์ขึ้นมาซักเว็บหนึ่ง โครงสร้างทุกอย่างล้วนมาจาก DOM (Document Object Model) ซึ่งเป็น Object Tree ประมวลผลด้วย JavaScript แต่ด้วยความที่มันมีขนาดใหญ่เอาซะมากๆ การที่เราจะแก้ไขใหม่ทั้งหมดใช้เวลาและทรัพยากรสูง จึงเกิดการมองหาวิธีที่ดีขึ้นก็นี้แทน',
+            cover: {
+                normal: composeImagePath(
+                    'virtual-dom-render-concept',
+                    'virtual-dom-render-concept.jpg'
+                ),
+                retina: composeImagePath(
+                    'virtual-dom-render-concept',
+                    'virtual-dom-render-concept@2x.jpg'
+                ),
+                alt: 'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('29 March 2020 23:32').getTime(),
+                update: new Date('29 March 2020 23:32').getTime()
+            },
+            tags: [
+                'Virtual DOM redner',
+                'วิธี render Virtual DOM',
+                'render vdom',
+                'สร้างการ render vdom'
+            ]
+        },
+        Content: VirtualDOMRenderConcept
+    },
+    'virtual-dom-creation-concept': {
+        meta: {
+            title: 'มาลองสร้าง Virtual DOM จาก 0 กันดีกว่า',
+            description:
+                'ในการพัฒนาเว็บไซต์ขึ้นมาซักเว็บหนึ่ง โครงสร้างทุกอย่างล้วนมาจาก DOM (Document Object Model) ซึ่งเป็น Object Tree ประมวลผลด้วย JavaScript แต่ด้วยความที่มันมีขนาดใหญ่เอาซะมากๆ การที่เราจะแก้ไขใหม่ทั้งหมดใช้เวลาและทรัพยากรสูง จึงเกิดการมองหาวิธีที่ดีขึ้นก็นี้แทน',
+            cover: {
+                normal: composeImagePath(
+                    'virtual-dom-creation-concept',
+                    'virtual-dom-creation-concept.jpg'
+                ),
+                retina: composeImagePath(
+                    'virtual-dom-creation-concept',
+                    'virtual-dom-creation-concept@2x.jpg'
+                ),
+                alt: 'มาลองสร้าง Virtual DOM จาก 0 กันดีกว่า'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('29 March 2020 23:32').getTime(),
+                update: new Date('29 March 2020 23:32').getTime()
+            },
+            tags: [
+                'Virtual DOM คือ',
+                'วิธีสร้าง Virtual DOM',
+                'code virtual dom',
+                'vdom คืออะไร'
+            ]
+        },
+        Content: VirtualDOMCreationConcept
     }
 }
 
