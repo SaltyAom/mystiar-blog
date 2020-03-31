@@ -116,7 +116,6 @@ const Code = memo(({ children }) => {
                     </code>
                 )}
             </Highlight>
-            <code className="standalone-code">{children}</code>
             {isShowingSnackbar ? <Snackbar>{snackbarMessage}</Snackbar> : null}
         </Fragment>
     )
