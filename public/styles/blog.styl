@@ -1,11 +1,12 @@
-#blog
+#blog,
+#recommended
     position relative
     width 640px
     margin 0 auto
     padding 20px 0
     color var(--title)
 
-    @media screen and (max-width 768px)
+    @media screen and (max-width 767.9px)
         &
             width 100%
             padding 20px 5%
@@ -77,3 +78,41 @@
     font-size 19px
     color var(--title)
     line-height 1.85em
+
+#recommended-title
+    display block
+    text-align left
+    width 960px
+    margin 0 auto
+    padding 20px 20px 0 20px
+
+    & > .title
+        font-size 36px
+        color var(--title)
+        font-weight 700
+        margin 0
+
+    & > .detail
+        font-size 18px
+        color var(--content)
+        font-weight 400
+        margin 8px 0 0 0
+
+#recommended
+    display grid
+    justify-content center
+    grid-template-columns repeat(2, 50%)
+    grid-gap 20px 40px
+    width 960px - 40px
+    margin 8px auto 20px auto
+    padding 20px
+
+#recommended,
+#recommended-title
+    @media screen and (min-width 768px) and (max-width 1023.9px)
+        width 95%
+        grid-gap 20px
+
+    @media screen and (max-width 767.9px)
+        width 100%
+        grid-template-columns repeat(1, 100%)

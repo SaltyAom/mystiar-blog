@@ -22,5 +22,6 @@ export type Blog = {
     [key: string]: {
         meta: Meta
         Content: FunctionComponent
+        recommended: string[]
     }
 }

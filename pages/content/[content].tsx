@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import { MDXProvider } from '@mdx-js/react'
 import AdSense from 'react-adsense'
 
-import { getBlog } from 'blog'
+import { getBlog, getBlogMeta } from 'blog'
 import components from 'blog/component'
 import Header from 'components/blog/header'
 
@@ -14,10 +14,11 @@ import 'styles/blog.styl'
 
 const WrittenBy = dynamic(() => import('components/blog/writtenBy')),
     Tags = dynamic(() => import('components/blog/tags')),
-    MystiarBlog = dynamic(() => import('components/mystiarBlog'))
+    MystiarBlog = dynamic(() => import('components/mystiarBlog')),
+    Recommended = dynamic(() => import('components/editor/content'))
 
 const Content = ({ content }) => {
-    let { meta, Content } = getBlog(content),
+    let { meta, Content, recommended } = getBlog(content),
         {
             author: { name, bio, profile },
             tags
@@ -49,6 +50,17 @@ const Content = ({ content }) => {
                 <Tags {...{ tags }} />
                 <WrittenBy {...{ name, bio, profile }} />
             </article>
+            <section id="recommended-title">
+                <h4 className="title">Read more</h4>
+                <p className="detail">บทความน่าอ่านอื่นๆ</p>
+            </section>
+            <section id="recommended">
+                {recommended
+                    .map(name => getBlogMeta(name))
+                    .map(meta => (
+                        <Recommended key={meta.title} {...meta} />
+                    ))}
+            </section>
             <AdSense.Google
                 layout="in-article"
                 format="fluid"

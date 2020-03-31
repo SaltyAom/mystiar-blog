@@ -1,5 +1,16 @@
 .editor-content-link
     text-decoration none
+    outline none
+
+    &:hover,
+    &:focus
+        & > .editor-content
+            & > .title
+                color var(--link)
+
+            & > .figure
+                & > .image
+                    transform scale(1.1)
 
 .editor-content
     display flex
@@ -14,17 +25,20 @@
         margin 0
         border-radius 8px
         background-color var(--preload)
+        overflow hidden
 
         & > .image
             display block
             width 100%
             border-radius inherit
+            transition transform .2s ease-out
 
     & > .title
         color var(--title)
         font-size 24px
         line-height 1.375em
         margin 16px 0 0 0
+        transition color .2s ease-out
 
     & > .author
         color var(--content)

@@ -37,7 +37,11 @@ const blog: Blog = {
             },
             tags: ['Preact', 'React alternative', 'Preact คือ', 'Preact อธิบาย']
         },
-        Content: Preact3KBofReact
+        Content: Preact3KBofReact,
+        recommended: [
+            'virtual-dom-creation-concept',
+            'introduction-to-firestore'
+        ]
     },
     'introduction-to-arkflows': {
         meta: {
@@ -68,7 +72,8 @@ const blog: Blog = {
                 'React share state'
             ]
         },
-        Content: IntroductionToArkflows
+        Content: IntroductionToArkflows,
+        recommended: ['introduction-to-firestore', 'get-user-media']
     },
     'introduction-to-firestore': {
         meta: {
@@ -101,7 +106,8 @@ const blog: Blog = {
                 'วิธีใช้ Firestore'
             ]
         },
-        Content: IntroductionToFirestore
+        Content: IntroductionToFirestore,
+        recommended: ['introduction-to-arkflows', 'get-user-media']
     },
     'introduction-to-firestore-code': {
         meta: {
@@ -135,7 +141,8 @@ const blog: Blog = {
                 'วิธีใช้ Firestore'
             ]
         },
-        Content: IntroductionToFirestoreCode
+        Content: IntroductionToFirestoreCode,
+        recommended: ['virtual-dom-creation-concept', 'get-user-media']
     },
     'get-user-media': {
         meta: {
@@ -167,7 +174,11 @@ const blog: Blog = {
                 'camera.js'
             ]
         },
-        Content: GetUserMedia
+        Content: GetUserMedia,
+        recommended: [
+            'introduction-to-firestore',
+            'virtual-dom-creation-concept'
+        ]
     },
     'autocomplete-never-break-web': {
         meta: {
@@ -197,11 +208,13 @@ const blog: Blog = {
                 'autocomplete พังเว็บ'
             ]
         },
-        Content: AutoCompleteNeverBreakWeb
+        Content: AutoCompleteNeverBreakWeb,
+        recommended: ['get-user-media', 'preact-3kb-of-react']
     },
     'virtual-dom-render-concept': {
         meta: {
-            title: 'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า',
+            title:
+                'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า',
             description:
                 'ในการพัฒนาเว็บไซต์ขึ้นมาซักเว็บหนึ่ง โครงสร้างทุกอย่างล้วนมาจาก DOM (Document Object Model) ซึ่งเป็น Object Tree ประมวลผลด้วย JavaScript แต่ด้วยความที่มันมีขนาดใหญ่เอาซะมากๆ การที่เราจะแก้ไขใหม่ทั้งหมดใช้เวลาและทรัพยากรสูง จึงเกิดการมองหาวิธีที่ดีขึ้นก็นี้แทน',
             cover: {
@@ -213,7 +226,8 @@ const blog: Blog = {
                     'virtual-dom-render-concept',
                     'virtual-dom-render-concept@2x.jpg'
                 ),
-                alt: 'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า'
+                alt:
+                    'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า'
             },
             author: SaltyAom,
             date: {
@@ -227,7 +241,8 @@ const blog: Blog = {
                 'สร้างการ render vdom'
             ]
         },
-        Content: VirtualDOMRenderConcept
+        Content: VirtualDOMRenderConcept,
+        recommended: ['introduction-to-firestore', 'introduction-to-arkflows']
     },
     'virtual-dom-creation-concept': {
         meta: {
@@ -257,7 +272,8 @@ const blog: Blog = {
                 'vdom คืออะไร'
             ]
         },
-        Content: VirtualDOMCreationConcept
+        Content: VirtualDOMCreationConcept,
+        recommended: ['preact-3kb-of-react', 'introduction-to-firestore']
     }
 }
 
@@ -277,6 +293,7 @@ export const getLatestBlogMeta = () =>
 
         return newBlogs
     },
-    getBlog = name => Object.assign({}, blog[name])
+    getBlog = name => Object.assign({}, blog[name]),
+    getBlogMeta = name => getBlog(name).meta
 
 export default blog
