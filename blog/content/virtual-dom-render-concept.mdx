@@ -456,7 +456,7 @@ const extractAttributes = element => {
 }
 ```
 
-จากนั้นก็ loop key ของ object ที่ถูกเก็บเป็น object มาเพื่อเขียบลง attributes อีกทัี
+จากนั้นก็ loop key ของ object ที่ถูกเก็บเป็น object มาเพื่อเขียบลง attributes อีกที
 ```javascript
 typeof element[property] === "object"
     ? Array.apply(
@@ -495,7 +495,7 @@ const camelize = str => {
 }
 ```
 
-พอเราได้ชื่อ property มาแล้วการสามารถใช้ reference นี้ในการกหา property ได้
+พอเราได้ชื่อ property มาแล้วการสามารถใช้ reference นี้ในการหา property ได้
 ```javascript
 typeof element[property] === "object"
     ? Array.apply(
@@ -631,6 +631,8 @@ render = (node, element) => {
                 create(node),
                 ref
             )
+
+    }
 
         applyAttributes(diffed.attributes, ref)
 }
