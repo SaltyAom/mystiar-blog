@@ -7,17 +7,19 @@ const App = ({ Component, pageProps }) => {
         const { initGA, logPageView } = require('libs/analytics'),
             { useRouter } = require('next/router')
 
-        if (!window.GA_INITIALIZED) {
-            initGA()
-            window.GA_INITIALIZED = true
-        }
+        if(process.env.NODE_ENV === "production"){
+            if (!window.GA_INITIALIZED) {
+                initGA()
+                window.GA_INITIALIZED = true
+            }
 
-        logPageView()
-
-        let router = useRouter()
-        router.events.on('routeChangeComplete', () => {
             logPageView()
-        })
+
+            let router = useRouter()
+            router.events.on('routeChangeComplete', () => {
+                logPageView()
+            })
+        }
 
         document.addEventListener('touchstart', () => null, false)
 

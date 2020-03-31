@@ -1,5 +1,5 @@
 #landing
-    width 740px
+    width 960px
     height 100vh
     display flex
     flex-direction column
@@ -30,25 +30,39 @@
             width 100%
             padding 0 5%
 
+    @media screen and (min-width 768px) and (max-width 1023.9px)
+        &
+            width 740px
+
 #new-blogs
     display grid
-    width 100%
+    width calc(100% - 32px)
     grid-template-columns repeat(3, 33.33%)
-    grid-gap 12px 8px
+    grid-gap 20px 16px
     margin 0 0 28px 0
 
     & > .editor-content-link
         & > .editor-content
             & > .title
+                font-size 21px
+
+            & > .author
+                font-size 16px
+                margin-top 8px
+
+        @media screen and (min-width 768px) and (max-width 1023.9px)
+            & > .title
                 font-size 18px
 
     @media screen and (min-width 568px) and (max-width 767.9px)
         &
+            width calc(100% - 20px)
             grid-template-columns repeat(2, 50%)
             grid-gap 20px
 
     @media screen and (max-width 567.9px)
         &
+            width 100%
             grid-template-columns repeat(1, 100%)
             grid-gap 28px
 

@@ -560,7 +560,7 @@ current.childNodes.forEach((child, index) => {
         return (childNodes[index] = child)
 
     if (
-        typeof child !== "object" ||
+        typeof child !== "string" ||
         typeof old.childNodes !== "object"
     )
         return (childNodes[index] = child)
@@ -578,7 +578,7 @@ current.childNodes.forEach((child, index) => {
         return (childNodes[index] = child)
 
     if (
-        typeof child !== "object" ||
+        typeof child !== "string" ||
         typeof old.childNodes !== "object"
     )
         return (childNodes[index] = child)
@@ -640,7 +640,7 @@ const diff = (current, old) => {
             return (childNodes[index] = child)
 
         if (
-            typeof child !== "object" ||
+            typeof child !== "string" ||
             typeof old.childNodes !== "object"
         )
             return (childNodes[index] = child)

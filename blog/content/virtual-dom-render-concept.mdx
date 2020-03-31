@@ -572,7 +572,7 @@ const extractAttributes = element => {
                 return (childNodes[index] = child)
 
             if (
-                typeof child !== "object" ||
+                typeof child !== "string" ||
                 typeof old.childNodes !== "object"
             )
                 return (childNodes[index] = child)
@@ -756,7 +756,7 @@ const render = (node, element) => {
 let b = createElement(
     "h1",
     { style: { fontSize: "14px", color: "grey" } },
-    "Hello"
+    "Hello World"
 )
 
 let c = createElement(
@@ -774,7 +774,10 @@ let c = createElement(
         style: {
             'fontSize': "16px"
         }
-    }
+    },
+    childNodes: [
+        "Hello"
+    ]
 }
 ```
 
