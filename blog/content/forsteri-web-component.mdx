@@ -1,0 +1,195 @@
+import Image from 'components/blog/image'
+import Blockquote from 'components/blog/blockquote'
+import Divider from 'components/blog/divider'
+
+import Kyubey from 'components/blog/ascii/kyubey'
+
+ทุกวันนี้เวลาเราเขียนโปรเจคเว็บขนาดใหญ่ เรามักจะเจอปัญหานึงมาโดยตลอด "ทำยังไงถึงจะ reuse ส่วนที่ใช้บ่อยๆ ระหว่าง Library ได้" ถึงแม้ว่าจะมี Web Component หรือ Component สำหรับการใช้ Component แบบ Native แต่ก็ดูเหมือนว่าจะยังไม่ตรงจุดที่ Developer ต้องการ
+
+## ถ้า Developer ไม่ต้องการแล้วทำไม Web Component ถึงยังอยู่?
+Google พยายามผลักดันมาตราฐานของ Web Component ว่าเป็นมาตรฐานใหม่โดยพยายามใช้ในหลายๆ ที่อย่างเช่น YouTube ที่ใช้ Library ที่ชื่อว่า Polymer ขึ้น
+
+ในโปรเจคขนาดเล็ก-กลาง ส่วนใหญ่จะเลือกใช้ Frontend Library เดียวในการสร้าง ไม่ว่าจะเป็น Angular, React, Vue, Svelte, etc. ก็เลยมักจะไม่มีปัญหาในการสร้าง Reusable Component เพราะว่าอยู่ใน Library เดียวกัน
+
+## Component Based
+แน่นอนว่าการสร้าง component ไว้หลายๆ อัน การหยิบกลับมาใช้ใหม่ก็กลายเป็นเรื่องง่ายและประหยัดเวลาของ Developer เอาซะมากๆ ทำให้`ไม่ต้องเขียนส่วนเดิมใหม่อีกครั้งหรืออีก 100 ครั้ง`ก็ตาม
+
+แต่ว่าการเขียบ Component Based ในแต่ละ Library ก็มีข้อจำกัดที่จะใช้ได้แค่กับใน Library ที่ตัวเองเขียนเท่านั้น
+
+## Web Component to save the day
+Web Component ก็เลยถูกสร้างขึ้น โดยหลักการคือต้องการที่จะสร้าง Component ที่ใช้ได้ในทุกที่ ทุก Library ทุก Framework โดย Library
+
+แต่ว่าการสร้าง Web Component เปล่าๆ ก็เป็นได้แค่ Component เปล่าๆ ที่จะเวลาจะแก้ไขก็เป็นเหมือน Vanilla JavaScript ที่ต้อง`ควบคุม DOM Manipulation เอง ก็เลยมี ​Library สำหรับการช่วยสร้าง Web Component` ขึ้นมา
+
+โดย Library ที่ใหญ่ๆ ที่ใช้สร้าง Web Component แบบ Officially ก็มี:
+* Angular
+* Vue
+* Polymer
+* Lit Element
+* Stencil
+
+ซึ่งที่ผลักดันให้ใช้เว็บ Component มากๆ คือ Polymer, Stencil ส่วน Vue ก็คือมี Support สำหรับเว็บ Component ด้วย
+
+## Forsteri
+Forsteri เป็น Library ที่ใหม่มากๆ โดยมีแรงบรรดาลใจมาจาก Polymer และ Preact โดยมีหลักการที่ว่า "Reusable reactive Web Component with Virtual DOM in 2KB (gzipped)"
+
+โดยข้อดีของ Forsteri คือ
+- ใช้ `Virtual DOM` ที่ปรับแต่งขึ้นเอง
+- ใช้งาน JSX ได้แบบเดียวกับ React
+- Runtime `ขนาดเล็กมากๆ` (2KB ถ้า gzipped)
+- Generate ได้ทั้ง component และ web
+- มีความ Declarative
+- TypeScirpt First-class support
+- เขียบเป็น Function Component แทน Class
+
+และมี Syntax ที่แทบจะเหมือนกับ React Hooks เป๊ะๆ เรียกได้ว่า ถ้าเขียน React Hooks ได้ ก็เขียน Forsteri ได้ครึ่งนึงละ
+```javascript
+let Card = () => <section>A Card</section>
+
+registerComponent({
+    component: "my-card",
+    view: Card
+})
+
+<my-card></my-card> // Shadow Root: <section>A Card</section>
+```
+
+โดยจะมีการแยกส่วนของ View, State, Props และ Lifecycle ไว้ชัดเจน โดยที่ state ถูกเก็บเป็น Immutable
+
+# แล้วต้นเริ่มยังไง?
+Forsteri มีคำสั่งสำหรับการสร้าง Project แบบเร็วๆ อยู่โดยการใช้คำสั่ง:
+```bash
+npx create-forsteri-app
+```
+
+หรือถ้าอยากใช้ yarn create:
+```bash
+yarn create forsteri-app
+```
+
+จากนั้น CLI ก็จะถามชื่อ Project และ Package Manager และสร้าง Project ขึ้นมาให้เรียบร้อยเลย
+
+[โดยจะได้หน้าตาเป็นแบบนี้](https://forsteri-starter.netlify.com)
+<Image src="/assets/content/forsteri-web-component/starter.png" alt="Forsteri Starter Demo" />
+
+## Reactive
+Forsteri มีหลักการเหมือนกับ Library อื่นๆ โดยมีหลักการของ State, Props, Children และ Lifecycle เหมือนกัน ซึ่งถ้าถูกแก้ไขก็จะ Update แค่ตรงที่ถูกแก้ไขเท่านั้นไม่ว่าจะเป็น State หรือ Props ซึ่งก็ใช้หลักการของ Virtual DOM เข้ามาช่วยในการแก้ตรงนี้
+
+## Virtual DOM
+โดย Forsteri ใช้หลักการของ Virtual DOM แต่แทนที่จะเป็นการเปรียบเทียบระหว่าง Object กับ DOM. Forsteri ใช้การเปรียบเทียบระหว่าง Object กับ Object แทน ทำให้การ Diffing Algorithms ของ Forsteri เร็วมาก
+
+## Encapsulation
+จุดประสงค์ของ Forsteri คือการสร้าง Web Component ที่มีประสิทธิภาพ เบา และเร็ว ซึ่งจะต้อง`ใช้ที่ไหนก็ได้` โดยคำว่า "ใช้ที่ไหนก็ได้" รวมถึงการที่จะต้องไม่ไปขัดแย้งกับกฏของ CSS ที่ Project ใช้
+
+โดย Forsteri ใช้หลักการของ Shadow DOM ในการช่วยตรงนี้ เพื่อให้มั่นใจว่า Forsteri จะคงรูปเดิมไว้ตลอดและจะไม่มีผลจากใน Component ไปนอกและในทางกลับกัน
+
+โดยการใช้คุณสมบัติทั้งหมดในการ[สร้าง Component ง่ายๆ อย่าง Card](https://forsteri-card.netlify.com) ที่เปิดปิดได้ก็สามารถนำมาทดสอบการทำงานได้
+<Image src="/assets/content/forsteri-web-component/card.png" alt="Forsteri Card Demo" />
+
+## Take it easy
+Forsteri ถูกออกแบบมาเพื่อให้เขียนง่ายเท่าที่ทำได้ใน JavaScript โดยการแยกทุกอย่างออกเป็นส่วนๆ และรวมกันด้วย Function โดยได้ความคิดตรงนี้มาจาก `@ngModule` ของ Angular
+```javascript
+registerComponent({
+    component: 'my-element',
+    view: Card,
+    state,
+    props
+})
+```
+
+ได้อิทธิผลการเขียน JSX มาจาก React อีกทีนึงซึ่งทำได้แทบจะเหมือนกับ React เพราะว่าก็เป็น JSX ของ Forsteri ก็ถูกดัดแปลงมาจาก React อีกทีนึง:
+```javascript
+// ตั้ง State เริ่มต้น
+const state = {
+    toggle: false
+}
+
+// สร้าง View
+const Card = ({ state: { toggle }, set }) => (
+    <fragment>
+        <h1>{toggle ? 'On' : 'Off'}</h1> // ถ้า Toggle เป็น true แสดง on ไม่งั้นก็แสดง off
+        <button onClick={() => set('toggle', !toggle)}> // เปลี่ยนแค่ของ toggle เป็นค่าตรงข้าม
+            Toggle
+        </button>
+    </fragment>
+)
+
+// สร้าง component
+registerComponent({
+    component: 'my-card',
+    view: Card,
+    state
+})
+
+<my-card></my-card>
+```
+
+## เทียบประสิทธิภาพ
+Stencil เป็น Web Component Library ที่นิยมใช้มาก สร้างโดยทีม Ionic Framework สำหรับการสร้าง Web Component ที่มี Virtual DOM
+
+โดยเราจะ`เปรียบเทียบ Starter ของ Forsteri กับ Ionic` Framework กันโดยมีเงื่อนไขดังนี้:
+* ทดสอบบน MacBook Pro ขนาด 13 นิ้วของปี 2019 (i5, 16 GB of RAM)
+* ทดสอบบน Microsoft Edge 80.0.361.109 ใน Mode Incognito
+* Code ของทั้งสองจะต้องได้ผลลัพธ์เดียวกัน.
+* ไม่มี Performance Throttle และจะถูก Clear Cache ทุกครั้ง.
+* ทดสอบบน Production Build.
+* ทดสอบในเวลาเดียวกัน (รอจนกว่าอันจะทดสอบเสร็จและทดสอบของอีกอันในแต่ละช่วง)
+
+Version ที่ใช้ทดสอบ
+- forsteri 0.2.7
+- @stencil/core 1.12.2
+
+Starter template แก้ไขเพื่อให้ตรงกับ Stencil
+Forsteri TypeScript Starter
+```bash
+yarn create forsteri-app
+```
+
+Stencil starter ตัวเลือก Component ไม่มีการแก้ไข
+```bash
+yarn create stencil
+```
+
+โดยมี Code ของทั้ง 2 ฝั่งเป็นแบบนี้
+<Image src="/assets/content/forsteri-web-component/code.jpg" alt="เปรียบเทียบ Code" />
+
+จากนั้นก็ทดสอบในระยะเวลาเดียวกันโดยมีผลดังนี้ (ซ้าย Stencil,　ขวา Forsteri):
+
+## Virtual DOM
+<Image src="/assets/content/forsteri-web-component/vdom.jpg" alt="เปรียบเทียบ VDOM" />
+
+Stencil รวบตัว Text ใน Node เดียวกันให้เป็น Text Node เดียวกัน ในขณะที่ Forsteri มีการแบ่งแยก textNode ออกเป็น 3 อันและเมื่อ Update จะถูกแก้เฉพาะส่วน
+
+ดังนั้นการแยก Virtual DOM ของ textNode Forsteri สามารถทำได้ดีกว่า แต่ในตอนนี้ก็ยังไม่รู้ Performance
+
+## Performance
+<Image src="/assets/content/forsteri-web-component/performance.jpg" alt="เปรียบเทียบ Performance" />
+
+Forsteri ได้คะแนนดีกว่าในเกือบทุกทาง
+* Scripting: Forsteri เร็วกว่า Starter ของ Stencil ได้ถึง 4.25 เท่าได้
+* Rendering: Forsteri Render ได้เร็วกว่า Stencil ห่างกันแค่ 1ms
+* Painting: Stencil ทำได้เร็วกว่าอาจจะเป็นเพราะไม่มี CSS Rule ถูกสร้างขึ้น
+
+## Size
+<Image src="/assets/content/forsteri-web-component/size.jpg" alt="เปรียบเทียบขนาด" />
+
+ขนาดของ Starter ของ Stencil อยู่ที่ประมาณ 4KB โดยถูกแยกเป็น 2 File ในขณะที่ Forsteri อยู่ที่ขนาด 2.5KB ถูกสร้างเป็นไฟล์ Bundle เดียว
+
+โดยขนาดของ Forsteri ต่างจาก Starter ของ Stencil ประมาณ 1.6 เท่า
+
+#### หมายเหตุ: การทดสอบนี้เป็นเพียงก็ทดสอบระหว่าง Starter ขนาดเล็กของทั้ง 2 Library เท่านั้น ไม่มีเจตนาในการบอกว่า Library ใดดีกว่าอีก Library นึง หรือว่า Library ใด Library นึงจะมาแทนกันได้
+
+## ข้อเสียของ Forsteri
+แน่นอนว่า Forsteri ใหม่แบบ ใหม่เอาซะมากๆ จนเรียกว่าไม่มี Ecosystem เลย รวมไปถึงด้วยความที่มันใหม่มากๆ ซึ่งก็ยังไม่ค่อยจะ Stable เท่าไหร่ 
+
+Version ที่ออกมาก็พึ่งจะเป็น 0.2 ดังนั้นการเอา Forsteri เข้าไปเป็น Production Build ในโปรเจคใหญ่ตอนนี้ก็คือ ไม่เหมาะเลยแม้แต่นิดเดียว
+
+แต่าสำหรับ`โปรเจคขนาดเล็กก็ถือว่าน่าสนใจ`ในการใช้สร้าง `หรือสร้างเป็น Component เล็กๆ แล้วเอาเข้าไปใช้เป็น Widget` ในบางส่วนของเว็บก็ดี โดยจะมี Runtime เริ่มต้นอยู่ที่ 2KB ซึ่งที่เหลือก็ขึ้นอยู่กับ Component ที่เราเขียน
+
+## ภาพรวม
+โดยส่วนตัวแล้วคิดว่า Forsteri เป็น Library หน้าใหม่ที่น่าสนใจเอามาลองเล่นดูซะมากๆ ด้วยความที่มันเล็ก, เร็วมาก แล้วก็รับประกันว่าจะ Reuse ในโปรเจคในก็ได้ แถม Style ก็จะไม่มีทางถูกเปลี่ยนแน่นอน ทำให้ดูเป็น Library ที่ค่อนข้างหน้าจับตาเอาซะมากๆ
+
+[โดยสามารถดู Repo และ Documentation ของ Forsteri บน Github ได้เลย](https://github.com/SaltyAom/forsteri)
+<a href="https://github.com/SaltyAom/forsteri" target="_blank" rel="noreffere noopener">
+    <Image src="/assets/content/forsteri-web-component/forsteri-web-component.png" alt="Forsteri Banner" />
+</a>
