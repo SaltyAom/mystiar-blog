@@ -295,8 +295,8 @@ const blog: Blog = {
             },
             author: SaltyAom,
             date: {
-                written: new Date('10 March 2020 15:00').getTime(),
-                update: new Date('10 March 2020 15:00').getTime()
+                written: new Date('10 April 2020 15:00').getTime(),
+                update: new Date('10 April 2020 15:00').getTime()
             },
             tags: [
                 'Web Component',
@@ -329,8 +329,8 @@ const blog: Blog = {
             },
             author: SaltyAom,
             date: {
-                written: new Date('11 March 2020 15:28').getTime(),
-                update: new Date('11 March 2020 15:28').getTime()
+                written: new Date('11 April 2020 15:28').getTime(),
+                update: new Date('11 April 2020 15:28').getTime()
             },
             tags: [
                 'Virtual DOM คือ',
