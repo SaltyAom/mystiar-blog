@@ -29,25 +29,20 @@ const blog: Blog = {
                     'preact-3kb-of-react',
                     'preact-3kb-of-react@2x.jpg'
                 ),
-                alt: 'Preact, สั้นๆ ว่า React ขนาด 3KB',
+                alt: 'Preact, สั้นๆ ว่า React ขนาด 3KB'
             },
             author: SaltyAom,
             date: {
                 written: new Date('26 March 2020 13:36').getTime(),
-                update: new Date('26 March 2020 13:36').getTime(),
+                update: new Date('26 March 2020 13:36').getTime()
             },
-            tags: [
-                'Preact',
-                'React alternative',
-                'Preact คือ',
-                'Preact อธิบาย',
-            ],
+            tags: ['Preact', 'React alternative', 'Preact คือ', 'Preact อธิบาย']
         },
         Content: Preact3KBofReact,
         recommended: [
             'virtual-dom-creation-concept',
-            'introduction-to-firestore',
-        ],
+            'introduction-to-firestore'
+        ]
     },
     'introduction-to-arkflows': {
         meta: {
@@ -64,22 +59,22 @@ const blog: Blog = {
                     'introduction-to-arkflows',
                     'introduction-to-arkflows@2x.jpg'
                 ),
-                alt: 'Introduction to Arkflows',
+                alt: 'Introduction to Arkflows'
             },
             author: SaltyAom,
             date: {
                 written: new Date('26 March 2020 13:36').getTime(),
-                update: new Date('26 March 2020 13:36').getTime(),
+                update: new Date('26 March 2020 13:36').getTime()
             },
             tags: [
                 'React storage',
                 'React store library',
                 'Redux alternative',
-                'React share state',
-            ],
+                'React share state'
+            ]
         },
         Content: IntroductionToArkflows,
-        recommended: ['introduction-to-firestore', 'get-user-media'],
+        recommended: ['introduction-to-firestore', 'get-user-media']
     },
     'introduction-to-firestore': {
         meta: {
@@ -95,12 +90,12 @@ const blog: Blog = {
                     'introduction-to-firestore',
                     'introduction-to-firestore@2x.jpg'
                 ),
-                alt: 'Introduction to Firestore From Zero with JavaScript',
+                alt: 'Introduction to Firestore From Zero with JavaScript'
             },
             author: SaltyAom,
             date: {
                 written: new Date('19 February 2019 18:45').getTime(),
-                update: new Date('19 February 2019 18:45').getTime(),
+                update: new Date('19 February 2019 18:45').getTime()
             },
             tags: [
                 'Firebase JavaScript',
@@ -109,11 +104,11 @@ const blog: Blog = {
                 'วิธีใช้ Firebase',
                 'สอน Firebase',
                 'Firestore จาก 0',
-                'วิธีใช้ Firestore',
-            ],
+                'วิธีใช้ Firestore'
+            ]
         },
         Content: IntroductionToFirestore,
-        recommended: ['introduction-to-arkflows', 'get-user-media'],
+        recommended: ['introduction-to-arkflows', 'get-user-media']
     },
     'introduction-to-firestore-code': {
         meta: {
@@ -130,12 +125,12 @@ const blog: Blog = {
                     'introduction-to-firestore-code',
                     'introduction-to-firestore-code@2x.jpg'
                 ),
-                alt: 'Introduction to Firestore From Zero with JavaScript',
+                alt: 'Introduction to Firestore From Zero with JavaScript'
             },
             author: SaltyAom,
             date: {
                 written: new Date('19 February 2019 18:45').getTime(),
-                update: new Date('19 February 2019 18:45').getTime(),
+                update: new Date('19 February 2019 18:45').getTime()
             },
             tags: [
                 'Firebase JavaScript',
@@ -144,11 +139,11 @@ const blog: Blog = {
                 'วิธีใช้ Firebase',
                 'สอน Firebase',
                 'Firestore จาก 0',
-                'วิธีใช้ Firestore',
-            ],
+                'วิธีใช้ Firestore'
+            ]
         },
         Content: IntroductionToFirestoreCode,
-        recommended: ['virtual-dom-creation-concept', 'get-user-media'],
+        recommended: ['virtual-dom-creation-concept', 'get-user-media']
     },
     'get-user-media': {
         meta: {
@@ -164,12 +159,12 @@ const blog: Blog = {
                     'get-user-media',
                     'get-user-media@2x.jpg'
                 ),
-                alt: 'มาลองถ่ายรูปกันบนเว็บไซต์กันดีกว่า~',
+                alt: 'มาลองถ่ายรูปกันบนเว็บไซต์กันดีกว่า~'
             },
             author: SaltyAom,
             date: {
                 written: new Date('27 March 2020 13:49').getTime(),
-                update: new Date('27 March 2020 13:49').getTime(),
+                update: new Date('27 March 2020 13:49').getTime()
             },
             tags: [
                 'ถ่ายรูปด้วยเว็บไซต์',
@@ -177,14 +172,14 @@ const blog: Blog = {
                 'อัดวิดีโอ javascript',
                 'get user media',
                 'camera javascript',
-                'camera.js',
-            ],
+                'camera.js'
+            ]
         },
         Content: GetUserMedia,
         recommended: [
             'introduction-to-firestore',
-            'virtual-dom-creation-concept',
-        ],
+            'virtual-dom-creation-concept'
+        ]
     },
     'autocomplete-never-break-web': {
         meta: {
@@ -200,22 +195,22 @@ const blog: Blog = {
                     'autocomplete-never-break-web',
                     'autocomplete-never-break-web@2x.png'
                 ),
-                alt: 'Autocomplete Never Break Web',
+                alt: 'Autocomplete Never Break Web'
             },
             author: SaltyAom,
             date: {
                 written: new Date('29 March 2020 12:55').getTime(),
-                update: new Date('29 March 2020 12:55').getTime(),
+                update: new Date('29 March 2020 12:55').getTime()
             },
             tags: [
                 'autocomplete',
                 'html',
                 'html autocomplete',
-                'autocomplete พังเว็บ',
-            ],
+                'autocomplete พังเว็บ'
+            ]
         },
         Content: AutoCompleteNeverBreakWeb,
-        recommended: ['get-user-media', 'preact-3kb-of-react'],
+        recommended: ['get-user-media', 'preact-3kb-of-react']
     },
     'virtual-dom-render-concept': {
         meta: {
@@ -233,22 +228,22 @@ const blog: Blog = {
                     'virtual-dom-render-concept@2x.jpg'
                 ),
                 alt:
-                    'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า',
+                    'มาลองสร้างการ render จาก Virtual DOM เข้า DOM จริงๆ กันดีกว่า'
             },
             author: SaltyAom,
             date: {
                 written: new Date('29 March 2020 23:32').getTime(),
-                update: new Date('29 March 2020 23:32').getTime(),
+                update: new Date('29 March 2020 23:32').getTime()
             },
             tags: [
                 'Virtual DOM redner',
                 'วิธี render Virtual DOM',
                 'render vdom',
-                'สร้างการ render vdom',
-            ],
+                'สร้างการ render vdom'
+            ]
         },
         Content: VirtualDOMRenderConcept,
-        recommended: ['introduction-to-firestore', 'introduction-to-arkflows'],
+        recommended: ['introduction-to-firestore', 'introduction-to-arkflows']
     },
     'virtual-dom-creation-concept': {
         meta: {
@@ -264,22 +259,22 @@ const blog: Blog = {
                     'virtual-dom-creation-concept',
                     'virtual-dom-creation-concept@2x.jpg'
                 ),
-                alt: 'มาลองสร้าง Virtual DOM จาก 0 กันดีกว่า',
+                alt: 'มาลองสร้าง Virtual DOM จาก 0 กันดีกว่า'
             },
             author: SaltyAom,
             date: {
                 written: new Date('29 March 2020 23:32').getTime(),
-                update: new Date('29 March 2020 23:32').getTime(),
+                update: new Date('29 March 2020 23:32').getTime()
             },
             tags: [
                 'Virtual DOM คือ',
                 'วิธีสร้าง Virtual DOM',
                 'code virtual dom',
-                'vdom คืออะไร',
-            ],
+                'vdom คืออะไร'
+            ]
         },
         Content: VirtualDOMCreationConcept,
-        recommended: ['preact-3kb-of-react', 'introduction-to-firestore'],
+        recommended: ['preact-3kb-of-react', 'introduction-to-firestore']
     },
     'forsteri-web-component': {
         meta: {
@@ -295,26 +290,26 @@ const blog: Blog = {
                     'forsteri-web-component',
                     'forsteri-web-component@2x.png'
                 ),
-                alt: 'Forsteri Web Component',
+                alt: 'Forsteri Web Component'
             },
             author: SaltyAom,
             date: {
-                written: new Date('29 March 2020 23:32').getTime(),
-                update: new Date('29 March 2020 23:32').getTime(),
+                written: new Date('10 March 2020 15:00').getTime(),
+                update: new Date('10 March 2020 15:00').getTime()
             },
             tags: [
                 'Web Component',
                 'Forsteri',
                 'ลองสร้าง Forsteri',
-                'วิธีสร้าง web component',
-            ],
+                'วิธีสร้าง web component'
+            ]
         },
         Content: ForsteriWebComponent,
         recommended: [
             'introduction-to-arkflows',
-            'virtual-dom-creation-concept',
-        ],
-    },
+            'virtual-dom-creation-concept'
+        ]
+    }
 }
 
 export const getLatestBlogMeta = () =>
