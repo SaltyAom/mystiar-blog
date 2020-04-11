@@ -7,6 +7,7 @@ import AutoCompleteNeverBreakWeb from './content/autocomplete-never-break-web.md
 import VirtualDOMCreationConcept from './content/virtual-dom-creation-concept.mdx'
 import VirtualDOMRenderConcept from './content/virtual-dom-render-concept.mdx'
 import ForsteriWebComponent from './content/forsteri-web-component.mdx'
+import VirtualDOMFragmentConcept from './content/virtual-dom-fragment-concept.mdx'
 
 import { composeImagePath } from 'libs/blog'
 
@@ -308,6 +309,41 @@ const blog: Blog = {
         recommended: [
             'introduction-to-arkflows',
             'virtual-dom-creation-concept'
+        ]
+    },
+    'virtual-dom-fragment-concept': {
+        meta: {
+            title: 'หลักการทำงานของ Fragment ใน Virtual DOM',
+            description:
+                'เมื่อพูดถึง Virtual DOM หลายคนก็มักจะนึกถึง React, Library แรกที่เริ่มใช้ Virtual DOM ในการทำงาน แต่ว่าข้อจำกัดของ React สมัยก่อนคือการที่มี Root Node ได้แค่อันเดียว และเวลาจะ render อะไรก็ต้องมี wrapper เพื่อให้ Render ได้',
+            cover: {
+                normal: composeImagePath(
+                    'virtual-dom-fragment-concept',
+                    'virtual-dom-fragment-concept.jpg'
+                ),
+                retina: composeImagePath(
+                    'virtual-dom-fragment-concept',
+                    'virtual-dom-fragment-concept@2x.jpg'
+                ),
+                alt: 'Virtual DOM Fragment Concept'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('11 March 2020 15:28').getTime(),
+                update: new Date('11 March 2020 15:28').getTime()
+            },
+            tags: [
+                'Virtual DOM คือ',
+                'Virtual DOM Fragment',
+                'fragment คือ',
+                'jsx fragment',
+                'หลักการ fragment'
+            ]
+        },
+        Content: VirtualDOMFragmentConcept,
+        recommended: [
+            'virtual-dom-creation-concept',
+            'forsteri-web-component',
         ]
     }
 }
