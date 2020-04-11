@@ -36,7 +36,9 @@ const Adsense = ({ content }) => {
                 data-ad-format="fluid"
                 data-ad-client="ca-pub-8437449592660799"
                 data-ad-slot="6199709868"
-                full-width = 
+                // @ts-ignore
+                responsive='true'
+                format='fluid'
             />
         </Fragment>
     )
