@@ -6,7 +6,10 @@ class MusicPlayerDocument extends Document {
             <Html lang="th">
                 <Head>
                     <meta name="title" content="Mystiar Blog" />
-                    <meta name="description" content="เพราะว่าความรู้ คือกุญแจสู่อนาคต" />
+                    <meta
+                        name="description"
+                        content="เพราะว่าความรู้ คือกุญแจสู่อนาคต"
+                    />
                     <link rel="icon" href="/assets/icon/mystiar.png" />
 
                     <meta property="og:title" content="Mystiar Blog" />
@@ -21,25 +24,29 @@ class MusicPlayerDocument extends Document {
                     <meta property="og:type" content="website" />
 
                     <meta name="twitter:card" content="summary_large_image" />
-                    <meta
-                        name="twitter:title"
-                        content="Mystiar Blog"
-                    />
+                    <meta name="twitter:title" content="Mystiar Blog" />
                     <meta
                         name="twitter:description"
                         content="เพราะว่าความรู้ คือกุญแจสู่อนาคต"
                     />
                     <meta name="twitter:site" content="@SaltyAom" />
-                    <meta
-                        name="twitter:creator"
-                        content="@SaltyAom"
+                    <meta name="twitter:creator" content="@SaltyAom" />
+
+                    <link
+                        rel="sitemap"
+                        type="application/xml"
+                        href="/sitemap.xml"
                     />
+                    <meta name="robots" content="index, follow" />
 
-                    <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
-                    <meta name="robots" content="index, follow"/>
-
-                    <link href="https://fonts.googleapis.com/css?family=Sarabun:400,700&display=swap" rel="stylesheet" />
-                    <link href="https://fonts.googleapis.com/css?family=Kanit:500&display=swap" rel="stylesheet" />
+                    <link
+                        href="https://fonts.googleapis.com/css?family=Sarabun:400,700&display=swap"
+                        rel="stylesheet"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css?family=Kanit:500&display=swap"
+                        rel="stylesheet"
+                    />
                 </Head>
                 <body>
                     <Main />

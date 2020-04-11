@@ -17,8 +17,8 @@ const Header: HeaderComponent = memo(
             cover: { normal, retina, alt },
             author: { name, profile },
             date: { written, update },
-            tags
-        }
+            tags,
+        },
     }) => {
         let structuredData = `
 		{
@@ -103,7 +103,7 @@ const Header: HeaderComponent = memo(
                     <script
                         type="application/ld+json"
                         dangerouslySetInnerHTML={{
-                            __html: structuredData
+                            __html: structuredData,
                         }}
                     />
                 </Head>
@@ -114,7 +114,7 @@ const Header: HeaderComponent = memo(
                         <Link
                             href={{
                                 pathname: '/editor/[editor]',
-                                query: { editor: name }
+                                query: { editor: name },
                             }}
                             as={`/editor/${name}`}
                         >
