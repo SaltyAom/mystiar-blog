@@ -1,0 +1,73 @@
+.wide-content
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-self flex-start
+    width 100%
+    margin 20px 0
+    cursor pointer
+
+    & > .cover
+        position relative
+        display flex
+        align-items flex-start
+        flex 2
+        padding 0
+        border-radius 8px
+
+        & > .image
+            display block
+            width 100%
+            border-radius inherit
+            object-fit contain
+            object-position center
+            border 1px solid var(--border)
+
+    & > .body
+        position relative
+        flex 1
+        max-width 33.33%
+        display flex
+        flex-direction column
+        justify-content flex-start
+        align-items flex-start
+
+        & > .title
+            font-size 32px
+            font-weight normal
+            color var(--title)
+            margin 0 0 20px 0
+            line-height 1.75em
+            transition color .2s ease-out
+
+        & > .detail,
+        & > .time,
+        & > .author
+            font-size 18px
+            font-weight normal
+            color var(--content)
+            margin 0 0 8px 0
+            line-height 1.75em
+
+        & > .detail
+            position relative
+            display block
+            width 100%
+            text-overflow ellipsis
+            word-break break-word
+            max-height 120px
+            overflow hidden
+
+            &::after
+                content "..."
+                position absolute
+                top 93px
+                right 0
+                display block
+                color var(--content)
+
+    &:hover,
+    &:focus
+        & > .body
+            & > .title
+                color var(--link)

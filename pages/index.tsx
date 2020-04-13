@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import MystiarBlog from 'components/mystiarBlog'
 
 import Featured from 'components/featured'
+import WideContent from 'components/wideContent'
 
 import { getLatestBlogMeta, getNewBlogsMeta } from 'blog'
 import { getEditors } from 'blog/author'
@@ -29,6 +30,8 @@ const Landing = () => {
                     name="twitter:image"
                     content={`https://blog.mystiar.com/assets/app/mystiar-blog.jpg`}
                 />
+
+                <link rel="canonical" href={`https://blog.mystiar.com`} />
             </Head>
             <main id="landing">
                 <MystiarBlog />
@@ -37,14 +40,14 @@ const Landing = () => {
 
                 <h3 className="title">ล่าสุด</h3>
                 <section id="new-blogs">
-                    {getNewBlogsMeta(1, 6).map(meta => (
+                    {getNewBlogsMeta(1, 6).map((meta) => (
                         <Content key={meta.title} {...meta} />
                     ))}
                 </section>
 
                 <h3 className="title">Editors</h3>
                 <section id="blog-editors">
-                    {getEditors().map(editor => (
+                    {getEditors().map((editor) => (
                         <EditorImage
                             key={editor.name}
                             href={{
@@ -59,6 +62,10 @@ const Landing = () => {
                         />
                     ))}
                 </section>
+
+                <WideContent meta={getNewBlogsMeta(8, 1)[0]} />
+
+                <MystiarBlog />
             </main>
         </Fragment>
     )

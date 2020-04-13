@@ -25,7 +25,6 @@ const Featured: FeaturedComponent = ({
             <a id="featured-content" aria-label={`อ่าน ${title}`}>
                 <article className="article">
                     <figure className="cover">
-                        <div className="overlay" />
                         <img
                             className="image"
                             srcSet={`${normal} 640w, ${retina} 1280w`}
