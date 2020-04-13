@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic'
 import MystiarBlog from 'components/mystiarBlog'
 
 import Featured from 'components/featured'
-import WideContent from 'components/wideContent'
 
 import { getLatestBlogMeta, getNewBlogsMeta } from 'blog'
 import { getEditors } from 'blog/author'
@@ -14,7 +13,8 @@ import { getEditors } from 'blog/author'
 import 'styles/landing.styl'
 
 const Content = dynamic(() => import('components/editor/content')),
-    EditorImage = dynamic(() => import('components/editor/editorImage'))
+    EditorImage = dynamic(() => import('components/editor/editorImage')),
+    WideContent = dynamic(() => import("components/wideContent"))
 
 const Landing = () => {
     return (

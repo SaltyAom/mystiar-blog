@@ -35,10 +35,10 @@ const WideContent: WideContentComponent = ({
                 <section className="body">
                     <h2 className="title">{title}</h2>
                     <p className="detail">{description}</p>
+                    <h4 className="author">— {name}</h4>
                     <time className="time" dateTime={composeTime(update)}>
                         {new Date(update).toLocaleDateString()}
                     </time>
-                    <h4 className="author">— {name}</h4>
                 </section>
             </article>
         </Link>
