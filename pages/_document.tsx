@@ -48,7 +48,7 @@ class MusicPlayerDocument extends Document {
                         rel="stylesheet"
                     />
 
-                    <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin />
+                    <link rel="preconnect" href="https://www.google-analytics.com" />
                 </Head>
                 <body>
                     <Main />
