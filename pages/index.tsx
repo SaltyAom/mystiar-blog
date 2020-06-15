@@ -24,14 +24,14 @@ const Landing = () => {
 
                 <meta
                     property="og:image"
-                    content={`https://.saltyaom.com/assets/app/mystiar-blog.jpg`}
+                    content={`https://blog.saltyaom.com/assets/app/mystiar-blog.jpg`}
                 />
                 <meta
                     name="twitter:image"
-                    content={`https://.saltyaom.com/assets/app/mystiar-blog.jpg`}
+                    content={`https://blog.saltyaom.com/assets/app/mystiar-blog.jpg`}
                 />
 
-                <link rel="canonical" href={`https://.saltyaom.com`} />
+                <link rel="canonical" href={`https://blog.saltyaom.com`} />
             </Head>
             <main id="landing">
                 <MystiarBlog />
