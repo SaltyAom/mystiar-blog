@@ -6,6 +6,7 @@ const withStylus = require('@zeit/next-stylus'),
     withAnalyze = require('@next/bundle-analyzer')({
         enabled: process.env.ANALYZE === 'true'
     }),
+    withPurgeCSS = require('next-purgecss')
     withPlugins = require('next-compose-plugins')
 
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
@@ -15,6 +16,7 @@ module.exports = withPlugins(
     [
         [withAnalyze],
         [withStylus],
+        // [withPurgeCSS],
         [withMDX],
         [
             withOffline,

@@ -6,3 +6,4 @@ yarn-error.log
 public/service-worker.js
 .now
 public/sitemap.xml
+public/service-worker.js

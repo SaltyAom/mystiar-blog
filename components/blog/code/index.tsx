@@ -30,7 +30,9 @@ const Code = memo(({ children }) => {
         )
 
     useEffect(() => {
-        if (!isServer && window.matchMedia('').addEventListener)
+        if(isServer) return
+
+        if (window.matchMedia('').addEventListener)
             window
                 .matchMedia('(prefers-color-scheme: dark)')
                 .addEventListener('change', event => {
