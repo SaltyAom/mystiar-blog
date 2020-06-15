@@ -63,7 +63,6 @@ const Content = ({ content }: { content: string }) => {
                         <Recommended key={meta.title} {...meta} />
                     ))}
             </section>
-            <Adsense {...{ content }} />
             <MystiarBlog />
         </Fragment>
     )

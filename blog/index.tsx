@@ -1,5 +1,5 @@
 import Preact3KBofReact from './content/preact-3kb-of-react.mdx'
-import IntroductionToArkflows from './content/introduction-to-arkflows.mdx'
+// import IntroductionToArkflows from './content/introduction-to-arkflows.mdx'
 import IntroductionToFirestore from './content/introduction-to-firestore.mdx'
 import IntroductionToFirestoreCode from './content/introduction-to-firestore-code.mdx'
 import GetUserMedia from './content/get-user-media.mdx'
@@ -8,6 +8,7 @@ import VirtualDOMCreationConcept from './content/virtual-dom-creation-concept.md
 import VirtualDOMRenderConcept from './content/virtual-dom-render-concept.mdx'
 import ForsteriWebComponent from './content/forsteri-web-component.mdx'
 import VirtualDOMFragmentConcept from './content/virtual-dom-fragment-concept.mdx'
+import HowToLighthouse101 from './content/how-to-lighthouse-101.mdx'
 
 import { composeImagePath } from 'libs/blog'
 
@@ -45,38 +46,38 @@ const blog: Blog = {
             'introduction-to-firestore'
         ]
     },
-    'introduction-to-arkflows': {
-        meta: {
-            title:
-                'Arkflows, State Manager ขนาด 1KB ที่ง่ายพอๆ กับ Localstorage',
-            description:
-                'State Manager ใน View Library ส่วนใหญ่สร้างขึ้นมาค่อนข้างยากต่อการ maintain และการ setup ก็ค่อนข้างที่จะยุ่งยากเอาซะมากๆ แม้ว่าจะดีขนาดไหน แต่การทำให้มันเรียบง่ายก็มักจะเป็นปัญหาอยู่ตลอดๆ จึงเป็นจุดกำเนิดของ Arkflows',
-            cover: {
-                normal: composeImagePath(
-                    'introduction-to-arkflows',
-                    'introduction-to-arkflows.jpg'
-                ),
-                retina: composeImagePath(
-                    'introduction-to-arkflows',
-                    'introduction-to-arkflows@2x.jpg'
-                ),
-                alt: 'Introduction to Arkflows'
-            },
-            author: SaltyAom,
-            date: {
-                written: new Date('26 March 2020 13:36').getTime(),
-                update: new Date('26 March 2020 13:36').getTime()
-            },
-            tags: [
-                'React storage',
-                'React store library',
-                'Redux alternative',
-                'React share state'
-            ]
-        },
-        Content: IntroductionToArkflows,
-        recommended: ['introduction-to-firestore', 'get-user-media']
-    },
+    // 'introduction-to-arkflows': {
+    //     meta: {
+    //         title:
+    //             'Arkflows, State Manager ขนาด 1KB ที่ง่ายพอๆ กับ Localstorage',
+    //         description:
+    //             'State Manager ใน View Library ส่วนใหญ่สร้างขึ้นมาค่อนข้างยากต่อการ maintain และการ setup ก็ค่อนข้างที่จะยุ่งยากเอาซะมากๆ แม้ว่าจะดีขนาดไหน แต่การทำให้มันเรียบง่ายก็มักจะเป็นปัญหาอยู่ตลอดๆ จึงเป็นจุดกำเนิดของ Arkflows',
+    //         cover: {
+    //             normal: composeImagePath(
+    //                 'introduction-to-arkflows',
+    //                 'introduction-to-arkflows.jpg'
+    //             ),
+    //             retina: composeImagePath(
+    //                 'introduction-to-arkflows',
+    //                 'introduction-to-arkflows@2x.jpg'
+    //             ),
+    //             alt: 'Introduction to Arkflows'
+    //         },
+    //         author: SaltyAom,
+    //         date: {
+    //             written: new Date('26 March 2020 13:36').getTime(),
+    //             update: new Date('26 March 2020 13:36').getTime()
+    //         },
+    //         tags: [
+    //             'React storage',
+    //             'React store library',
+    //             'Redux alternative',
+    //             'React share state'
+    //         ]
+    //     },
+    //     Content: IntroductionToArkflows,
+    //     recommended: ['introduction-to-firestore', 'get-user-media']
+    // },
     'introduction-to-firestore': {
         meta: {
             title: 'เริ่มต้นเขียน Firestore จาก 0 ด้วย JavaScript กันดีกว่า~',
@@ -109,7 +110,7 @@ const blog: Blog = {
             ]
         },
         Content: IntroductionToFirestore,
-        recommended: ['introduction-to-arkflows', 'get-user-media']
+        recommended: ['preact-3kb-of-react', 'get-user-media']
     },
     'introduction-to-firestore-code': {
         meta: {
@@ -244,7 +245,7 @@ const blog: Blog = {
             ]
         },
         Content: VirtualDOMRenderConcept,
-        recommended: ['introduction-to-firestore', 'introduction-to-arkflows']
+        recommended: ['introduction-to-firestore', 'preact-3kb-of-react']
     },
     'virtual-dom-creation-concept': {
         meta: {
@@ -307,7 +308,7 @@ const blog: Blog = {
         },
         Content: ForsteriWebComponent,
         recommended: [
-            'introduction-to-arkflows',
+            'preact-3kb-of-react',
             'virtual-dom-creation-concept'
         ]
     },
@@ -341,9 +342,40 @@ const blog: Blog = {
             ]
         },
         Content: VirtualDOMFragmentConcept,
+        recommended: ['virtual-dom-creation-concept', 'forsteri-web-component']
+    },
+    'how-to-lighthouse-101': {
+        meta: {
+            title: 'Lighthouse 101 และการใช้ Lighthouse อย่างมีสติ',
+            description:
+                'Lighthouse เป็นเครื่องมือที่ Google สร้างขึ้นมาเพื่อใช้ในการวัดประสิทธิภาพของเว็บโดยเฉพาะ ทำให้ Web Developer ได้รู้ถึงประสิทธิภาพของเว็บตัวเองและ optimize เว็บให้มีประสิทธิภาพมากขึ้น',
+            cover: {
+                normal: composeImagePath(
+                    'how-to-lighthouse-101',
+                    'how-to-lighthouse-101.png'
+                ),
+                retina: composeImagePath(
+                    'how-to-lighthouse-101',
+                    'how-to-lighthouse-101@2x.png'
+                ),
+                alt: 'How to Lighthouse 101'
+            },
+            author: SaltyAom,
+            date: {
+                written: new Date('15 June 2020 12:36').getTime(),
+                update: new Date('11 June 2020 12:36').getTime()
+            },
+            tags: [
+                'Lighthouse',
+                'Lighthouse คือ',
+                'วิธีการใช้ Lighthouse',
+                'Lighthouse 101'
+            ]
+        },
+        Content: HowToLighthouse101,
         recommended: [
             'virtual-dom-creation-concept',
-            'forsteri-web-component',
+            'introduction-to-firestore'
         ]
     }
 }

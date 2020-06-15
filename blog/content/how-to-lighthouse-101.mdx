@@ -1,0 +1,250 @@
+import Image from 'components/blog/image'
+import Blockquote from 'components/blog/blockquote'
+import Divider from 'components/blog/divider'
+
+import Kyubey from 'components/blog/ascii/kyubey'
+
+Lighthouse เป็นเครื่องมือที่ Google สร้างขึ้นมาเพื่อใช้ในการวัดประสิทธิภาพของเว็บโดยเฉพาะ ทำให้ Web Developer ได้รู้ถึงประสิทธิภาพของเว็บตัวเองและ optimize เว็บให้มีประสิทธิภาพมากขึ้น
+
+# ทำไมต้อง Lighthouse?
+Google เป็นผู้ที่พัฒนา Lighthouse ขึ้นมาเพื่อนับคะแนนเว็บแต่ละเว็บซึ่งจะมีผลต่อ SEO หรือ Ranking ที่มีผลใน Google Search, ด้วยความที่ Google แทบจะครองการ Search ของผู้ใช้ทั่วไป เว็บต่างๆ แน่นอนว่าก็ต้องอยากให้ติด Ranking เป็นอันดับต้นๆ แน่นอน
+
+แต่ว่า Lighthouse เป็น Metric ที่ไม่ได้มีผลต่อการจัดอันดับอย่างเดียว!
+Lighthouse ยังสามารถบอกได้ว่าเราควรจะ Optimize เว็บตรงไหน ยังไงได้บ้างอีกด้วย เพื่อทำให้เว็บเราดีขึ้น~
+
+<Image src="/assets/content/how-to-lighthouse-101/lighthouse.png" alt="Lighthouse Icon" />
+
+Lighthouse ได้ออกแบบมาเพื่อให้ Web Developer สามารถ Optimize Frontend ของเว็บออกมาได้อย่างมีประสิทธิภาพ ซึ่งแทบจะไม่เดี่ยวกับ Backend เลยถ้าเวลาไม่ได้ต่างกันหลักวินาที ซึ่งเรียกได้ว่ามีแต่คนบ้าเท่านั้นที่เอา Lighthouse มาเทียบกับ Backend แล้วถ้าคะแนนดีกว่าจะกว่าสรุปว่า Backend หรือ ภาษานั้นๆ ดีกว่า/เร็วกว่า เพราะว่า `Lighthouse ทำมาเพื่อเทียบคำแนน Frontend ไม่ใช่ Backend!` 
+##### #ไม่ได้แซะใครนะ
+
+# คะแนนแต่ละส่วน
+Lighthouse จะทำการประมวลผลแต่ละด้านของเว็บว่ามีประสิทธิภาพพอหรือยัง และจะสรุปออกมาเป็นคะแนนเต็ม 100 โดยแบ่งได้เป็น 5 ด้านใหญ่ๆ
+- Performance
+- Accessibility
+- Best Practice
+- SEO
+- Progressive Web App
+
+คำแนน Lighthouse ตรงส่วนนี้ก็มีแต่การคำนวนด้าน Frontend เพื่อให้เราสามารถ Optimize Frontend ได้ดียิ่งขึ้นไปอีก
+
+# Performance
+เป็นด้านที่ Developer ส่วนใหญ่ให้ความสนใจมากที่สุด เพราะว่ามีผลต่อประสิทธิภาพของเว็บโดยตรงว่าเร็วพอหรือยัง อีกทั้งยังเป็นด้านที่ Developer ส่วนใหญ่ใช้ Lighthouse ในการ Audit เป็นลำดับแรกๆ เหมือนกับ First Aid ยังไงอย่างงั้น
+
+โดย Performance จะแบ่งออกเป็นย่อยๆ อีก 6 ด้าน:
+- First Contentful Paint (FCP)
+- Speed Index
+- Time to Interactive (TTI)
+- First Meaningful Paint
+- First CPU Idle
+- Max Potential First Input Delay
+
+และการมาถึงของ Lighthouse 6 ทำให้มีการเพื่มสิ่งที่เรียกว่า Core Web Vitals ออกมาเป็นอีก 3 อย่าง
+- Largest Contentful Paint
+- First Input Delay
+- Cumulative Layout Shift (might change)
+
+ซึ่งทั้งหมดทุกด้านนี้เป็นการคำนวนผลต่อ Frontend ซะแทบทั้งหมด ยกเว้นแต่ว่า Backend จะช้ามากๆ ขนาดที่ไม่สามารถตอบสนองได้ต่อ Request ได้หรือช้าระดับวินาที ทำให้ไม่มีใครเขาเอา Lighthouse มาเทียบประสิทธิภาพ Backend กัน
+
+## First Contentful Paint
+<Image src="/assets/content/how-to-lighthouse-101/fcp.png" alt="First Contentful Paint" />
+
+First Contentful Paint เป็นการบอกว่าเว็บเรา Render ส่วนประกอบหลักไปเมื่อไหร่เริ่มต้นจากเวลาที่โหลดเว็บเข้ามา 
+
+โดยตรงส่วนนี้ Google บอกว่า คนที่เข้ามาในเว็บคาดหวังว่าจะได้เห็นรูปร่างเว็บยางส่วน (ที่ไม่จำเป็นต้องโหลดเสร็จ) ขึ้นมา โดยภายในระยะเวลา 2 วินาที ซึ่งถ้ามากกว่านั้นอาจจะติดสีเหลืองหรือสีแดงซึ่งมีผลต่อการคำนวน Perforamnce ทั้งหมด
+- น้อยกว่า 2 วินาที (สีเขียว)
+- ระหว่าง 2-4 วินาที (สีเหลือง)
+- มากกว่า 4 วินาที　(สีแดง)
+
+โดยการ Render ส่วนที่สำคัญออกมาให้เสร็จก่อนโดนไม่ต้องรอส่วนอื่นๆ ให้ทำงานเสร็จแล้วค่อย Render จะช่วยเพื่มความสามารถตรงด้านนี้เป็นอย่างมาก
+
+โดยปกติแล้ว Lighthouse จะมีการแนะนำเพื่อเพิ่มประสิทธิภาพของ Performance ทุกด้านด้วย
+<Image src="/assets/content/how-to-lighthouse-101/fcp-recommended.png" alt="First Contentful Recommended" />
+
+## Speed Index
+อ้างอิงจาก [web.dev](https://web.dev/speed-index)
+<Blockquote>
+Speed Index measures how quickly content is visually displayed during page load. Lighthouse first captures a video of the page loading in the browser and computes the visual progression between frames.
+</Blockquote>
+
+Lighthouse จะทำการบันทึก Frame ต่อ Frame ว่ามีอะไรบ้างที่ปรากฏบน web ซึ่งถ้าจะให้สรุปง่ายๆ คือในระหว่างที่เว็บโหลดมีอะไรบ้างที่ปรากฎจนกว่าจะครบทุกส่วน
+
+- 0 - 4.3 วินาที (สีเขียว)
+- 4.4 - 5.8 วินาที (สีเหลือง)
+- มากกว่า 5.8 วินาที (สีแดง)
+
+## Time To Interactive
+ปกติแล้วเรามักจะใช้ JavaScript ในการควบคุมการทำงานของหน้าเว็บ ในช่วงที่ทุกโหลด HTML แล้วแต่ยังโหลด JavaScript ไม่เสร็จจะสังเกตได้ว่า ปุ่มที่เราสั่งใน JavaScript จะไม่ทำงาน เพราะว่า JavaScript ยังโหลดไม่เสร็จ, Time To Interactive มีไว้เพื่อวัดส่วนนี้โดยเฉพาะ
+
+<Image src="/assets/content/how-to-lighthouse-101/tti.svg" alt="Time To Interactive" no2x />
+โดย Google บอกว่า User ที่เข้ามาเห็นเว็บแล้ว แต่ไม่สามารถที่จะทำอะไรได้อย่างเช่น การกดปุ่มแล้วไม่เกิดอะไรขึ้น จะสร้างความน่ารำคาญและความผิดหวังให้กับ User นั้นๆ
+
+ทุกๆ อย่างที่เกี่ยวกับด้านนี้ล้วนเป็นผลมาจาก JavaScript แทบจะทั้งหมดเลย ดังนั้นถ้าเว็บที่ใช้ JavaScript น้อยๆ หรือ Optimize มาดี ก็มีโอกาศที่จะได้คำแนนด้านนี้ดี แต่ก็ขึ้นอยู่กับระยะเวลาโหลดของ Resources อื่นๆ ด้วย
+
+Google บอกว่าด้านนี้เวลาควรจะต่ำกว่า 5 วินาที
+
+## First Meaningful Paint
+ตรงส่วนนี้จะบอกว่า เมื่อไหร่เว็บของเราจะโหลดส่วนที่สำคัญที่สุดของเว็บเสร็จ โดยต่างจาก First Contentful Paint ตรงที่ First Meaningful Paint จะต้องเห็นเนื้อหาที่สำคัญไม่ใช้แค่ Layout 
+
+ถ้าเทียบง่ายๆ เวลาเราเข้า YouTube เรามักจะเห็นหน้าโหลดก่อนทั้งๆ แล้วค่อยเห็นตัวเนื้อหา โดยตอนที่เราเห็นตัวโหลดคือเรามองเห็น Layout แล้ว นับเป็นว่า First Meaningful Paint จบตรงนี้
+<Image src="/assets/content/how-to-lighthouse-101/youtube-skeleton.png" alt="YouTube Skeleton" />
+
+ต่างจากที่จนกว่าจะโหลด`เนื้อหา`เสร็จ ซึ่งนับเป็น First Meaningful Paint 
+<Image src="/assets/content/how-to-lighthouse-101/fcp.png" alt="First Contentful Paint" />
+
+- น้อกว่า 2 วินาที - (สีเขียว)
+- ระหว่าง 2 - 4 วินาที - (สีเหลือง)
+- มากกว่า 4 วินาที - (สีแดง)
+
+## First CPU Idle
+First CPU Idle เป็นผลจากด้าน JavaScript ง่ายๆ คือจนกว่า JavaScript ทั้งหมดจะทำงานเสร็จแล้วเข้าสู่ช่วง `พัก` ของ JavaScript หรือก็คือจนกว่าจะโหลด JavaScript และทำงานของทั้งหน้าเสร็จถึงจะหยุดนับ First CPU Idle
+
+ถึงแม้ว่าจะส่วนนี้จะ Depreacated ไปแล้วใน Lighthouse 6 อ้างอิงจาก [web.dev](https://web.dev/first-cpu-idle) แต่ส่วนใหญ่ (ในตอนนี้) ก็ยังนับด้านนี้กันอยู่
+
+- น้อกว่า 4.7 วินาที - (สีเขียว)
+- ระหว่าง 4.8 - 6.5 วินาที - (สีเหลือง)
+- มากกว่า 6.5 วินาที - (สีแดง)
+
+## Max Potential First Input Delay
+ตรงส่วนนี้จะเป็นการวัดว่า First Input Delay หรือ ระยะเวลาจนกว่า user มีปฎิกิริยาอะไรบางอย่างต่อ Event Listener ของเว็บ เช่นการกดปุ่มจะมี delay เท่าไหร่ โดยนับเวลาเป็น Millisecond (เสี้ยววินาที)
+
+- น้อกว่า 130 ms - (สีเขียว)
+- ระหว่าง 130 - 250 ms - (สีเหลือง)
+- มากกว่า 250 ms - (สีแดง)
+
+# Core Web Vital
+เป็น Metric ใหม่ที่เพิ่มขึ้นมาใน Lighthouse 6 ที่บอกว่าควรที่จะใช้ในทุกๆ เว็บ เพราะนอกจากจะมีผลต่อ Performance แล้ว ยังมีผลต่อ UX ด้วย
+
+โดยแบ่งเป็น 3 ส่วน
+- Largest Contentful Paint
+- First Input Delay
+- Cumulative Layout Shift (might change)
+
+<Image src="/assets/content/how-to-lighthouse-101/web-vital.svg" alt="Core Web Vital" no2x />
+
+## Largest Contentful Paint
+ถ้าเทียบง่ายๆ ก็ใกล้เคียงกับ First Meaningful Paint แต่ว่า จนกว่า`เนื้อหาที่สำคัญที่สุด`ของเว็บจะโหลดเสร็จ ถ้าคิดง่ายๆ ก็จนกว่า เนื้อหาที่เราเห็นส่วนใหญ่จะโหลดเสร็จแทนที่จะเป็นส่วนเดียวต่างจาก First Meaningful Paint
+<Image src="/assets/content/how-to-lighthouse-101/youtube-skeleton.png" alt="YouTube Skeleton" />
+
+โดยคำว่าส่วนใหญ่ของเนื้อหาใน First Contentful Paint จะนับเป็น `75% ของหน้าเว็บที่เข้ามาเห็น`และจนกว่าจะโหลดเสร็จ
+<Image src="/assets/content/how-to-lighthouse-101/fcp.svg" alt="First Contentful Pain Metric" no2x />
+
+## First Input Delay
+ถ้าให้เทียบง่ายๆ ก็คือขั้นพัฒนาของ Max Potential First Input Delay แต่ว่าแทนที่จะเป็นเพียงแค่ Listener เดียว จะนับเป็น `75% ของ Listener ทั้งหมด`ในหน้าเว็บที่โหลดเข้ามา 
+###### อ้างอิงจาก (web.dev)[https://web.dev/fid]
+
+<Image src="/assets/content/how-to-lighthouse-101/fid.svg" alt="First Input Delay Metric" no2x />
+
+## Cumulative Layout Shift
+เทียบง่ายๆ คือ เมื่อ โหลดเว็บเข้ามา หรือ เมื่อ User ได้ทำอะไรบางอย่างกับเว็บเช่นการกดปุ่ม Layout ต่างๆ ของเว็บจะไม่มีการเปลี่ยนตำแน่งจากที่เดิม
+
+เพราะว่า User คาดหวังว่าเวลากดปุ่ม ตำแหน่งของปุ่มจะต้องอยู่ที่เดิมไม่ใช่มีการเลื่อนขึ้นเลื่อนลง
+
+ถ้าเทียบง่ายๆ ก็คือไม่มีอาการแบบนี้:
+<Image src="/assets/content/how-to-lighthouse-101/layout-shift.png" alt="Layout Shift" />
+
+โดยคะแนนส่วนนี้ควรน้อยกว่า 0.1 เพื่อ UX ที่ดี
+<Image src="/assets/content/how-to-lighthouse-101/cls.svg" alt="Cumulative Layout Shift" no2x />
+
+# Accessibility
+<Blockquote>
+เว็บที่ดี ควรจะเข้าถึง User ได้ง่าย
+</Blockquote>
+
+Accessibility เป็นการวัด UX ต่างๆ ที่มีผลต่อการใช้งานเว็บ ทั้งในด้าน Visual และการกำหนด Aria (ทั้งผู้ที่มองเห็นและที่มองไม่เห็น) เพื่ีอให้มั่นใจว่าทุกๆ คนสามารถที่จะใช้งานเว็บของเราได้
+
+โดยจะแบ่งเป็นหัวข้อย่อยออกมาเยอะมากๆ แต่ที่ส่วนใหญ่จะพลาดกันก็คือ
+- Color Contrast Ratio น้อยเกินไปทำให้ตัวอักษรอ่านยาก
+- ไม่กำหนดภาษาในหน้าเว็บที่ tag html
+- ภาพไม่มีข้อความ alt
+
+โดยสามารถดู Metric ที่ใช้วัดด้าน Accessibility ทั้งหมดได้ที่ [web.dev](https://web.dev/accessibility-scoring)
+
+# Best Practice
+เป็นตัวที่บอกว่าเราทำตาม Best Practice ในการเขียนเว็บในด้าน Frontend ครบหรือยัง โดยจะดูถึงในทุกๆ ด้านตั้งแต่การกำหนด Header ของ Resources จนถึงแทบจะทุกๆ เรื่องในเว็บ ที่จะทำให้เหมาะกับในยุคปัจจุบัน
+
+ตัวอย่าง Metric
+- ใช้ https
+- ใช้ http/2 ใน Resources
+- มีช่องโหว่ใน JavaScript
+- การกำหนด Cache
+- การใช้ Passive Event Listener ใน JavaScript
+
+โดยสามารถดู Metric ที่ใช้วัดด้าน Best Practice ทั้งหมดได้ที่ [web.dev](https://web.dev/lighthouse-best-practices)
+
+# SEO
+Search Engine Optimization, แน่นอนว่า Web Developer ส่วนใหญ่อยากได้คะแนนในด้านนี้ ซึ่งแทบจะเป็นด้านที่ง่ายที่สุดแล้วในรรดา Metric ทั้งหมดของ Lighthouse
+
+โดย SEO ใน Lighthouse ขอแค่ให้ Crawler เข้าถึงเนื้อหาของ Web ได้ง่ายๆ ก็ถือว่าโอเคแล้ว โดยแค่กำหนด tag `meta` ดีๆ ก็น่าจะได้เต็มได้ง่ายๆ เลย ถ้าไม่เล่นอะไรที่แปลกๆ
+
+# Progressive Web App
+เป็นอีก Metric นึงที่ไม่มีผลต่อ SEO ซักเท่าไหร่ แต่เป็นการวัดว่าเว็บที่เป็น PWA มีความเป็น PWA มากพอหรือยัง เช่น
+- การกำหนดชื่อบนหน้าจอผู้ใช้
+- การกำหนด icon บนหน้าจอ
+- การจัดการ service worker
+- การจัด Cache
+- การกำหนด Manifest
+
+โดยทุกเว็บไม่จำเป็นต้องเป็น Progressive Web App ก็ได้ เพราะไม่ใช่ทุกเว็บที่ควรจะเป็น Progressive Web App
+
+สามารถดูเพิ่มเติมเรื่อง Progressive Web App ได้ที่ [web.dev](https://web.dev/progressive-web-apps)
+
+# ใครๆ ก็ใช้ Lighthouse ได้
+
+## Chrome Dev Tools
+นอกจาก Lighthouse จะเป็นเครื่องมือวัดที่มีประสิทธิภาพแล้ว ยังมี Lighthouse ยังมี Built-in สำหรับ Google Chrome และ Microsoft Edge (Chromium) ด้วยทำให้เราสามารถที่จะใช้ Lighthouse ได้อย่างง่ายดาย
+<Image src="/assets/content/how-to-lighthouse-101/lighthouse-dev-tools.png" alt="Lighthouse Devtools" />
+
+### ข้อควรระวังของ Lighthouse ใน Dev Tools
+Lighthouse ใน Devtools อาจจะมีความ Bias โดยมีผลมาจาก Extension อื่นๆ ที่อยู่ใน Browser, Tab ที่ทำงานหลายๆ แท็บ ความแปรปรวนของ Internet ในบางช่วง ทำให้คำแนนในบางครั้งไม่สามารถที่จะเปรียบเทียบตรงๆ ได้
+
+โดยปกติแล้วจะมีการขึ้นแจ้งเตือนโดยปกติอยู่แล้ว โดยการแก้ปัญหานี้ก็อาจจะเปลี่ยนไปใช้ Service บนเว็บของ Google เอง หรือ ​CLI ก็ได้ แต่ถ้าอยากให้ Bias น้อยลง ก็ลองเปิด Incognito ซักแท็บแล้ววัดดูก็ช่วยได้
+
+## PageSpeed Insight
+(PageSpeed Insight)[https://developers.google.com/speed/pagespeed/insights] เป็นเว็บของ Google ที่ให้บริการในเรื่องการใช้ Lighthouse โดยอิงจาก URL ที่ให้ไป โดยจะไปทำงานบน Server ผ่าน Lighthouse CLI ทำให้ลดความ Bias ลงไปได้เยอะ
+<Image src="/assets/content/how-to-lighthouse-101/pagespeed-insight.png" alt="pagespeed-insight" />
+
+นอกจาก PageSpeed Insight แล้ว ยังมี (web.dev)[https://web.dev/measure/] ที่ให้บริการทางด้านนี้เหมือนกับ PageSpeed Insight ด้วยเหมือนกัน แถมยังสามารถเก็บประวัติได้ด้วย
+<Image src="/assets/content/how-to-lighthouse-101/web-dev.png" alt="web.dev/measure" />
+
+## CLI
+นอกจากนั้น Lighthouse ยังมี Lighthouse CLI ที่ช่วย Automate Test ทั้งหมดของ Lighthouse ทำงานผ่าน Node.js โดยใช้ Puppeteer ในการ Automate Test ที่จะช่วยลดความ Bias ได้อีกด้วย
+
+โดยเป็น Open Source (ไม่ใช่ Freeware) บน [GitHub](https://github.com/GoogleChrome/lighthouse) พร้อมการอธิบายการใช้อย่างละเอียด
+
+## การใช้แบบผิดๆ
+Lighthouse เป็นเครื่องมือสำหรับการ Optimize เว็บทางด้าน Frontend โดยเฉพาะ ดังนั้นถ้าสังเกต Metric ทางด้าน Backend แทบจะไม่มีให้เห็น ดังนั้นการนำเอา Lighthouse ไปเปรียบเทียบ Backend จึงเป็นเรื่องที่มีเพียงคนบ้าเท่านั้นที่จะทำ
+##### #ไม่ได้แซะใครนะ
+
+โดยเฉพาะการนำเอา Backend และ Frontend ที่ต่างกันมาสรุปว่า Backend ที่เขียนด้วยภาษา X จะเร็วกว่า Backend ที่เขียบด้วยภาษา Y ที่มีความ Bias ทางด้าน Frontend จึงเป็นเรื่องที่ไม่สามารถเอามาเทียบกันได้ เช่น
+
+- เว็บ A
+    - Backend ด้วยภาษา PHP
+    - Frontend ไม่มีการใช้ View Library ใดๆ เลย
+
+- เว็บ B
+    - Backend ด้วย Node.js
+    - Frontend ด้วย React และ SSR ผ่าน Next.js
+
+เมื่อลองวัดผ่าน Lighthouse ปรากฏว่า
+- เว็บ A - 98 คะแนน
+- เว็บ B - 94 คะแนน
+
+แล้วเราไม่สามารถสรุปว่า PHP เร็วกว่า Node.js ได้ เพราะ
+
+1. เว็บ A ที่ไม่ใช่ JavaScript Library ใดๆ เลย ย่อมมาขนาดของ JavaScript น้อยกว่า เว็บ B ที่ใช้ React และ Next.js อยู่หลายเท่า
+
+2. ต้องเช็คดูว่า Lighthouse มีความ Bias จาก Extension ด้วยหรือเปล่า
+
+3. คะแนน Performance ของ Lighthouse มาจากด้าน Frontend แทบจะทั้งหมด
+
+ดังนั้นการที่เว็บ A ได้คะแนน Performance สูงกว่าเว็บ B อาจเป็นเพราะ
+
+1. Lighthouse มีความ Bias
+
+2. ขนาด Frontend ของเว็บ A น้อยกว่าเว็บ B อยู่หลายเท่า
+
+ซึ่งถ้าหากว่าเป็นผลมาจากข้อที่ 2 การที่เว็บ A ได้คำแนนห่างจากเว็บ B 4 คะแนนเป็นเพราะ เว็บ B Optimize มาดีหรือว่าเพราะ เว็บ A Optimize มาไม่ดีหรือเปล่า?
+
+## สรุป
+Lighthouse เป็นเครื่องมือสำหรับการการใช้ในการวัดประสิทธิภาพของเว็บทางด้าน Frontend โดยเฉพาะ เพื่อวัดว่าเว็บเรามีประสิทธิภาพทางด้าน Frontend ไม่ใช่ Backend
+<Image src="/assets/content/how-to-lighthouse-101/lighthouse.png" alt="Lighthouse Icon" />
