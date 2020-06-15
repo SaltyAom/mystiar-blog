@@ -46,7 +46,7 @@ const Editor = ({ author, related }) => {
                 />
                 <meta
                     property="og:image"
-                    content={`https://blog.mystiar.com${profile.retina}`}
+                    content={`https://blog.saltyaom.com${profile.retina}`}
                 />
                 <meta property="og:image:width" content="288" />
                 <meta property="og:image:height" content="288" />
@@ -67,7 +67,7 @@ const Editor = ({ author, related }) => {
                 <meta name="twitter:site" content="@SaltyAom" />
                 <meta
                     name="twitter:image"
-                    content={`https://blog.mystiar.com${profile.retina}`}
+                    content={`https://blog.saltyaom.com${profile.retina}`}
                 />
                 <meta name="twitter:creator" content="@SaltyAom" />
             </Head>

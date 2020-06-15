@@ -30,8 +30,8 @@ const Header: HeaderComponent = memo(
 			"headline": "${title}",
 			"image": ["${retina ? retina : normal}"],
 			"inLanguage": "Thai",
-			"mainEntityOfPage": "https://blog.mystiar.com${composeContentPath(normal)}",
-			"url": "https://blog.mystiar.com${composeContentPath(normal)}",
+			"mainEntityOfPage": "https://blog.saltyaom.com${composeContentPath(normal)}",
+			"url": "https://blog.saltyaom.com${composeContentPath(normal)}",
 			"publisher": {
 				"@type": "Organization",
 				"name": "Mystiar Blog",
@@ -39,7 +39,7 @@ const Header: HeaderComponent = memo(
 					"@type": "imageObject",
 					"width": "512",
 					"height": "512",
-					"url": "https://blog.mystiar.com/assets/icon/mystiarX512.png"
+					"url": "https://blog.saltyaom.com/assets/icon/mystiarX512.png"
 				}
 			},
 			"author": {
@@ -79,7 +79,7 @@ const Header: HeaderComponent = memo(
                     <meta property="og:description" content={description} />
                     <meta
                         property="og:image"
-                        content={`https://blog.mystiar.com${
+                        content={`https://blog.saltyaom.com${
                             retina ? retina : normal
                         }`}
                     />
@@ -93,7 +93,7 @@ const Header: HeaderComponent = memo(
                     <meta name="twitter:description" content={description} />
                     <meta
                         name="twitter:image"
-                        content={`https://blog.mystiar.com${
+                        content={`https://blog.saltyaom.com${
                             retina ? retina : normal
                         }`}
                     />
@@ -102,7 +102,7 @@ const Header: HeaderComponent = memo(
 
                     <link
                         rel="canonical"
-                        href={`https://blog.mystiar.com${composeContentPath(
+                        href={`https://blog.saltyaom.com${composeContentPath(
                             normal
                         )}`}
                     />
